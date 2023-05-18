@@ -29,18 +29,18 @@
 
             <?php get_header(); ?>
             
-            <h1 class="text-center text-capitalize my-5"><?php _e(the_title()); ?></h1>
+            <h1 class="text-center text-capitalize my-5"><?php esc_html_e(the_title()); ?></h1>
 
             <div class="display-content table-responsive">
                 <table class="table table-hover table-bordered">
                     <thead class="bg-dark text-white">
                         <tr class="text-center">
-                            <th><?php _e("Sr#"); ?></th>
-                            <th class="text-start"><?php _e("Shopkeeper"); ?></th>
-                            <th><?php _e("Total"); ?></th>
-                            <th><?php _e("Pay"); ?></th>
-                            <th><?php _e("Remaining"); ?></th>
-                            <th><?php _e("Account"); ?></th>
+                            <th><?php esc_html_e("Sr#"); ?></th>
+                            <th class="text-start"><?php esc_html_e("Shopkeeper"); ?></th>
+                            <th><?php esc_html_e("Total"); ?></th>
+                            <th><?php esc_html_e("Pay"); ?></th>
+                            <th><?php esc_html_e("Remaining"); ?></th>
+                            <th><?php esc_html_e("Account"); ?></th>
                         </tr>
                     </thead>
                     <tbody class="bg-light">
