@@ -30,7 +30,7 @@
 
             <?php get_header(); ?>
             
-            <h1 class="text-center text-capitalize my-5"><?php _e(the_title()); ?></h1>
+            <h1 class="text-center text-capitalize my-5"><?php esc_html_e(the_title()); ?></h1>
 
             <div class="display-content">
                 <div class="row fw-bolder bg-white rounded p-3">
@@ -38,7 +38,7 @@
                     <div class="col-lg-4 col-md-4 col-sm-12 my-4">
                         <ul class="p-0 m-0 list-unstyled">
                             <li>
-                                <span><?php _e("Sales Amount"); ?>:</span>
+                                <span><?php esc_html_e("Sales Amount"); ?>:</span>
                                 <span class="text-primary mx-2">
                                     <?php
                                         $yesterday_sales = $wpdb->get_var("SELECT SUM(total_amount) FROM fst_customer_invoice WHERE `sale_date` = '$yesterday'");
@@ -49,7 +49,7 @@
                                 </span>
                             </li>
                             <li>
-                                <span><?php _e("Received Amount"); ?>:</span>
+                                <span><?php esc_html_e("Received Amount"); ?>:</span>
                                 <span class="text-success mx-2">
                                     <?php
                                         $yesterday_received = 0;
@@ -70,7 +70,7 @@
                                 </span>
                             </li>
                             <li>
-                                <span><?php _e("Remaining Amount"); ?>:</span>
+                                <span><?php esc_html_e("Remaining Amount"); ?>:</span>
                                 <span class="text-danger mx-2">
                                     <?php
                                         $yesterday_remain = $yesterday_sales -  $yesterday_received;
@@ -81,7 +81,7 @@
                             </li>
                             <br>
                             <li>
-                                <span><?php _e("Credit I/D"); ?>:</span>
+                                <span><?php esc_html_e("Credit I/D"); ?>:</span>
                                 <span class="text-info mx-2">
                                     <?php
                                         $credit_i_d = $yesterday_remain + $today_sales - $today_received;
@@ -93,8 +93,8 @@
                     </div><!-- .col-4 -->
 
                     <!------- Expense Summary ------->
-                    <div class="col-lg-4 col-md-4 col-sm-12 my-4">
-                        <span><?php _e("Expense"); ?>:</span>
+                    <div class="col-lg-3 col-md-3 col-sm-12 my-4">
+                        <span><?php esc_html_e("Expense"); ?>:</span>
                         <span class="text-primary mx-2">
                             <?php
                                 $expense_amount = $wpdb->get_var("SELECT SUM(expense_amount) FROM fst_expense_data WHERE `expense_date` = '$date'");
@@ -103,28 +103,28 @@
                         </span>
                         <br>
                         <br>
-                        <span><?php _e("Discount"); ?>:</span>
+                        <span><?php esc_html_e("Discount"); ?>:</span>
                         <span class="text-primary mx-2">
                             <?php echo esc_html(number_format_i18n($today_discount)); ?>
                         </span>
-                    </div><!-- .col-4 -->
+                    </div><!-- .col-3 -->
 
                     <!------- Product Summary ------->
-                    <div class="col-lg-4 col-md-4 col-sm-12 my-4">
+                    <div class="col-lg-5 col-md-5 col-sm-12 my-4">
                         <ul class="p-0 m-0 list-unstyled">
                             <?php
                                 $fetch_sales_product = $wpdb->get_results("SELECT * FROM fst_customer_invoice WHERE `sale_date` = '$date'");
                                 foreach($fetch_sales_product as $fetch) :
                                     $product_id = $fetch->product_id;
                             ?>
-                            <li>
+                            <li class="mb-2">
                                 <?php
                                     $fetch_product = $wpdb->get_results("SELECT * FROM fst_purchase_data WHERE `ID` = '$product_id'");
                                     foreach($fetch_product as $product) {
                                         $product_name = $product->product_name;
                                         $price = $product->price_with_expense;
                                 ?>
-                                <span><?php _e("$product_name Sales"); ?>:</span>
+                                <span><?php esc_html_e("$product_name Sales"); ?>:</span>
                                 <?php } ?>
                                 <?php
                                     $fetch_product_profit = $wpdb->get_results("SELECT * FROM fst_customer_invoice WHERE `product_id` = $product_id AND `sale_date` = '$date'");
@@ -145,15 +145,15 @@
                                 <span class="text-primary mx-2"><?php echo esc_html(number_format_i18n($average = $total_amount / $quantity)); ?></span>
                                 <?php
                                     if($per_product_profit > 0) {
-                                        echo "<span class='text-success border border-dark mx-2 p-1'>".esc_html(number_format_i18n($per_product_profit))."</span>";
+                                        echo "<span class='text-success mx-2 p-1'>".esc_html(number_format_i18n($per_product_profit))."</span>";
                                     } else {
-                                        echo "<span class='text-danger border border-dark mx-2 p-1'>".esc_html(number_format_i18n($per_product_profit))."</span>";
+                                        echo "<span class='text-danger mx-2 p-1'>".esc_html(number_format_i18n($per_product_profit))."</span>";
                                     }
                                 ?>
                             </li>
                             <?php endforeach; ?>
                         </ul>
-                    </div><!-- .col-4 -->
+                    </div><!-- .col-5 -->
 
                     <!------- Profit & Lose ------->
                     <div class="col-lg-4 col-md-4 col-sm-12 my-4">
@@ -166,7 +166,7 @@
                                     $gross_profit = $gross - $today_discount;
                                 }
 
-                                _e("Gross Profit & Lose") . ':';
+                                esc_html_e("Gross Profit & Lose") . ':';
                                 if($gross_profit > 0) {
                                     echo "<span class='text-primary mx-2'>".esc_html(number_format_i18n($gross_profit))."</span>";
                                 } else {
@@ -176,7 +176,7 @@
                         </div><!-- .border -->
                         <div class='border border-dark p-2 my-2'>
                             <?php
-                                _e("Net Profit & Lose") . ':';
+                                esc_html_e("Net Profit & Lose") . ':';
                                 $net_profit = $gross_profit - $credit_i_d;
                                 if($net_profit > 0) {
                                     echo "<span class='text-primary'> ".number_format_i18n($net_profit)."</span>";
