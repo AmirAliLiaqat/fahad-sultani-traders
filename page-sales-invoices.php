@@ -31,7 +31,7 @@
 
             <?php get_header(); ?>
             
-            <h1 class="text-center text-capitalize my-5"><?php echo isset($_GET['query']) ? _e("Edit ") : _e("Add "); _e(the_title()); ?></h1>
+            <h1 class="text-center text-capitalize my-5"><?php isset($_GET['query']) ? esc_html_e("Edit ") : esc_html_e("Add "); esc_html_e(the_title()); ?></h1>
             
             <div class="row my-2">
                 <div class="col-lg-6 col-sm-12 mx-auto">
@@ -485,14 +485,14 @@
                 <table class="table table-bordered table-hover table-striped table-sm">
                     <thead class="bg-dark text-white text-center">
                         <tr>
-                            <th><?php _e("Sr#"); ?></th>
-                            <th><?php _e("Product ID"); ?></th>
-                            <th><?php _e("Customer Name"); ?></th>
-                            <th><?php _e("Sale Date"); ?></th>
-                            <th><?php _e("Quantity"); ?></th>
-                            <th><?php _e("Price Pre Quantity"); ?></th>
-                            <th><?php _e("Total Amount"); ?></th>
-                            <th><?php _e("Action"); ?></th>
+                            <th><?php esc_html_e("Sr#"); ?></th>
+                            <th><?php esc_html_e("Product ID"); ?></th>
+                            <th><?php esc_html_e("Customer Name"); ?></th>
+                            <th><?php esc_html_e("Sale Date"); ?></th>
+                            <th><?php esc_html_e("Quantity"); ?></th>
+                            <th><?php esc_html_e("Price Pre Quantity"); ?></th>
+                            <th><?php esc_html_e("Total Amount"); ?></th>
+                            <th><?php esc_html_e("Action"); ?></th>
                         </tr>
                     </thead>
                     <tbody class='bg-light'>
