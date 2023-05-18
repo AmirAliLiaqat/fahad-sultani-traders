@@ -30,7 +30,7 @@
 
             <?php get_header(); ?>
 
-            <h1 class="text-center text-capitalize my-5"><?php echo isset($_GET['query']) ? _e("Edit ") : _e("Add "); _e(the_title()); ?></h1>
+            <h1 class="text-center text-capitalize my-5"><?php isset($_GET['query']) ? esc_html_e("Edit ") : esc_html_e("Add "); esc_html_e(the_title()); ?></h1>
 
             <div class="row my-2">
                 <div class="col-lg-6 col-sm-12 mx-auto">
@@ -272,7 +272,7 @@
                             <!-- Search -->
                             <div class="row mb-3">
                                 <div class="col-lg-4 col-sm-12">
-                                    <label for="search" class="form-label fw-bolder"><?php _e("Shopkeeper"); ?></label>
+                                    <label for="search" class="form-label fw-bolder"><?php esc_html_e("Shopkeeper"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
                                     <?php
@@ -282,7 +282,7 @@
                                         foreach($shopkeeper as $detail) {
                                             $shopkeeper_name = $detail->shopkeeper_name;
                                     ?>
-                                    <input type="text" id="search" name="search" class="form-control" value="<?php echo esc_html($shopkeeper_name); ?>" placeholder="<?php _e("Search"); ?>" autocomplete="off"/>
+                                    <input type="text" id="search" name="search" class="form-control" value="<?php echo esc_html($shopkeeper_name); ?>" placeholder="<?php esc_html_e("Search"); ?>" autocomplete="off"/>
                                     <?php } ?>
                                     <div class="mt-2" id="result"></div>
                                 </div><!-- .col-lg-8 -->
@@ -291,55 +291,55 @@
                             <!-- Purchase Date -->
                             <div class="row mb-3">
                                 <div class="col-lg-4 col-sm-12">
-                                    <label for="purchase_date" class="form-label fw-bolder"><?php _e("Purchase Date"); ?></label>
+                                    <label for="purchase_date" class="form-label fw-bolder"><?php esc_html_e("Purchase Date"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
-                                    <input type="date" name="purchase_date" class="form-control" value="<?php echo esc_html($payment->purchase_date); ?>" placeholder="<?php _e("Purchase Date"); ?>">    
+                                    <input type="date" name="purchase_date" class="form-control" value="<?php echo esc_html($payment->purchase_date); ?>" placeholder="<?php esc_html_e("Purchase Date"); ?>">    
                                 </div><!-- .col-lg-8 -->
                             </div><!-- .row -->
 
                             <!-- Product Name -->
                             <div class="row mb-3">
                                 <div class="col-lg-4 col-sm-12">
-                                    <label for="product_name" class="form-label fw-bolder"><?php _e("Product Name"); ?></label>
+                                    <label for="product_name" class="form-label fw-bolder"><?php esc_html_e("Product Name"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
-                                    <input type="text" name="product_name" class="form-control" value="<?php echo esc_html($payment->product_name); ?>" placeholder="<?php _e("Product Name"); ?>">    
+                                    <input type="text" name="product_name" class="form-control" value="<?php echo esc_html($payment->product_name); ?>" placeholder="<?php esc_html_e("Product Name"); ?>">    
                                 </div><!-- .col-lg-8 -->
                             </div><!-- .row -->
 
                             <!-- Quantity -->
                             <div class="row mb-3">
                                 <div class="col-lg-4 col-sm-12">
-                                    <label for="quantity" class="form-label fw-bolder"><?php _e("Quantity"); ?></label>
+                                    <label for="quantity" class="form-label fw-bolder"><?php esc_html_e("Quantity"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
-                                    <input type="number" name="quantity" class="form-control" value="<?php echo esc_html($payment->quantity); ?>" placeholder="<?php _e("Quantity"); ?>"> 
+                                    <input type="number" name="quantity" class="form-control" value="<?php echo esc_html($payment->quantity); ?>" placeholder="<?php esc_html_e("Quantity"); ?>"> 
                                 </div><!-- .col-lg-8 -->
                             </div><!-- .row -->
 
                             <!-- Price Per Piece -->
                             <div class="row mb-3">
                                 <div class="col-lg-4 col-sm-12">
-                                    <label for="price_per_piece" class="form-label fw-bolder"><?php _e("Price Per Piece"); ?></label>
+                                    <label for="price_per_piece" class="form-label fw-bolder"><?php esc_html_e("Price Per Piece"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
-                                    <input type="text" name="price_per_piece" class="form-control" value="<?php echo esc_html($payment->price_per_piece); ?>" placeholder="<?php _e("Price Per Piece"); ?>">    
+                                    <input type="text" name="price_per_piece" class="form-control" value="<?php echo esc_html($payment->price_per_piece); ?>" placeholder="<?php esc_html_e("Price Per Piece"); ?>">    
                                 </div><!-- .col-lg-8 -->
                             </div><!-- .row -->
 
                             <!-- Expense -->
                             <div class="row mb-3">
                                 <div class="col-lg-4 col-sm-12">
-                                    <label for="expenses" class="form-label fw-bolder"><?php _e("Expenses"); ?></label>
+                                    <label for="expenses" class="form-label fw-bolder"><?php esc_html_e("Expenses"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
-                                    <input type="number" name="expenses" class="form-control" value="<?php echo esc_html($payment->expenses); ?>" placeholder="<?php _e("Expenses"); ?>">    
+                                    <input type="number" name="expenses" class="form-control" value="<?php echo esc_html($payment->expenses); ?>" placeholder="<?php esc_html_e("Expenses"); ?>">    
                                 </div><!-- .col-lg-8 -->
                             </div><!-- .row -->
 
                             <div class="text-end mb-2">
-                                <a class="btn btn-primary" id="open_more"><?php _e("Show More"); ?></a>
+                                <a class="btn btn-primary" id="open_more"><?php esc_html_e("Show More"); ?></a>
                             </div><!-- .text-end -->
 
                             <div id="show_more">
@@ -352,20 +352,20 @@
                                 <!-- Net Cash -->
                                 <div class="row mb-3">
                                     <div class="col-lg-4 col-sm-12">
-                                        <label for="net_cash" class="form-label fw-bolder"><?php _e("Net Cash"); ?></label>
+                                        <label for="net_cash" class="form-label fw-bolder"><?php esc_html_e("Net Cash"); ?></label>
                                     </div><!-- .col-lg-4 -->
                                     <div class="col-lg-8 col-sm-12">
-                                        <input type="number" name="net_cash" class="form-control" value="<?php echo esc_html($detail->net_cash); ?>" placeholder="<?php _e("Net Cash"); ?>"> 
+                                        <input type="number" name="net_cash" class="form-control" value="<?php echo esc_html($detail->net_cash); ?>" placeholder="<?php esc_html_e("Net Cash"); ?>"> 
                                     </div><!-- .col-lg-8 -->
                                 </div><!-- .row -->
 
                                 <!-- Description -->
                                 <div class="row mb-3">
                                     <div class="col-lg-4 col-sm-12">
-                                        <label for="description" class="form-label fw-bolder"><?php _e("Description"); ?></label>
+                                        <label for="description" class="form-label fw-bolder"><?php esc_html_e("Description"); ?></label>
                                     </div><!-- .col-lg-4 -->
                                     <div class="col-lg-8 col-sm-12">
-                                        <textarea name="description"><?php _e(esc_html($detail->description)); ?></textarea>
+                                        <textarea name="description"><?php esc_html_e($detail->description); ?></textarea>
                                     </div><!-- .col-lg-8 -->
                                 </div><!-- .row -->
                                 <?php endforeach; ?>
@@ -375,7 +375,7 @@
                             <div class="row">
                                 <div class="col-12 p-3">
                                     <?php wp_nonce_field( 'updating_purchase_data', 'updating_purchase_data_nonce' ); ?>
-                                    <button class="btn btn-primary" name="update_purchase_data"><?php _e("Update Purchase Data"); ?></button>
+                                    <button class="btn btn-primary" name="update_purchase_data"><?php esc_html_e("Update Purchase Data"); ?></button>
                                 </div><!-- .col-12 -->
                             </div><!-- .row -->
                         </form>
@@ -389,10 +389,10 @@
                             <!-- Search -->
                             <div class="row mb-3">
                                 <div class="col-lg-4 col-sm-12">
-                                    <label for="search" class="form-label fw-bolder"><?php _e("Shopkeeper"); ?></label>
+                                    <label for="search" class="form-label fw-bolder"><?php esc_html_e("Shopkeeper"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
-                                    <input type="text" id="search" name="search" class="form-control" placeholder="<?php _e("Search"); ?>" autocomplete="off"/>
+                                    <input type="text" id="search" name="search" class="form-control" placeholder="<?php esc_html_e("Search"); ?>" autocomplete="off"/>
                                     <div class="mt-2" id="result"></div>
                                 </div><!-- .col-lg-8 -->
                             </div><!-- .row -->
@@ -400,72 +400,72 @@
                             <!-- Purchase Date -->
                             <div class="row mb-3">
                                 <div class="col-lg-4 col-sm-12">
-                                    <label for="purchase_date" class="form-label fw-bolder"><?php _e("Purchase Date"); ?></label>
+                                    <label for="purchase_date" class="form-label fw-bolder"><?php esc_html_e("Purchase Date"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
-                                    <input type="date" name="purchase_date" class="form-control" value="<?php echo $date; ?>" placeholder="<?php _e("Purchase Date"); ?>">    
+                                    <input type="date" name="purchase_date" class="form-control" value="<?php echo $date; ?>" placeholder="<?php esc_html_e("Purchase Date"); ?>">    
                                 </div><!-- .col-lg-8 -->
                             </div><!-- .row -->
 
                             <!-- Product Name -->
                             <div class="row mb-3">
                                 <div class="col-lg-4 col-sm-12">
-                                    <label for="product_name" class="form-label fw-bolder"><?php _e("Product Name"); ?></label>
+                                    <label for="product_name" class="form-label fw-bolder"><?php esc_html_e("Product Name"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
-                                    <input type="text" name="product_name" class="form-control" placeholder="<?php _e("Product Name"); ?>">    
+                                    <input type="text" name="product_name" class="form-control" placeholder="<?php esc_html_e("Product Name"); ?>">    
                                 </div><!-- .col-lg-8 -->
                             </div><!-- .row -->
 
                             <!-- Quantity -->
                             <div class="row mb-3">
                                 <div class="col-lg-4 col-sm-12">
-                                    <label for="quantity" class="form-label fw-bolder"><?php _e("Quantity"); ?></label>
+                                    <label for="quantity" class="form-label fw-bolder"><?php esc_html_e("Quantity"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
-                                    <input type="number" name="quantity" class="form-control" placeholder="<?php _e("Quantity"); ?>"> 
+                                    <input type="number" name="quantity" class="form-control" placeholder="<?php esc_html_e("Quantity"); ?>"> 
                                 </div><!-- .col-lg-8 -->
                             </div><!-- .row -->
 
                             <!-- Price Per Piece -->
                             <div class="row mb-3">
                                 <div class="col-lg-4 col-sm-12">
-                                    <label for="price_per_piece" class="form-label fw-bolder"><?php _e("Price Per Piece"); ?></label>
+                                    <label for="price_per_piece" class="form-label fw-bolder"><?php esc_html_e("Price Per Piece"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
-                                    <input type="text" name="price_per_piece" class="form-control" placeholder="<?php _e("Price Per Piece"); ?>">    
+                                    <input type="text" name="price_per_piece" class="form-control" placeholder="<?php esc_html_e("Price Per Piece"); ?>">    
                                 </div><!-- .col-lg-8 -->
                             </div><!-- .row -->
 
                             <!-- Expense -->
                             <div class="row mb-3">
                                 <div class="col-lg-4 col-sm-12">
-                                    <label for="expenses" class="form-label fw-bolder"><?php _e("Expenses"); ?></label>
+                                    <label for="expenses" class="form-label fw-bolder"><?php esc_html_e("Expenses"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
-                                    <input type="number" name="expenses" class="form-control" placeholder="<?php _e("Expenses"); ?>">    
+                                    <input type="number" name="expenses" class="form-control" placeholder="<?php esc_html_e("Expenses"); ?>">    
                                 </div><!-- .col-lg-8 -->
                             </div><!-- .row -->
 
                             <div class="text-end mb-2">
-                                <a class="btn btn-primary" id="open_more"><?php _e("Show More"); ?></a>
+                                <a class="btn btn-primary" id="open_more"><?php esc_html_e("Show More"); ?></a>
                             </div><!-- .text-end -->
 
                             <div id="show_more">
                                 <!-- Net Cash -->
                                 <div class="row mb-3">
                                     <div class="col-lg-4 col-sm-12">
-                                        <label for="net_cash" class="form-label fw-bolder"><?php _e("Net Cash"); ?></label>
+                                        <label for="net_cash" class="form-label fw-bolder"><?php esc_html_e("Net Cash"); ?></label>
                                     </div><!-- .col-lg-4 -->
                                     <div class="col-lg-8 col-sm-12">
-                                        <input type="number" name="net_cash" class="form-control" placeholder="<?php _e("Net Cash"); ?>"> 
+                                        <input type="number" name="net_cash" class="form-control" placeholder="<?php esc_html_e("Net Cash"); ?>"> 
                                     </div><!-- .col-lg-8 -->
                                 </div><!-- .row -->
 
                                 <!-- Description -->
                                 <div class="row mb-3">
                                     <div class="col-lg-4 col-sm-12">
-                                        <label for="description" class="form-label fw-bolder"><?php _e("Description"); ?></label>
+                                        <label for="description" class="form-label fw-bolder"><?php esc_html_e("Description"); ?></label>
                                     </div><!-- .col-lg-4 -->
                                     <div class="col-lg-8 col-sm-12">
                                         <textarea name="description"></textarea>
@@ -477,7 +477,7 @@
                             <div class="row">
                                 <div class="col-12 p-3">
                                     <?php wp_nonce_field( 'adding_purchase_data', 'adding_purchase_data_nonce' ); ?>
-                                    <button class="btn btn-primary" name="add_purchase_data"><?php _e("Add Purchase Data"); ?></button>
+                                    <button class="btn btn-primary" name="add_purchase_data"><?php esc_html_e("Add Purchase Data"); ?></button>
                                 </div><!-- .col-12 -->
                             </div><!-- .row -->
                         </form>
@@ -492,18 +492,18 @@
                 <table class="table table-bordered table-hover table-striped table-sm">
                     <thead class="bg-dark text-white text-center">
                         <tr>
-                            <th><?php _e("Sr#"); ?></th>
-                            <th><?php _e("Shopkeeper Name"); ?></th>
-                            <th><?php _e("Shopkeeper Phone"); ?></th>
-                            <th><?php _e("Purchase Date"); ?></th>
-                            <th><?php _e("Product Name"); ?></th>
-                            <th><?php _e("Quantity"); ?></th>
-                            <th><?php _e("Price Per Piece"); ?></th>
-                            <th><?php _e("Price"); ?></th>
-                            <th><?php _e("Expense"); ?></th>
-                            <th><?php _e("Price With Expense"); ?></th>
-                            <th><?php _e("Total Price"); ?></th>
-                            <th><?php _e("Action"); ?></th>
+                            <th><?php esc_html_e("Sr#"); ?></th>
+                            <th><?php esc_html_e("Shopkeeper Name"); ?></th>
+                            <th><?php esc_html_e("Shopkeeper Phone"); ?></th>
+                            <th><?php esc_html_e("Purchase Date"); ?></th>
+                            <th><?php esc_html_e("Product Name"); ?></th>
+                            <th><?php esc_html_e("Quantity"); ?></th>
+                            <th><?php esc_html_e("Price Per Piece"); ?></th>
+                            <th><?php esc_html_e("Price"); ?></th>
+                            <th><?php esc_html_e("Expense"); ?></th>
+                            <th><?php esc_html_e("Price With Expense"); ?></th>
+                            <th><?php esc_html_e("Total Price"); ?></th>
+                            <th><?php esc_html_e("Action"); ?></th>
                         </tr>
                     </thead>
                     <tbody class='bg-light'>
@@ -534,7 +534,7 @@
                                 }
                             ?>
                             <td><?php echo esc_html($data->purchase_date); ?></td>
-                            <td><?php _e(esc_html($data->product_name)); ?></td>
+                            <td><?php esc_html_e($data->product_name); ?></td>
                             <td><?php echo esc_html(number_format_i18n($remain_qty)); ?></td>
                             <td><?php echo esc_html(number_format_i18n($data->price_per_piece)); ?></td>
                             <td><?php echo esc_html(number_format_i18n($data->price)); ?></td>
