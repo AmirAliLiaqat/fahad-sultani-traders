@@ -182,47 +182,31 @@
                                             $remain_qty = $p_qty - $s_qty;
                                             
                                             if($remain_qty >= $quantity) {
-                                                if(!empty($net_cash)) {
-                                                    $table_name = $wpdb->prefix.'customer_data';
-                                                    $detail = array(
-                                                        'net_cash' => $net_cash,
-                                                        'description' => $description
-                                                    );
-                                                    $where_net_cash = array( 'ID' => $customer_id );
-                                                    $add_net_cash = $wpdb->update($table_name, $detail, $where_net_cash);
+                                                /********* updating net cash *********/
+                                                $table_name = $wpdb->prefix.'customer_data';
+                                                $detail = array(
+                                                    'net_cash' => $net_cash,
+                                                    'description' => $description
+                                                );
+                                                $where_net_cash = array( 'ID' => $customer_id );
+                                                $add_net_cash = $wpdb->update($table_name, $detail, $where_net_cash);
 
-                                                    if($add_net_cash) {
-                                                        echo "<div class='alert alert-success' role='alert'>
-                                                            <strong>Net cash added successfully</strong>
-                                                        </div>";
-                                                    } else {
-                                                        echo "<div class='alert alert-danger' role='alert'>
-                                                            <strong>Error to adding net cash!</strong>
-                                                        </div>";
-                                                    }
-                                                } else {
-                                                    $table = $wpdb->prefix.'customer_invoice';
-                                                    $data = array(
-                                                        'customer_id' => $customer_id, 
-                                                        'product_id' => $product_id,
-                                                        'sale_date' => $sale_date,
-                                                        'quantity' => $quantity,
-                                                        'price_per_quantity' => $price_per_quantity,
-                                                        'total_amount' => $total_amount
-                                                    );
-                                                    $where = array( 'ID' => $invoice_id );
-                                                    $update_customer_payment = $wpdb->update($table, $data, $where);
-    
-                                                    if($update_customer_payment) {
-                                                        echo "<div class='alert alert-success' role='alert'>
-                                                            <strong>Customer Invoice updated successfully...</strong>
-                                                        </div>";
-                                                    } else {
-                                                        echo "<div class='alert alert-danger' role='alert'>
-                                                            <strong>Error to updating the customer invoice!</strong>
-                                                        </div>";
-                                                    }   
-                                                }
+                                                /********* updating invoice *********/
+                                                $table = $wpdb->prefix.'customer_invoice';
+                                                $data = array(
+                                                    'customer_id' => $customer_id, 
+                                                    'product_id' => $product_id,
+                                                    'sale_date' => $sale_date,
+                                                    'quantity' => $quantity,
+                                                    'price_per_quantity' => $price_per_quantity,
+                                                    'total_amount' => $total_amount
+                                                );
+                                                $where = array( 'ID' => $invoice_id );
+                                                $update_customer_payment = $wpdb->update($table, $data, $where);
+
+                                                echo "<div class='alert alert-success' role='alert'>
+                                                    <strong>Customer Invoice updated successfully...</strong>
+                                                </div>";
                                             } else {
                                                 echo "<div class='alert alert-danger' role='alert'>
                                                     <strong>Out of limit product!</strong>
