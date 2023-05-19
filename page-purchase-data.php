@@ -177,55 +177,39 @@
                                             $shopkeeper_id = $shopkeeper->ID;
                                         }
 
-                                        if(!empty($net_cash) || $net_cash == 0) {
-                                            $table = $wpdb->prefix.'shopkeepers_data';
-                                            $data = array(
-                                                'net_cash' => $net_cash,
-                                                'description' => $description
-                                            );
-                                            $where = array( 'ID' => $shopkeeper_id );
-                                            $add_net_cash = $wpdb->update($table, $data, $where);
+                                        /********* updating net cash *********/
+                                        $table = $wpdb->prefix.'shopkeepers_data';
+                                        $data = array(
+                                            'net_cash' => $net_cash,
+                                            'description' => $description
+                                        );
+                                        $where = array( 'ID' => $shopkeeper_id );
+                                        $add_net_cash = $wpdb->update($table, $data, $where);
 
-                                            if($add_net_cash) {
-                                                echo "<div class='alert alert-success' role='alert'>
-                                                    <strong>Net cash updated successfully</strong>
-                                                </div>";
-                                            } else {
-                                                echo "<div class='alert alert-danger' role='alert'>
-                                                    <strong>Error to updated net cash!</strong>
-                                                </div>";
-                                            }
-                                        } else {
-                                            $table = $wpdb->prefix.'purchase_data';
-                                            $data = array(
-                                                'shopkeeper_id' => $shopkeeper_id, 
-                                                'purchase_date' => $purchase_date, 
-                                                'product_name' => $product_name, 
-                                                'quantity' => $quantity, 
-                                                'price_per_piece' => $price_per_piece, 
-                                                'price' => $price, 
-                                                'expenses' => $expenses, 
-                                                'price_with_expense' => $price_with_expense, 
-                                                'total_price' => $total_price
-                                            );
-                                            $where = array( 'ID' => $purchase_id );
-                                            $add_purchase_data = $wpdb->update($table, $data, $where);
+                                        /********* updating purchase invoice *********/
+                                        $table = $wpdb->prefix.'purchase_data';
+                                        $data = array(
+                                            'shopkeeper_id' => $shopkeeper_id, 
+                                            'purchase_date' => $purchase_date, 
+                                            'product_name' => $product_name, 
+                                            'quantity' => $quantity, 
+                                            'price_per_piece' => $price_per_piece, 
+                                            'price' => $price, 
+                                            'expenses' => $expenses, 
+                                            'price_with_expense' => $price_with_expense, 
+                                            'total_price' => $total_price
+                                        );
+                                        $where = array( 'ID' => $purchase_id );
+                                        $add_purchase_data = $wpdb->update($table, $data, $where);
 
-                                            if($add_purchase_data) {
-                                                echo "<div class='alert alert-success' role='alert'>
-                                                <strong>Purchase Data updated successfully...</strong>
-                                                </div>";
-                                            } else {
-                                                echo "<div class='alert alert-danger' role='alert'>
-                                                <strong>Error to updating the purchase data!</strong>
-                                                </div>";
-                                            }
-                                        }
+                                        echo "<div class='alert alert-success' role='alert'>
+                                            <strong>Purchase Data updated successfully...</strong>
+                                        </div>";
                                     }
                                 }  
                             } else {
                                 echo "<div class='alert alert-danger' role='alert'>
-                                  <strong>User is not logged in!</strong>
+                                    <strong>User is not logged in!</strong>
                                 </div>";
                             }
                         }
