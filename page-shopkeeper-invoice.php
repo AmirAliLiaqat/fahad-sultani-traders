@@ -79,20 +79,20 @@
                                                 ?>
                                             </div><!-- .shopkeeper_img -->
                                             <div class="row mt-5">
-                                                <h1 class="mb-3"><?php _e("Shopkeeper Details:"); ?></h1>
+                                                <h1 class="mb-3"><?php esc_html_e("Shopkeeper Details:"); ?></h1>
                                                 <div class="col-lg-6 col-md-6 col-sm-12 table-responsive">
                                                     <table class="table table-bordered border-dark bg-light">
                                                         <tbody>
                                                             <tr>
-                                                                <td class="p-3"><strong><?php _e("Shop Number"); ?></strong></td>
+                                                                <td class="p-3"><strong><?php esc_html_e("Shop Number"); ?></strong></td>
                                                                 <td class="p-3"><?php echo esc_html($row->shop_number); ?></td>
                                                             </tr>
                                                             <tr>
-                                                                <td class="p-3"><strong><?php _e("Name"); ?></strong></td>
+                                                                <td class="p-3"><strong><?php esc_html_e("Name"); ?></strong></td>
                                                                 <td class="p-3"><?php echo esc_html($row->shopkeeper_name); ?></td>
                                                             </tr>
                                                             <tr>
-                                                                <td class="p-3"><strong><?php _e("Phone"); ?></strong></td>
+                                                                <td class="p-3"><strong><?php esc_html_e("Phone"); ?></strong></td>
                                                                 <td class="p-3">
                                                                     <?php 
                                                                         echo esc_html($row->shopkeeper_phone) . '<br>'; 
@@ -106,7 +106,7 @@
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td class="p-3"><strong><?php _e("Account"); ?></strong></td>
+                                                                <td class="p-3"><strong><?php esc_html_e("Account"); ?></strong></td>
                                                                 <td class="p-3">
                                                                     <?php 
                                                                         echo esc_html($row->shopkeeper_account) . '<br>'; 
@@ -126,7 +126,7 @@
                                                     <table class="table table-bordered border-dark bg-light">
                                                         <tbody>
                                                             <tr>
-                                                                <td class="p-3"><strong><?php _e("Total Purchase"); ?></strong></td>
+                                                                <td class="p-3"><strong><?php esc_html_e("Total Purchase"); ?></strong></td>
                                                                 <td class="p-3">
                                                                     <?php
                                                                         $total_amount = $wpdb->get_var("SELECT SUM(price) FROM fst_purchase_data WHERE `shopkeeper_id` = '$shopkeeper_id'");
@@ -135,7 +135,7 @@
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td class="p-3"><strong><?php _e("Total Payment"); ?></strong></td>
+                                                                <td class="p-3"><strong><?php esc_html_e("Total Payment"); ?></strong></td>
                                                                 <td class="p-3">
                                                                     <?php
                                                                         $received_amount = $wpdb->get_var("SELECT SUM(amount) FROM fst_shopkeeper_payments WHERE `shopkeeper_id` = '".$shopkeeper_id."'");
@@ -144,11 +144,11 @@
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td class="p-3"><strong><?php _e("Remaining"); ?></strong></td>
+                                                                <td class="p-3"><strong><?php esc_html_e("Remaining"); ?></strong></td>
                                                                 <td class="p-3"><?php echo esc_html(number_format_i18n($total_amount - $received_amount)); ?></td>
                                                             </tr>
                                                             <tr>
-                                                                <td class="p-3"><strong><?php _e("Net Cash"); ?></strong></td>
+                                                                <td class="p-3"><strong><?php esc_html_e("Net Cash"); ?></strong></td>
                                                                 <td class="p-3"><?php echo esc_html(number_format_i18n($row->net_cash)); ?></td>
                                                             </tr>
                                                         </tbody>
@@ -162,13 +162,13 @@
                                             <table class='table table-bordered table-hover text-center'>
                                                 <thead class='bg-dark text-white'>
                                                     <tr>
-                                                        <th><?php _e("Date"); ?></th>
-                                                        <th><?php _e("Detail"); ?></th>
-                                                        <th><?php _e("Quantity"); ?></th>
-                                                        <th><?php _e("Per Piece"); ?></th>
-                                                        <th><?php _e("Total Price"); ?></th>
-                                                        <th><?php _e("Pay"); ?></th>
-                                                        <th><?php _e("Remain"); ?></th>
+                                                        <th><?php esc_html_e("Date"); ?></th>
+                                                        <th><?php esc_html_e("Detail"); ?></th>
+                                                        <th><?php esc_html_e("Quantity"); ?></th>
+                                                        <th><?php esc_html_e("Per Piece"); ?></th>
+                                                        <th><?php esc_html_e("Total Price"); ?></th>
+                                                        <th><?php esc_html_e("Pay"); ?></th>
+                                                        <th><?php esc_html_e("Remain"); ?></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody class='bg-light'>
