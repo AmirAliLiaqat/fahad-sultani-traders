@@ -27,7 +27,7 @@
         <div class="top-header d-flex justify-content-between py-3">
             <div class="dropdown user_profile action mx-2">
                 <div class="dropdown-toggle btn text-white bg-dark" data-bs-toggle="dropdown" aria-expanded="false">
-                    <?php _e("English"); ?>
+                    <?php esc_html_e("English"); ?>
                 </div>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item top-header-dropdown mx-0" href="">اردو</a></li>
@@ -40,10 +40,10 @@
                 ?>
                 <div class="dropdown user_profile action mx-2">
                     <div class="dropdown-toggle btn text-white bg-dark" data-bs-toggle="dropdown" aria-expanded="false">
-                        <?php _e("Hello, " . $username); ?>
+                        <?php esc_html_e("Hello, " . $username); ?>
                     </div>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item top-header-dropdown mx-0" href="<?php echo wp_logout_url( get_home_url().'/login/' ); ?>"><?php _e("Logout"); ?></a></li>
+                        <li><a class="dropdown-item top-header-dropdown mx-0" href="<?php echo wp_logout_url( get_home_url().'/login/' ); ?>"><?php esc_html_e("Logout"); ?></a></li>
                     </ul>
                 </div><!--dropdown-->
             <?php
@@ -53,7 +53,7 @@
 
 		<div class="site-branding p-5">
             <h1 class="site-title text-center text-uppercase">
-                <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="text-decoration-none text-white" rel="home"><?php _e(bloginfo( 'name' )); ?></a>
+                <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="text-decoration-none text-white" rel="home"><?php esc_html_e(bloginfo( 'name' )); ?></a>
             </h1>
 		</div><!-- .site-branding -->
 
@@ -66,51 +66,51 @@
                     <ul class="menu">
                         <?php if( is_user_logged_in() ) { ?>
                         <li class="menu-item">
-                            <a href="<?php echo esc_url(get_page_link(16)); ?>"><i class="fa-solid fa-house fa-2x"></i><?php _e(esc_html(get_the_title(16))); ?></a>
+                            <a href="<?php echo esc_url(get_page_link(16)); ?>"><i class="fa-solid fa-house fa-2x"></i><?php esc_html_e(get_the_title(16)); ?></a>
                         </li>
                         <?php } if( current_user_can( 'today_sales' ) ) { ?>
                         <li class="menu-item">
-                            <a href="<?php echo esc_url(get_page_link(8)); ?>"><i class="fa-solid fa-user-tie fa-2x"></i><?php _e(esc_html(get_the_title(8))); ?></a>
+                            <a href="<?php echo esc_url(get_page_link(8)); ?>"><i class="fa-solid fa-user-tie fa-2x"></i><?php esc_html_e(get_the_title(8)); ?></a>
                         </li>
                         <?php } if( current_user_can( 'sales_invoices' ) ) { ?>
                         <li class="menu-item">
-                            <a href="<?php echo esc_url(get_page_link(30)); ?>"><i class="fa-solid fa-file-invoice fa-2x"></i><?php _e(esc_html(get_the_title(30))); ?></a>
+                            <a href="<?php echo esc_url(get_page_link(30)); ?>"><i class="fa-solid fa-file-invoice fa-2x"></i><?php esc_html_e(get_the_title(30)); ?></a>
                         </li>
                         <?php } if( current_user_can( 'customer_payments' ) ) { ?>
                         <li class="menu-item">
-                            <a href="<?php echo esc_url(get_page_link(14)); ?>"><i class="fa-solid fa-credit-card fa-2x"></i><?php _e(esc_html(get_the_title(14))); ?></a>
+                            <a href="<?php echo esc_url(get_page_link(14)); ?>"><i class="fa-solid fa-credit-card fa-2x"></i><?php esc_html_e(get_the_title(14)); ?></a>
                         </li>
                         <?php } if( current_user_can( 'customer_invoices' ) ) { ?>
                         <li class="menu-item">
-                            <a href="<?php echo esc_url(get_page_link(12)); ?>"><i class="fa-solid fa-receipt fa-2x"></i><?php _e(esc_html(get_the_title(12))); ?></a>
+                            <a href="<?php echo esc_url(get_page_link(12)); ?>"><i class="fa-solid fa-receipt fa-2x"></i><?php esc_html_e(get_the_title(12)); ?></a>
                         </li>
                         <?php } if( current_user_can( 'add_shopkeeper' ) ) { ?>
                         <li class="menu-item">
-                            <a href="<?php echo esc_url(get_page_link(10)); ?>"><i class="fa-solid fa-shop fa-2x"></i><?php _e(esc_html(get_the_title(10))); ?></a>
+                            <a href="<?php echo esc_url(get_page_link(10)); ?>"><i class="fa-solid fa-shop fa-2x"></i><?php esc_html_e(get_the_title(10)); ?></a>
                         </li>
                         <?php } if( current_user_can( 'purchase_data' ) ) { ?>
                         <li class="menu-item">
-                            <a href="<?php echo esc_url(get_page_link(24)); ?>"><i class="fa-solid fa-database fa-2x"></i><?php _e(esc_html(get_the_title(24))); ?></a>
+                            <a href="<?php echo esc_url(get_page_link(24)); ?>"><i class="fa-solid fa-database fa-2x"></i><?php esc_html_e(get_the_title(24)); ?></a>
                         </li>
                         <?php } if( current_user_can( 'shopkeeper_payments' ) ) { ?>
                         <li class="menu-item">
-                            <a href="<?php echo esc_url(get_page_link(42)); ?>"><i class="fa-solid fa-money-bill fa-2x"></i><?php _e(esc_html(get_the_title(42))); ?></a>
+                            <a href="<?php echo esc_url(get_page_link(42)); ?>"><i class="fa-solid fa-money-bill fa-2x"></i><?php esc_html_e(get_the_title(42)); ?></a>
                         </li>
                         <?php } if( current_user_can( 'shopkeeper_invoices' ) ) { ?>
                         <li class="menu-item">
-                            <a href="<?php echo esc_url(get_page_link(40)); ?>"><i class="fa-solid fa-receipt fa-2x"></i><?php _e(esc_html(get_the_title(40))); ?></a>
+                            <a href="<?php echo esc_url(get_page_link(40)); ?>"><i class="fa-solid fa-receipt fa-2x"></i><?php esc_html_e(get_the_title(40)); ?></a>
                         </li>
                         <?php } if( current_user_can( 'expense' ) ) { ?>
                         <li class="menu-item">
-                            <a href="<?php echo esc_url(get_page_link(18)); ?>"><i class="fa-solid fa-wallet fa-2x"></i><?php _e(esc_html(get_the_title(18))); ?></a>
+                            <a href="<?php echo esc_url(get_page_link(18)); ?>"><i class="fa-solid fa-wallet fa-2x"></i><?php esc_html_e(get_the_title(18)); ?></a>
                         </li>
                         <?php } if( current_user_can( 'salary' ) ) { ?>
                         <li class="menu-item">
-                            <a href="<?php echo esc_url(get_page_link(26)); ?>"><i class="fa-sharp fa-solid fa-hand-holding-dollar fa-2x"></i><?php _e(esc_html(get_the_title(26))); ?></a>
+                            <a href="<?php echo esc_url(get_page_link(26)); ?>"><i class="fa-sharp fa-solid fa-hand-holding-dollar fa-2x"></i><?php esc_html_e(get_the_title(26)); ?></a>
                         </li>
                         <?php } if( !is_user_logged_in() ) { ?>
                         <li class="menu-item">
-                            <a href="<?php echo esc_url(get_page_link(20)); ?>"><i class="fa-solid fa-user fa-2x"></i><?php _e(esc_html(get_the_title(20))); ?></a>
+                            <a href="<?php echo esc_url(get_page_link(20)); ?>"><i class="fa-solid fa-user fa-2x"></i><?php esc_html_e(get_the_title(20)); ?></a>
                         </li>
                     </ul><?php } ?>
                 </div>
