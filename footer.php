@@ -13,7 +13,7 @@
 
 	<footer id="colophon" class="site-footer">
 		<div class="copyright bg-dark text-white text-center p-3">
-            <?php _e("© Copyright 2023 All Rights Reserved By Fahad Sultani Traders."); ?>
+            <?php esc_html_e("© Copyright 2023 All Rights Reserved By Fahad Sultani Traders."); ?>
         </div>
 	</footer><!-- #colophon -->
 

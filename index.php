@@ -23,7 +23,7 @@ get_header();
     ?>
 
 	<main class="page-main-content text-center p-5">
-        <h1 class="text-center text-capitalize mb-5"><?php _e( "Hello, Welcome to our site..." ); ?></h1>
+        <h1 class="text-center text-capitalize mb-5"><?php esc_html_e( "Hello, Welcome to our site..." ); ?></h1>
     </main>
 
 <?php
