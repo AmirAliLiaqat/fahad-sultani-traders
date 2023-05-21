@@ -66,7 +66,7 @@
                     <ul class="menu">
                         <?php if( is_user_logged_in() ) { ?>
                         <li class="menu-item">
-                            <a href="<?php echo esc_url(get_page_link(16)); ?>"><i class="fa-solid fa-house fa-2x"></i><?php esc_html_e(get_the_title(16)); ?></a>
+                            <a href="<?php echo esc_url(get_page_link(17)); ?>"><i class="fa-solid fa-house fa-2x"></i><?php esc_html_e(get_the_title(17)); ?></a>
                         </li>
                         <?php } if( current_user_can( 'today_sales' ) ) { ?>
                         <li class="menu-item">
@@ -74,15 +74,15 @@
                         </li>
                         <?php } if( current_user_can( 'sales_invoices' ) ) { ?>
                         <li class="menu-item">
-                            <a href="<?php echo esc_url(get_page_link(30)); ?>"><i class="fa-solid fa-file-invoice fa-2x"></i><?php esc_html_e(get_the_title(30)); ?></a>
+                            <a href="<?php echo esc_url(get_page_link(31)); ?>"><i class="fa-solid fa-file-invoice fa-2x"></i><?php esc_html_e(get_the_title(31)); ?></a>
                         </li>
                         <?php } if( current_user_can( 'customer_payments' ) ) { ?>
                         <li class="menu-item">
-                            <a href="<?php echo esc_url(get_page_link(14)); ?>"><i class="fa-solid fa-credit-card fa-2x"></i><?php esc_html_e(get_the_title(14)); ?></a>
+                            <a href="<?php echo esc_url(get_page_link(15)); ?>"><i class="fa-solid fa-credit-card fa-2x"></i><?php esc_html_e(get_the_title(15)); ?></a>
                         </li>
                         <?php } if( current_user_can( 'customer_invoices' ) ) { ?>
                         <li class="menu-item">
-                            <a href="<?php echo esc_url(get_page_link(12)); ?>"><i class="fa-solid fa-receipt fa-2x"></i><?php esc_html_e(get_the_title(12)); ?></a>
+                            <a href="<?php echo esc_url(get_page_link(13)); ?>"><i class="fa-solid fa-receipt fa-2x"></i><?php esc_html_e(get_the_title(13)); ?></a>
                         </li>
                         <?php } if( current_user_can( 'add_shopkeeper' ) ) { ?>
                         <li class="menu-item">
@@ -90,27 +90,27 @@
                         </li>
                         <?php } if( current_user_can( 'purchase_data' ) ) { ?>
                         <li class="menu-item">
-                            <a href="<?php echo esc_url(get_page_link(24)); ?>"><i class="fa-solid fa-database fa-2x"></i><?php esc_html_e(get_the_title(24)); ?></a>
+                            <a href="<?php echo esc_url(get_page_link(25)); ?>"><i class="fa-solid fa-database fa-2x"></i><?php esc_html_e(get_the_title(25)); ?></a>
                         </li>
                         <?php } if( current_user_can( 'shopkeeper_payments' ) ) { ?>
                         <li class="menu-item">
-                            <a href="<?php echo esc_url(get_page_link(42)); ?>"><i class="fa-solid fa-money-bill fa-2x"></i><?php esc_html_e(get_the_title(42)); ?></a>
+                            <a href="<?php echo esc_url(get_page_link(44)); ?>"><i class="fa-solid fa-money-bill fa-2x"></i><?php esc_html_e(get_the_title(44)); ?></a>
                         </li>
                         <?php } if( current_user_can( 'shopkeeper_invoices' ) ) { ?>
                         <li class="menu-item">
-                            <a href="<?php echo esc_url(get_page_link(40)); ?>"><i class="fa-solid fa-receipt fa-2x"></i><?php esc_html_e(get_the_title(40)); ?></a>
+                            <a href="<?php echo esc_url(get_page_link(41)); ?>"><i class="fa-solid fa-receipt fa-2x"></i><?php esc_html_e(get_the_title(41)); ?></a>
                         </li>
                         <?php } if( current_user_can( 'expense' ) ) { ?>
                         <li class="menu-item">
-                            <a href="<?php echo esc_url(get_page_link(18)); ?>"><i class="fa-solid fa-wallet fa-2x"></i><?php esc_html_e(get_the_title(18)); ?></a>
+                            <a href="<?php echo esc_url(get_page_link(19)); ?>"><i class="fa-solid fa-wallet fa-2x"></i><?php esc_html_e(get_the_title(19)); ?></a>
                         </li>
                         <?php } if( current_user_can( 'salary' ) ) { ?>
                         <li class="menu-item">
-                            <a href="<?php echo esc_url(get_page_link(26)); ?>"><i class="fa-sharp fa-solid fa-hand-holding-dollar fa-2x"></i><?php esc_html_e(get_the_title(26)); ?></a>
+                            <a href="<?php echo esc_url(get_page_link(27)); ?>"><i class="fa-sharp fa-solid fa-hand-holding-dollar fa-2x"></i><?php esc_html_e(get_the_title(27)); ?></a>
                         </li>
                         <?php } if( !is_user_logged_in() ) { ?>
                         <li class="menu-item">
-                            <a href="<?php echo esc_url(get_page_link(20)); ?>"><i class="fa-solid fa-user fa-2x"></i><?php esc_html_e(get_the_title(20)); ?></a>
+                            <a href="<?php echo esc_url(get_page_link(21)); ?>"><i class="fa-solid fa-user fa-2x"></i><?php esc_html_e(get_the_title(21)); ?></a>
                         </li>
                     </ul><?php } ?>
                 </div>
