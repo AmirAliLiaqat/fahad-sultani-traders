@@ -29,14 +29,14 @@
 
             <?php get_header(); ?>
 
-            <h1 class="text-center text-capitalize my-5"><?php _e(esc_html(get_the_title())); ?></h1>
+            <h1 class="text-center text-capitalize my-5"><?php esc_html_e(get_the_title()); ?></h1>
 
             <div class="row">
                 <!----------- Today Sales --------------->
                 <?php if( current_user_can( 'today_sales' ) ) { ?> 
                     <div class="col-lg-4 col-md-4 col-sm-6 my-3">
                         <h3 class="dashboard-content text-center form-content bg-light">
-                            <a href="<?php echo esc_url(get_page_link(46)); ?>" class="d-block text-dark text-decoration-none p-3"><?php _e(esc_html('Today Sales')); ?></a>
+                            <a href="<?php echo esc_url(get_page_link(48)); ?>" class="d-block text-dark text-decoration-none p-3"><?php esc_html_e('Today Sales'); ?></a>
                         </h3>
                     </div><!-- .col-lg-4 -->
                 <?php } ?>
@@ -45,7 +45,7 @@
                 <?php if( current_user_can( 'today_credits' ) ) { ?> 
                     <div class="col-lg-4 col-md-4 col-sm-6 my-3">
                         <h3 class="dashboard-content text-center form-content bg-light">
-                            <a href="<?php echo esc_url(get_page_link(44)); ?>" class="d-block text-dark text-decoration-none p-3"><?php _e(esc_html('Today Credits')); ?></a>
+                            <a href="<?php echo esc_url(get_page_link(46)); ?>" class="d-block text-dark text-decoration-none p-3"><?php esc_html_e('Today Credits'); ?></a>
                         </h3>
                     </div><!-- .col-lg-4 -->
                 <?php } ?>
@@ -54,7 +54,7 @@
                 <?php if( current_user_can( 'dashboard_shopkeeper' ) ) { ?> 
                     <div class="col-lg-4 col-md-4 col-sm-6 my-3">
                         <h3 class="dashboard-content text-center form-content bg-light">
-                            <a href="<?php echo esc_url(get_page_link(38)); ?>" class="d-block text-dark text-decoration-none p-3"><?php _e(esc_html('Shopkeeper')); ?></a>
+                            <a href="<?php echo esc_url(get_page_link(39)); ?>" class="d-block text-dark text-decoration-none p-3"><?php esc_html_e('Shopkeeper'); ?></a>
                         </h3>
                     </div><!-- .col-lg-4 -->
                 <?php } ?>
@@ -63,7 +63,7 @@
                 <?php if( current_user_can( 'today_summary' ) ) { ?> 
                     <div class="col-lg-4 col-md-4 col-sm-6 my-3">
                         <h3 class="dashboard-content text-center form-content bg-light">
-                            <a href="<?php echo esc_url(get_page_link(48)); ?>" class="d-block text-dark text-decoration-none p-3"><?php _e(esc_html('Today Summary')); ?></a>
+                            <a href="<?php echo esc_url(get_page_link(50)); ?>" class="d-block text-dark text-decoration-none p-3"><?php esc_html_e('Today Summary'); ?></a>
                         </h3>
                     </div><!-- .col-lg-4 -->
                 <?php } ?>
@@ -72,7 +72,7 @@
                 <?php if( current_user_can( 'monthly_summary' ) ) { ?> 
                     <div class="col-lg-4 col-md-4 col-sm-6 my-3">
                         <h3 class="dashboard-content text-center form-content bg-light">
-                            <a href="<?php echo esc_url(get_page_link(22)); ?>" class="d-block text-dark text-decoration-none p-3"><?php _e(esc_html('Monthly Summary')); ?></a>
+                            <a href="<?php echo esc_url(get_page_link(23)); ?>" class="d-block text-dark text-decoration-none p-3"><?php esc_html_e('Monthly Summary'); ?></a>
                         </h3>
                     </div><!-- .col-lg-4 -->
                 <?php } ?>
@@ -81,7 +81,7 @@
                 <?php if( current_user_can( 'total_summary' ) ) { ?> 
                     <div class="col-lg-4 col-md-4 col-sm-6 my-3">
                         <h3 class="dashboard-content text-center form-content bg-light">
-                            <a href="<?php echo esc_url(get_page_link(50)); ?>" class="d-block text-dark text-decoration-none p-3"><?php _e(esc_html('Total Summary')); ?></a>
+                            <a href="<?php echo esc_url(get_page_link(52)); ?>" class="d-block text-dark text-decoration-none p-3"><?php esc_html_e('Total Summary'); ?></a>
                         </h3>
                     </div><!-- .col-lg-4 -->
                 <?php } ?>
@@ -92,7 +92,7 @@
                 <div class="row fw-bolder">
                     <div class="col-lg-4 col-md-4 col-sm-6 my-3 mx-auto">
                         <h3 class="dashboard-content text-center form-content bg-light">
-                            <a href="<?php echo esc_url(get_page_link(32)); ?>" class="d-block text-dark text-decoration-none p-3"><?php _e(esc_html('Search')); ?></a>
+                            <a href="<?php echo esc_url(get_page_link(32)); ?>" class="d-block text-dark text-decoration-none p-3"><?php esc_html_e('Search'); ?></a>
                         </h3>
                     </div><!-- .col-lg-4 -->
                 </div><!-- .row -->
