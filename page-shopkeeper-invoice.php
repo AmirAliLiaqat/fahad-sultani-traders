@@ -30,14 +30,14 @@
 
             <?php get_header(); ?>
             
-            <h1 class="text-center text-capitalize my-5"><?php _e(the_title()); ?></h1>
+            <h1 class="text-center text-capitalize my-5"><?php esc_html_e(the_title()); ?></h1>
 
             <div class="inner-content">
                 <form action="" method="get">
                     <div class="form-group">
                         <?php wp_nonce_field( 'search_shopkeeper', 'search_shopkeeper_nonce' ); ?>
-                        <input type="text" id="search" class="search_invoice" name="search_invoice" class="form-control d-inline" placeholder="<?php _e(" Search"); ?>" autocomplete="off" required/>
-                        <button class="btn btn-primary my-2" name="search"><?php _e("View"); ?></button>
+                        <input type="text" id="search" class="search_invoice" name="search_invoice" class="form-control d-inline" placeholder="<?php esc_html_e(" Search"); ?>" autocomplete="off" required/>
+                        <button class="btn btn-primary my-2" name="search"><?php esc_html_e("View"); ?></button>
                         <div class="mt-2" id="result"></div>
                     </div><!-- .form-group -->
                 </form>

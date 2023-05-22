@@ -30,7 +30,7 @@
 
             <?php get_header(); ?>
             
-            <h1 class="text-center text-capitalize my-5"><?php echo isset($_GET['query']) ? _e("Edit ") : _e("Add "); _e(the_title()); ?></h1>
+            <h1 class="text-center text-capitalize my-5"><?php echo isset($_GET['query']) ? esc_html_e("Edit ") : esc_html_e("Add "); esc_html_e(the_title()); ?></h1>
             
             <div class="row my-2">
                 <div class="col-lg-6 col-sm-12 mx-auto">
@@ -149,30 +149,30 @@
                             <!-- Name -->
                             <div class="row mb-3">
                                 <div class="col-lg-4 col-sm-12">
-                                    <label for="expense_name" class="form-label fw-bolder"><?php _e("Name"); ?></label>
+                                    <label for="expense_name" class="form-label fw-bolder"><?php esc_html_e("Name"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
-                                    <input type="text" name="expense_name" class="form-control" value="<?php echo esc_html($expense->expense_name); ?>" placeholder="<?php _e(" Name"); ?>" required>
+                                    <input type="text" name="expense_name" class="form-control" value="<?php echo esc_html($expense->expense_name); ?>" placeholder="<?php esc_html_e("Name"); ?>" required>
                                 </div><!-- .col-lg-8 -->
                             </div><!-- .row -->
 
                             <!-- Date -->
                             <div class="row mb-3">
                                 <div class="col-lg-4 col-sm-12">
-                                    <label for="expense_date" class="form-label fw-bolder"><?php _e("Date"); ?></label>
+                                    <label for="expense_date" class="form-label fw-bolder"><?php esc_html_e("Date"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
-                                    <input type="date" name="expense_date" class="form-control" value="<?php echo esc_html($expense->expense_date); ?>" placeholder="<?php _e(" Date"); ?>" required>    
+                                    <input type="date" name="expense_date" class="form-control" value="<?php echo esc_html($expense->expense_date); ?>" placeholder="<?php esc_html_e("Date"); ?>" required>    
                                 </div><!-- .col-lg-8 -->
                             </div><!-- .row -->
 
                             <!-- Amount -->
                             <div class="row mb-3">
                                 <div class="col-lg-4 col-sm-12">
-                                    <label for="expense_amount" class="form-label fw-bolder"><?php _e("Amount"); ?></label>
+                                    <label for="expense_amount" class="form-label fw-bolder"><?php esc_html_e("Amount"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
-                                    <input type="number" name="expense_amount" class="form-control" value="<?php echo esc_html($expense->expense_amount); ?>" placeholder="<?php _e(" Amount"); ?>" required>    
+                                    <input type="number" name="expense_amount" class="form-control" value="<?php echo esc_html($expense->expense_amount); ?>" placeholder="<?php esc_html_e("Amount"); ?>" required>    
                                 </div><!-- .col-lg-8 -->
                             </div><!-- .row -->
 
@@ -180,7 +180,7 @@
                             <div class="row">
                                 <div class="col-12 p-3">
                                     <?php wp_nonce_field( 'updating_expense', 'updating_expense_nonce' ); ?>
-                                    <button class="btn btn-primary" name="update_expense"><?php _e("Update Expense"); ?></button>
+                                    <button class="btn btn-primary" name="update_expense"><?php esc_html_e("Update Expense"); ?></button>
                                 </div><!-- .col-12 -->
                             </div><!-- .row -->
                         </form>
@@ -194,30 +194,30 @@
                             <!-- Name -->
                             <div class="row mb-3">
                                 <div class="col-lg-4 col-sm-12">
-                                    <label for="expense_name" class="form-label fw-bolder"><?php _e("Name"); ?></label>
+                                    <label for="expense_name" class="form-label fw-bolder"><?php esc_html_e("Name"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
-                                    <input type="text" name="expense_name" class="form-control" placeholder="<?php _e(" Name"); ?>" required>
+                                    <input type="text" name="expense_name" class="form-control" placeholder="<?php esc_html_e("Name"); ?>" required>
                                 </div><!-- .col-lg-8 -->
                             </div><!-- .row -->
 
                             <!-- Date -->
                             <div class="row mb-3">
                                 <div class="col-lg-4 col-sm-12">
-                                    <label for="expense_date" class="form-label fw-bolder"><?php _e("Date"); ?></label>
+                                    <label for="expense_date" class="form-label fw-bolder"><?php esc_html_e("Date"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
-                                    <input type="date" name="expense_date" class="form-control" value="<?php echo $date; ?>" placeholder="<?php _e(" Date"); ?>" required>    
+                                    <input type="date" name="expense_date" class="form-control" value="<?php echo $date; ?>" placeholder="<?php esc_html_e("Date"); ?>" required>    
                                 </div><!-- .col-lg-8 -->
                             </div><!-- .row -->
 
                             <!-- Amount -->
                             <div class="row mb-3">
                                 <div class="col-lg-4 col-sm-12">
-                                    <label for="expense_amount" class="form-label fw-bolder"><?php _e("Amount"); ?></label>
+                                    <label for="expense_amount" class="form-label fw-bolder"><?php esc_html_e("Amount"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
-                                    <input type="number" name="expense_amount" class="form-control" placeholder="<?php _e(" Amount"); ?>" required>    
+                                    <input type="number" name="expense_amount" class="form-control" placeholder="<?php esc_html_e("Amount"); ?>" required>    
                                 </div><!-- .col-lg-8 -->
                             </div><!-- .row -->
 
@@ -225,7 +225,7 @@
                             <div class="row">
                                 <div class="col-12 p-3">
                                     <?php wp_nonce_field( 'adding_expense', 'adding_expense_nonce' ); ?>
-                                    <button class="btn btn-primary" name="add_expense"><?php _e("Add Expense"); ?></button>
+                                    <button class="btn btn-primary" name="add_expense"><?php esc_html_e("Add Expense"); ?></button>
                                 </div><!-- .col-12 -->
                             </div><!-- .row -->
                         </form>
@@ -240,11 +240,11 @@
                 <table class="table table-bordered table-hover table-striped table-sm">
                     <thead class="bg-dark text-white text-center">
                         <tr>
-                            <th><?php _e("Sr#"); ?></th>
-                            <th><?php _e("Expense Name"); ?></th>
-                            <th><?php _e("Expense Date"); ?></th>
-                            <th><?php _e("Expense Amount"); ?></th>
-                            <th><?php _e("Action"); ?></th>
+                            <th><?php esc_html_e("Sr#"); ?></th>
+                            <th><?php esc_html_e("Expense Name"); ?></th>
+                            <th><?php esc_html_e("Expense Date"); ?></th>
+                            <th><?php esc_html_e("Expense Amount"); ?></th>
+                            <th><?php esc_html_e("Action"); ?></th>
                         </tr>
                     </thead>
                     <tbody class='bg-light'>

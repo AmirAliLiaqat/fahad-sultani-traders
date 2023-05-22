@@ -269,7 +269,7 @@
                             <!-- Search -->
                             <div class="row mb-3">
                                 <div class="col-lg-4 col-sm-12">
-                                    <label for="search" class="form-label fw-bolder"><?php _e("Customer"); ?></label>
+                                    <label for="search" class="form-label fw-bolder"><?php esc_html_e("Customer"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
                                     <?php
@@ -279,7 +279,7 @@
                                         foreach($customer as $detail) {
                                             $customer_name = $detail->name;
                                     ?>
-                                    <input type="text" id="search" name="search" class="form-control" value="<?php echo esc_html($customer_name); ?>" placeholder="<?php _e("Search"); ?>" autocomplete="off" required/>
+                                    <input type="text" id="search" name="search" class="form-control" value="<?php echo esc_html($customer_name); ?>" placeholder="<?php esc_html_e("Search"); ?>" autocomplete="off" required/>
                                     <?php } ?>
                                     <div class="mt-2" id="result"></div>
                                 </div><!-- .col-lg-8 -->
@@ -288,45 +288,45 @@
                             <!-- Product ID -->
                             <div class="row mb-3">
                                 <div class="col-lg-4 col-sm-12">
-                                    <label for="product_id" class="form-label fw-bolder"><?php _e("Product ID"); ?></label>
+                                    <label for="product_id" class="form-label fw-bolder"><?php esc_html_e("Product ID"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
-                                    <input type="text" name="product_id" class="form-control" value="<?php echo esc_html($customer_invoice->product_id); ?>" placeholder="<?php _e("Product ID"); ?>" required>    
+                                    <input type="text" name="product_id" class="form-control" value="<?php echo esc_html($customer_invoice->product_id); ?>" placeholder="<?php esc_html_e("Product ID"); ?>" required>    
                                 </div><!-- .col-lg-8 -->
                             </div><!-- .row -->
 
                             <!-- Sale Date -->
                             <div class="row mb-3">
                                 <div class="col-lg-4 col-sm-12">
-                                    <label for="sale_date" class="form-label fw-bolder"><?php _e("Sale Date"); ?></label>
+                                    <label for="sale_date" class="form-label fw-bolder"><?php esc_html_e("Sale Date"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
-                                    <input type="date" name="sale_date" class="form-control" value="<?php echo esc_html($customer_invoice->sale_date); ?>" placeholder="<?php _e("Sale Date"); ?>" required>    
+                                    <input type="date" name="sale_date" class="form-control" value="<?php echo esc_html($customer_invoice->sale_date); ?>" placeholder="<?php esc_html_e("Sale Date"); ?>" required>    
                                 </div><!-- .col-lg-8 -->
                             </div><!-- .row -->
                             
                             <!-- Quantity -->
                             <div class="row mb-3">
                                 <div class="col-lg-4 col-sm-12">
-                                    <label for="quantity" class="form-label fw-bolder"><?php _e("Quantity"); ?></label>
+                                    <label for="quantity" class="form-label fw-bolder"><?php esc_html_e("Quantity"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
-                                    <input type="number" name="quantity" class="form-control" value="<?php echo esc_html($customer_invoice->quantity); ?>" placeholder="<?php _e("Quantity"); ?>"> 
+                                    <input type="number" name="quantity" class="form-control" value="<?php echo esc_html($customer_invoice->quantity); ?>" placeholder="<?php esc_html_e("Quantity"); ?>"> 
                                 </div><!-- .col-lg-8 -->
                             </div><!-- .row -->
 
                             <!-- Price Per Quantity -->
                             <div class="row mb-3">
                                 <div class="col-lg-4 col-sm-12">
-                                    <label for="price_per_quantity" class="form-label fw-bolder"><?php _e("Price Per Quantity"); ?></label>
+                                    <label for="price_per_quantity" class="form-label fw-bolder"><?php esc_html_e("Price Per Quantity"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
-                                    <input type="number" name="price_per_quantity" class="form-control" value="<?php echo esc_html($customer_invoice->price_per_quantity); ?>" placeholder="<?php _e("Price Per Quantity"); ?>">
+                                    <input type="number" name="price_per_quantity" class="form-control" value="<?php echo esc_html($customer_invoice->price_per_quantity); ?>" placeholder="<?php esc_html_e("Price Per Quantity"); ?>">
                                 </div><!-- .col-lg-8 -->
                             </div><!-- .row -->
 
                             <div class="text-end mb-2">
-                                <a class="btn btn-primary" id="open_more"><?php _e("Show More"); ?></a>
+                                <a class="btn btn-primary" id="open_more"><?php esc_html_e("Show More"); ?></a>
                             </div><!-- .text-end -->
 
                             <div id="show_more">
@@ -339,17 +339,17 @@
                                 <!-- Net Cash -->
                                 <div class="row mb-3">
                                     <div class="col-lg-4 col-sm-12">
-                                        <label for="net_cash" class="form-label fw-bolder"><?php _e("Net Cash"); ?></label>
+                                        <label for="net_cash" class="form-label fw-bolder"><?php esc_html_e("Net Cash"); ?></label>
                                     </div><!-- .col-lg-4 -->
                                     <div class="col-lg-8 col-sm-12">
-                                        <input type="number" name="net_cash" class="form-control" value="<?php echo esc_html($detail->net_cash); ?>" placeholder="<?php _e("Net Cash"); ?>"> 
+                                        <input type="number" name="net_cash" class="form-control" value="<?php echo esc_html($detail->net_cash); ?>" placeholder="<?php esc_html_e("Net Cash"); ?>"> 
                                     </div><!-- .col-lg-8 -->
                                 </div><!-- .row -->
 
                                 <!-- Description -->
                                 <div class="row mb-3">
                                     <div class="col-lg-4 col-sm-12">
-                                        <label for="description" class="form-label fw-bolder"><?php _e("Description"); ?></label>
+                                        <label for="description" class="form-label fw-bolder"><?php esc_html_e("Description"); ?></label>
                                     </div><!-- .col-lg-4 -->
                                     <div class="col-lg-8 col-sm-12">
                                         <textarea name="description"><?php echo esc_html($detail->description); ?></textarea>
@@ -362,7 +362,7 @@
                             <div class="row">
                                 <div class="col-12 p-3">
                                     <?php wp_nonce_field( 'updating_sales_invoices', 'updating_sales_invoices_nonce' ); ?>
-                                    <button class="btn btn-primary" name="update_invoice"><?php _e("Update Invoice"); ?></button>
+                                    <button class="btn btn-primary" name="update_invoice"><?php esc_html_e("Update Invoice"); ?></button>
                                 </div><!-- .col-12 -->
                             </div><!-- .row -->
                         </form>
@@ -376,10 +376,10 @@
                             <!-- Search -->
                             <div class="row mb-3">
                                 <div class="col-lg-4 col-sm-12">
-                                    <label for="search" class="form-label fw-bolder"><?php _e("Customer"); ?></label>
+                                    <label for="search" class="form-label fw-bolder"><?php esc_html_e("Customer"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
-                                    <input type="text" id="search" name="search" class="form-control" placeholder="<?php _e("Search"); ?>" autocomplete="off" required/>
+                                    <input type="text" id="search" name="search" class="form-control" placeholder="<?php esc_html_e("Search"); ?>" autocomplete="off" required/>
                                     <div class="mt-2" id="result"></div>
                                 </div><!-- .col-lg-8 -->
                             </div><!-- .row -->
@@ -387,62 +387,62 @@
                             <!-- Product ID -->
                             <div class="row mb-3">
                                 <div class="col-lg-4 col-sm-12">
-                                    <label for="product_id" class="form-label fw-bolder"><?php _e("Product ID"); ?></label>
+                                    <label for="product_id" class="form-label fw-bolder"><?php esc_html_e("Product ID"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
-                                    <input type="text" name="product_id" class="form-control" placeholder="<?php _e("Product ID"); ?>">    
+                                    <input type="text" name="product_id" class="form-control" placeholder="<?php esc_html_e("Product ID"); ?>">    
                                 </div><!-- .col-lg-8 -->
                             </div><!-- .row -->
 
                             <!-- Sale Date -->
                             <div class="row mb-3">
                                 <div class="col-lg-4 col-sm-12">
-                                    <label for="sale_date" class="form-label fw-bolder"><?php _e("Sale Date"); ?></label>
+                                    <label for="sale_date" class="form-label fw-bolder"><?php esc_html_e("Sale Date"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
-                                    <input type="date" name="sale_date" class="form-control" value="<?php echo $date; ?>" placeholder="<?php _e("Sale Date"); ?>">    
+                                    <input type="date" name="sale_date" class="form-control" value="<?php echo $date; ?>" placeholder="<?php esc_html_e("Sale Date"); ?>">    
                                 </div><!-- .col-lg-8 -->
                             </div><!-- .row -->
                             
                             <!-- Quantity -->
                             <div class="row mb-3">
                                 <div class="col-lg-4 col-sm-12">
-                                    <label for="quantity" class="form-label fw-bolder"><?php _e("Quantity"); ?></label>
+                                    <label for="quantity" class="form-label fw-bolder"><?php esc_html_e("Quantity"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
-                                    <input type="number" name="quantity" class="form-control" placeholder="<?php _e("Quantity"); ?>"> 
+                                    <input type="number" name="quantity" class="form-control" placeholder="<?php esc_html_e("Quantity"); ?>"> 
                                 </div><!-- .col-lg-8 -->
                             </div><!-- .row -->
 
                             <!-- Price Per Quantity -->
                             <div class="row mb-3">
                                 <div class="col-lg-4 col-sm-12">
-                                    <label for="price_per_quantity" class="form-label fw-bolder"><?php _e("Price Per Quantity"); ?></label>
+                                    <label for="price_per_quantity" class="form-label fw-bolder"><?php esc_html_e("Price Per Quantity"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
-                                    <input type="number" name="price_per_quantity" class="form-control" placeholder="<?php _e("Price Per Quantity"); ?>"> 
+                                    <input type="number" name="price_per_quantity" class="form-control" placeholder="<?php esc_html_e("Price Per Quantity"); ?>"> 
                                 </div><!-- .col-lg-8 -->
                             </div><!-- .row -->
 
                             <div class="text-end mb-2">
-                                <a class="btn btn-primary" id="open_more"><?php _e("Show More"); ?></a>
+                                <a class="btn btn-primary" id="open_more"><?php esc_html_e("Show More"); ?></a>
                             </div><!-- .text-end -->
 
                             <div id="show_more">
                                 <!-- Net Cash -->
                                 <div class="row mb-3">
                                     <div class="col-lg-4 col-sm-12">
-                                        <label for="net_cash" class="form-label fw-bolder"><?php _e("Net Cash"); ?></label>
+                                        <label for="net_cash" class="form-label fw-bolder"><?php esc_html_e("Net Cash"); ?></label>
                                     </div><!-- .col-lg-4 -->
                                     <div class="col-lg-8 col-sm-12">
-                                        <input type="number" name="net_cash" class="form-control" placeholder="<?php _e("Net Cash"); ?>"> 
+                                        <input type="number" name="net_cash" class="form-control" placeholder="<?php esc_html_e("Net Cash"); ?>"> 
                                     </div><!-- .col-lg-8 -->
                                 </div><!-- .row -->
 
                                 <!-- Description -->
                                 <div class="row mb-3">
                                     <div class="col-lg-4 col-sm-12">
-                                        <label for="description" class="form-label fw-bolder"><?php _e("Description"); ?></label>
+                                        <label for="description" class="form-label fw-bolder"><?php esc_html_e("Description"); ?></label>
                                     </div><!-- .col-lg-4 -->
                                     <div class="col-lg-8 col-sm-12">
                                         <textarea name="description"></textarea>
@@ -454,7 +454,7 @@
                             <div class="row">
                                 <div class="col-12 p-3">
                                     <?php wp_nonce_field( 'adding_sales_invoices', 'adding_sales_invoices_nonce' ); ?>
-                                    <button class="btn btn-primary" name="add_invoice"><?php _e("Add Invoice"); ?></button>
+                                    <button class="btn btn-primary" name="add_invoice"><?php esc_html_e("Add Invoice"); ?></button>
                                 </div><!-- .col-12 -->
                             </div><!-- .row -->
                         </form>

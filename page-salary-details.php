@@ -30,7 +30,7 @@
 
             <?php get_header(); ?>
 
-            <h1 class="text-center text-capitalize my-5"><?php _e(the_title()); ?></h1>
+            <h1 class="text-center text-capitalize my-5"><?php esc_html_e(the_title()); ?></h1>
             
             <div class="row">
                 <?php
@@ -85,19 +85,19 @@
                         ?>
                         <tbody>
                             <tr>
-                                <td><?php _e(esc_html('Name')); ?></td>
+                                <td><?php esc_html_e('Name'); ?></td>
                                 <td><?php echo esc_html($row->name); ?></td>
                             </tr>
                             <tr>
-                                <td><?php _e(esc_html('Salary')); ?></td>
+                                <td><?php esc_html_e('Salary'); ?></td>
                                 <td><?php echo esc_html(number_format_i18n($total = $row->salary)); ?></td>
                             </tr>
                             <tr>
-                                <td><?php _e(esc_html('Pay')); ?></td>
+                                <td><?php esc_html_e('Pay'); ?></td>
                                 <td><?php echo esc_html(number_format_i18n($pay = $row->pay_amount)); ?></td>
                             </tr>
                             <tr>
-                                <td><?php _e(esc_html('Remain')); ?></td>
+                                <td><?php esc_html_e('Remain'); ?></td>
                                 <td><?php echo esc_html(number_format_i18n($remain = $total - $pay)); ?></td>
                             </tr>
                         </tbody>
@@ -118,20 +118,20 @@
                             <!-- Date -->
                             <div class="row mb-3 p-2">
                                 <div class="col-lg-4 col-sm-12">
-                                    <label for="pay_date" class="form-label fw-bolder"><?php _e("Date"); ?></label>
+                                    <label for="pay_date" class="form-label fw-bolder"><?php esc_html_e("Date"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
-                                    <input type="date" name="pay_date" class="form-control" value="<?php echo esc_html($date); ?>" placeholder="<?php _e("Date"); ?>" required>    
+                                    <input type="date" name="pay_date" class="form-control" value="<?php echo esc_html($date); ?>" placeholder="<?php esc_html_e("Date"); ?>" required>    
                                 </div><!-- .col-lg-8 -->
                             </div><!-- .row -->
 
                             <!-- Amount -->
                             <div class="row mb-3 p-2 pb-0">
                                 <div class="col-lg-4 col-sm-12">
-                                    <label for="pay_amount" class="form-label fw-bolder"><?php _e("Amount"); ?></label>
+                                    <label for="pay_amount" class="form-label fw-bolder"><?php esc_html_e("Amount"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
-                                    <input type="number" name="pay_amount" class="form-control" placeholder="<?php _e("Amount"); ?>" required>    
+                                    <input type="number" name="pay_amount" class="form-control" placeholder="<?php esc_html_e("Amount"); ?>" required>    
                                 </div><!-- .col-lg-8 -->
                             </div><!-- .row -->
 
@@ -140,7 +140,7 @@
                                 <div class="col-12 px-3">
                                     <?php wp_nonce_field( 'pay_salary', 'pay_salary_nonce' ); ?>
                                     <input type="hidden" name="salary_id" value="<?php echo esc_html($row->ID); ?>">
-                                    <button class="btn btn-primary" name="pay_salary"><?php _e("Pay salary"); ?></button>
+                                    <button class="btn btn-primary" name="pay_salary"><?php esc_html_e("Pay salary"); ?></button>
                                 </div><!-- .col-12 -->
                             </div><!-- .row -->
                         </form>

@@ -29,7 +29,7 @@
 
             <?php get_header(); ?>
             
-            <h1 class="text-center text-capitalize my-5"><?php _e(the_title()); ?></h1>
+            <h1 class="text-center text-capitalize my-5"><?php esc_html_e(the_title()); ?></h1>
 
             <div class="display-content">
                 <div class="row fw-bolder bg-white rounded p-3">
@@ -37,7 +37,7 @@
                     <div class="col-lg-4 col-md-4 col-sm-12 my-4">
                         <ul class="p-0 m-0 list-unstyled fw-bolder">
                             <li>
-                                <span><?php _e("Sales Amount"); ?>:</span>
+                                <span><?php esc_html_e("Sales Amount"); ?>:</span>
                                 <span class="text-primary mx-2">
                                     <?php
                                         $total_sales = $wpdb->get_var("SELECT SUM(total_amount) FROM fst_customer_invoice");
@@ -46,7 +46,7 @@
                                 </span>
                             </li>
                             <li>
-                                <span><?php _e("Received Amount"); ?>:</span>
+                                <span><?php esc_html_e("Received Amount"); ?>:</span>
                                 <span class="text-success mx-2">
                                     <?php
                                         $total_received = 0;
@@ -61,7 +61,7 @@
                                 </span>
                             </li>
                             <li>
-                                <span><?php _e("Remaining Amount"); ?>:</span>
+                                <span><?php esc_html_e("Remaining Amount"); ?>:</span>
                                 <span class="text-danger mx-2">
                                     <?php
                                         $remaining_amount = $total_sales -  $total_received;
@@ -76,7 +76,7 @@
                     <div class="col-lg-4 col-md-4 col-sm-12 my-4">
                         <ul class="p-0 m-0 list-unstyled fw-bolder">
                             <li>
-                                <span><?php _e("Purchase Amount"); ?>:</span>
+                                <span><?php esc_html_e("Purchase Amount"); ?>:</span>
                                 <span class="text-primary mx-2">
                                     <?php
                                         $total_purchase = $wpdb->get_var("SELECT SUM(price) FROM fst_purchase_data");
@@ -85,7 +85,7 @@
                                 </span>
                             </li>
                             <li>
-                                <span><?php _e("Pay Amount"); ?>:</span>
+                                <span><?php esc_html_e("Pay Amount"); ?>:</span>
                                 <span class="text-success mx-2">
                                     <?php
                                         $total_pay = $wpdb->get_var("SELECT SUM(amount) FROM fst_shopkeeper_payments");
@@ -94,7 +94,7 @@
                                 </span>
                             </li>
                             <li>
-                                <span><?php _e("Remaining Amount"); ?>:</span>
+                                <span><?php esc_html_e("Remaining Amount"); ?>:</span>
                                 <span class="text-danger mx-2">
                                     <?php
                                         $remaining_amount = $total_purchase -  $total_pay;
@@ -108,7 +108,7 @@
                     <!------- Others Summary ------->
                     <div class="col-lg-4 col-md-4 col-sm-12 my-4">
                         <!------- Expense Summary ------->
-                        <span><?php _e("Expense"); ?>:</span>
+                        <span><?php esc_html_e("Expense"); ?>:</span>
                         <span class="text-primary mx-2">
                             <?php 
                                 $expense_amount = $wpdb->get_var("SELECT SUM(expense_amount) FROM fst_expense_data");
@@ -118,14 +118,14 @@
                         <br>
                         <br>
                         <!------- Discount Summary ------->
-                        <span><?php _e("Discount"); ?>:</span>
+                        <span><?php esc_html_e("Discount"); ?>:</span>
                         <span class="text-primary mx-2">
                             <?php echo esc_html(number_format_i18n($total_discount)); ?>
                         </span>
                         <br>
                         <br>
                         <!------- Salary Summary ------->
-                        <span><?php _e("Salary Amount"); ?>:</span>
+                        <span><?php esc_html_e("Salary Amount"); ?>:</span>
                         <span class="text-primary mx-2">
                             <?php
                                 $total_salary = $wpdb->get_var("SELECT SUM(salary) FROM fst_salary_data");

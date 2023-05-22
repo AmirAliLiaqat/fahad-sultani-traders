@@ -34,7 +34,7 @@
 
             <?php get_header(); ?>
             
-            <h1 class="text-center text-capitalize my-5"><?php echo isset($_GET['query']) ? _e("Edit") : _e("Add"); _e( " Shopkeeper" ); ?></h1>
+            <h1 class="text-center text-capitalize my-5"><?php echo isset($_GET['query']) ? esc_html_e("Edit") : esc_html_e("Add"); esc_html_e( " Shopkeeper" ); ?></h1>
             
             <div class="row my-2">
                 <div class="col-lg-6 col-sm-12 mx-auto">
@@ -267,31 +267,31 @@
                             <!-- Shop Number -->
                             <div class="row mb-3">
                                 <div class="col-lg-4 col-sm-12">
-                                    <label for="shop_number" class="form-label fw-bolder"><?php _e("Shop Number"); ?></label>
+                                    <label for="shop_number" class="form-label fw-bolder"><?php esc_html_e("Shop Number"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
-                                    <input type="text" name="shop_number" class="form-control" value="<?php echo esc_html($shopkeeper->shop_number); ?>" placeholder="<?php _e("Shop Number"); ?>" required>
+                                    <input type="text" name="shop_number" class="form-control" value="<?php echo esc_html($shopkeeper->shop_number); ?>" placeholder="<?php esc_html_e("Shop Number"); ?>" required>
                                 </div><!-- .col-lg-8 -->
                             </div><!-- .row -->
 
                             <!-- Shopkeeper Name -->
                             <div class="row mb-3">
                                 <div class="col-lg-4 col-sm-12">
-                                    <label for="shopkeeper_name" class="form-label fw-bolder"><?php _e("Shopkeeper Name"); ?></label>
+                                    <label for="shopkeeper_name" class="form-label fw-bolder"><?php esc_html_e("Shopkeeper Name"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
-                                    <input type="text" name="shopkeeper_name" class="form-control" value="<?php echo esc_html($shopkeeper->shopkeeper_name); ?>" placeholder="<?php _e("Shopkeeper Name"); ?>" required>    
+                                    <input type="text" name="shopkeeper_name" class="form-control" value="<?php echo esc_html($shopkeeper->shopkeeper_name); ?>" placeholder="<?php esc_html_e("Shopkeeper Name"); ?>" required>    
                                 </div><!-- .col-lg-8 -->
                             </div><!-- .row -->
 
                             <!-- Shopkeeper Phone -->
                             <div class="row mb-3">
                                 <div class="col-lg-4 col-sm-12">
-                                    <label for="shopkeeper_phone" class="form-label fw-bolder"><?php _e("Shopkeeper Phone"); ?></label>
+                                    <label for="shopkeeper_phone" class="form-label fw-bolder"><?php esc_html_e("Shopkeeper Phone"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
                                     <div id="add_more_phone_number">
-                                        <input type="text" name="shopkeeper_phone" class="form-control mb-1" value="<?php echo esc_html($shopkeeper->shopkeeper_phone); ?>" placeholder="<?php _e("Shopkeeper Phone"); ?>" required>    
+                                        <input type="text" name="shopkeeper_phone" class="form-control mb-1" value="<?php echo esc_html($shopkeeper->shopkeeper_phone); ?>" placeholder="<?php esc_html_e("Shopkeeper Phone"); ?>" required>    
                                         <?php 
                                             $meta_values = $wpdb->get_results("SELECT * FROM fst_shopkeeper_meta_data WHERE `shopkeeper_id` = '$shopkeeper_id' AND `meta_key` = 'phone'");
                                             if($meta_values) {
@@ -301,18 +301,18 @@
                                             }
                                         ?>
                                     </div><!-- #add_more_phone_number -->
-                                    <a class="btn btn-primary float-end mt-2" id="add_more_number"><?php _e("Add More"); ?></a>
+                                    <a class="btn btn-primary float-end mt-2" id="add_more_number"><?php esc_html_e("Add More"); ?></a>
                                 </div><!-- .col-lg-8 -->
                             </div><!-- .row -->
 
                             <!-- Account Detail -->
                             <div class="row mb-3">
                                 <div class="col-lg-4 col-sm-12">
-                                    <label for="shopkeeper_account" class="form-label fw-bolder"><?php _e("Account Details"); ?></label>
+                                    <label for="shopkeeper_account" class="form-label fw-bolder"><?php esc_html_e("Account Details"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
                                     <div id="add_more_account_detail">
-                                        <input type="text" name="shopkeeper_account" class="form-control mb-1" value="<?php echo esc_html($shopkeeper->shopkeeper_account); ?>" placeholder="<?php _e("Account Details"); ?>">    
+                                        <input type="text" name="shopkeeper_account" class="form-control mb-1" value="<?php echo esc_html($shopkeeper->shopkeeper_account); ?>" placeholder="<?php esc_html_e("Account Details"); ?>">    
                                         <?php 
                                             $meta_values = $wpdb->get_results("SELECT * FROM fst_shopkeeper_meta_data WHERE `shopkeeper_id` = '$shopkeeper_id' AND `meta_key` = 'account'");
                                             if($meta_values) {
@@ -322,14 +322,14 @@
                                             }
                                         ?>
                                     </div><!-- #add_more_account_detail -->
-                                    <a class="btn btn-primary float-end mt-2" id="add_more_detail"><?php _e("Add More"); ?></a>
+                                    <a class="btn btn-primary float-end mt-2" id="add_more_detail"><?php esc_html_e("Add More"); ?></a>
                                 </div><!-- .col-lg-8 -->
                             </div><!-- .row -->
 
                             <!-- Current Image -->
                             <div class="row mb-3">
                                 <div class="col-lg-4 col-sm-12">
-                                    <label for="current_img" class="form-label fw-bolder"><?php _e("Current Picture"); ?></label>
+                                    <label for="current_img" class="form-label fw-bolder"><?php esc_html_e("Current Picture"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
                                     <?php
@@ -351,7 +351,7 @@
                             <!-- Profile Pic -->
                             <div class="row mb-3">
                                 <div class="col-lg-4 col-sm-12">
-                                    <label for="picture" class="form-label fw-bolder"><?php _e("Picture"); ?></label>
+                                    <label for="picture" class="form-label fw-bolder"><?php esc_html_e("Picture"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
                                     <input type="file" name="picture" class="form-control" accept=".png,.jpg,.jpeg">    
@@ -364,7 +364,7 @@
                                     <?php wp_nonce_field( 'update_shopkeeper', 'update_shopkeeper_nonce' ) ?>
                                     <input type="hidden" name="current_image" value="<?php echo $shopkeeper->picture; ?>">
                                     <input type="hidden" name="shopkeeper_id" value="<?php echo esc_html($shopkeeper->ID); ?>">
-                                    <button class="btn btn-primary" name="update_shopkeeper"><?php _e("Update Shopkeeper"); ?></button>
+                                    <button class="btn btn-primary" name="update_shopkeeper"><?php esc_html_e("Update Shopkeeper"); ?></button>
                                 </div><!-- .col-12 -->
                             </div><!-- .row -->
                         </form>
@@ -378,53 +378,53 @@
                             <!-- Shop Number -->
                             <div class="row mb-3">
                                 <div class="col-lg-4 col-sm-12">
-                                    <label for="shop_number" class="form-label fw-bolder"><?php _e("Shop Number"); ?></label>
+                                    <label for="shop_number" class="form-label fw-bolder"><?php esc_html_e("Shop Number"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
-                                    <input type="text" name="shop_number" class="form-control" placeholder="<?php _e("Shop Number"); ?>" required>
+                                    <input type="text" name="shop_number" class="form-control" placeholder="<?php esc_html_e("Shop Number"); ?>" required>
                                 </div><!-- .col-lg-8 -->
                             </div><!-- .row -->
 
                             <!-- Shopkeeper Name -->
                             <div class="row mb-3">
                                 <div class="col-lg-4 col-sm-12">
-                                    <label for="shopkeeper_name" class="form-label fw-bolder"><?php _e("Shopkeeper Name"); ?></label>
+                                    <label for="shopkeeper_name" class="form-label fw-bolder"><?php esc_html_e("Shopkeeper Name"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
-                                    <input type="text" name="shopkeeper_name" class="form-control" placeholder="<?php _e("Shopkeeper Name"); ?>" required>    
+                                    <input type="text" name="shopkeeper_name" class="form-control" placeholder="<?php esc_html_e("Shopkeeper Name"); ?>" required>    
                                 </div><!-- .col-lg-8 -->
                             </div><!-- .row -->
 
                             <!-- Shopkeeper Phone -->
                             <div class="row mb-3">
                                 <div class="col-lg-4 col-sm-12">
-                                    <label for="shopkeeper_phone" class="form-label fw-bolder"><?php _e("Shopkeeper Phone"); ?></label>
+                                    <label for="shopkeeper_phone" class="form-label fw-bolder"><?php esc_html_e("Shopkeeper Phone"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
                                     <div id="add_more_phone_number">
-                                        <input type="text" name="shopkeeper_phone" class="form-control mb-1" placeholder="<?php _e("Shopkeeper Phone"); ?>" required>    
+                                        <input type="text" name="shopkeeper_phone" class="form-control mb-1" placeholder="<?php esc_html_e("Shopkeeper Phone"); ?>" required>    
                                     </div><!-- #add_more_phone_number -->
-                                    <a class="btn btn-primary float-end mt-2" id="add_more_number"><?php _e("Add More"); ?></a>
+                                    <a class="btn btn-primary float-end mt-2" id="add_more_number"><?php esc_html_e("Add More"); ?></a>
                                 </div><!-- .col-lg-8 -->
                             </div><!-- .row -->
 
                             <!-- Account Detail -->
                             <div class="row mb-3">
                                 <div class="col-lg-4 col-sm-12">
-                                    <label for="shopkeeper_account" class="form-label fw-bolder"><?php _e("Account Details"); ?></label>
+                                    <label for="shopkeeper_account" class="form-label fw-bolder"><?php esc_html_e("Account Details"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
                                     <div id="add_more_account_detail">
-                                        <input type="text" name="shopkeeper_account" class="form-control mb-1" placeholder="<?php _e("Account Details"); ?>">    
+                                        <input type="text" name="shopkeeper_account" class="form-control mb-1" placeholder="<?php esc_html_e("Account Details"); ?>">    
                                     </div><!-- #add_more_account_detail -->
-                                    <a class="btn btn-primary float-end mt-2" id="add_more_detail"><?php _e("Add More"); ?></a>
+                                    <a class="btn btn-primary float-end mt-2" id="add_more_detail"><?php esc_html_e("Add More"); ?></a>
                                 </div><!-- .col-lg-8 -->
                             </div><!-- .row -->
 
                             <!-- Profile Pic -->
                             <div class="row mb-3">
                                 <div class="col-lg-4 col-sm-12">
-                                    <label for="picture" class="form-label fw-bolder"><?php _e("Picture"); ?></label>
+                                    <label for="picture" class="form-label fw-bolder"><?php esc_html_e("Picture"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
                                     <input type="file" name="picture" class="form-control" accept=".png,.jpg,.jpeg">    
@@ -435,7 +435,7 @@
                             <div class="row">
                                 <div class="col-12 p-3">
                                     <?php wp_nonce_field( 'add_shopkeeper', 'add_shopkeeper_nonce' ) ?>
-                                    <button class="btn btn-primary" name="add_shopkeeper"><?php _e("Add Shopkeeper"); ?></button>
+                                    <button class="btn btn-primary" name="add_shopkeeper"><?php esc_html_e("Add Shopkeeper"); ?></button>
                                 </div><!-- .col-12 -->
                             </div><!-- .row -->
                         </form>
@@ -451,25 +451,25 @@
                     <form class="row" method="post">
                         <div class="col-lg-4 col-md-6 col-sm-12">
                             <div class="form-group my-1">
-                                <label for="s_shop" class="form-label"><?php _e("Shop"); ?>:</label>
-                                <input type="text" name="s_shop" class="form-control bg-light" placeholder="<?php _e("Search by shop #"); ?>">
+                                <label for="s_shop" class="form-label"><?php esc_html_e("Shop"); ?>:</label>
+                                <input type="text" name="s_shop" class="form-control bg-light" placeholder="<?php esc_html_e("Search by shop #"); ?>">
                             </div><!-- .form-group -->
                         </div><!-- .col-lg-4 -->
                         <div class="col-lg-4 col-md-6 col-sm-12">
                             <div class="form-group my-1">
-                                <label for="s_name" class="form-label"><?php _e("Name"); ?>:</label>
-                                <input type="text" name="s_name" class="form-control bg-light" placeholder="<?php _e("Search by name"); ?>">
+                                <label for="s_name" class="form-label"><?php esc_html_e("Name"); ?>:</label>
+                                <input type="text" name="s_name" class="form-control bg-light" placeholder="<?php esc_html_e("Search by name"); ?>">
                             </div><!-- .form-group -->
                         </div><!-- .col-lg-4 -->
                         <div class="col-lg-4 col-md-6 col-sm-12">
                             <div class="form-group my-1">
-                                <label for="s_phone" class="form-label"><?php _e("Phone"); ?>:</label>
-                                <input type="text" name="s_phone" class="form-control bg-light" placeholder="<?php _e("Search by phone"); ?>">
+                                <label for="s_phone" class="form-label"><?php esc_html_e("Phone"); ?>:</label>
+                                <input type="text" name="s_phone" class="form-control bg-light" placeholder="<?php esc_html_e("Search by phone"); ?>">
                             </div><!-- .form-group -->
                         </div><!-- .col-lg-4 -->
                         <div class="col-12 text-end">
                             <?php wp_nonce_field('search_shopkeeper_details', 'search_shopkeeper_details_nonce'); ?>
-                            <button class="btn btn-primary my-2" name="s_search"><?php _e("Search"); ?></button>
+                            <button class="btn btn-primary my-2" name="s_search"><?php esc_html_e("Search"); ?></button>
                         </div><!-- .col-12 -->
                     </form>
                 </div><!-- .search_section_box -->
@@ -491,12 +491,12 @@
                     <table class="table table-bordered text-center fw-bolder">
                         <thead class="bg-dark text-white">
                             <tr>
-                                <th><?php _e(esc_html("Picture")); ?></th>
-                                <th><?php _e(esc_html("Shop#")); ?></th>
-                                <th><?php _e(esc_html("Name")); ?></th>
-                                <th><?php _e(esc_html("Phone")); ?></th>
-                                <th><?php _e(esc_html("Account")); ?></th>
-                                <th><?php _e(esc_html("Action")); ?></th>
+                                <th><?php esc_html_e("Picture"); ?></th>
+                                <th><?php esc_html_e("Shop#"); ?></th>
+                                <th><?php esc_html_e("Name"); ?></th>
+                                <th><?php esc_html_e("Phone"); ?></th>
+                                <th><?php esc_html_e("Account"); ?></th>
+                                <th><?php esc_html_e("Action"); ?></th>
                             </tr>
                         </thead>
                         <tbody class="bg-light">
@@ -516,32 +516,32 @@
                                         }
                                     ?>
                                 </td>
-                                <td><?php _e(esc_html($fetch_shopkeeper->shop_number)); ?></td>
-                                <td><?php _e(esc_html($fetch_shopkeeper->shopkeeper_name)); ?></td>
+                                <td><?php esc_html_e($fetch_shopkeeper->shop_number); ?></td>
+                                <td><?php esc_html_e($fetch_shopkeeper->shopkeeper_name); ?></td>
                                 <td>
                                     <?php 
-                                        _e(esc_html($fetch_shopkeeper->shopkeeper_phone) . '<br>'); 
+                                        esc_html($fetch_shopkeeper->shopkeeper_phone) . '<br>'; 
                                         $shopkeeper_meta_phone = $wpdb->get_results("SELECT * FROM fst_shopkeeper_meta_data WHERE `shopkeeper_id` = '$shopkeeper_id' AND `meta_key` = 'phone'");
                                         if($shopkeeper_meta_phone) {
                                             foreach($shopkeeper_meta_phone as $phone) {
-                                                _e(esc_html($phone->meta_value) . '<br>');
+                                                esc_html($phone->meta_value) . '<br>';
                                             }
                                         }
                                     ?>
                                 </td>
                                 <td>
                                     <?php 
-                                        _e(esc_html($fetch_shopkeeper->shopkeeper_account) . '<br>'); 
+                                        esc_html($fetch_shopkeeper->shopkeeper_account) . '<br>'; 
                                         $shopkeeper_meta_account = $wpdb->get_results("SELECT * FROM fst_shopkeeper_meta_data WHERE `shopkeeper_id` = '$shopkeeper_id' AND `meta_key` = 'account'");
                                         if($shopkeeper_meta_account) {
                                             foreach($shopkeeper_meta_account as $account) {
-                                                _e(esc_html($account->meta_value) . '<br>');
+                                                esc_html($account->meta_value) . '<br>';
                                             }
                                         }
                                     ?>
                                 </td>
                                 <td>
-                                    <a href="<?php _e(esc_url(home_url('/shopkeeper-invoice'))); ?>?search=shopkeeper&shopkeeper_id=<?php _e(esc_html($shopkeeper_id)); ?>" class="btn btn-primary text-white"><?php _e("View"); ?></a>
+                                    <a href="<?php esc_url(home_url('/shopkeeper-invoice')); ?>?search=shopkeeper&shopkeeper_id=<?php _e(esc_html($shopkeeper_id)); ?>" class="btn btn-primary text-white"><?php _e("View"); ?></a>
                                 </td>
                             </tr>
                         </tbody>
@@ -562,13 +562,13 @@
                     <table class="table table-bordered table-hover table-striped table-sm">
                         <thead class="bg-dark text-white text-center">
                             <tr>
-                                <th><?php _e("Sr#"); ?></th>
-                                <th><?php _e("Image"); ?></th>
-                                <th><?php _e("Shop#"); ?></th>
-                                <th><?php _e("Name"); ?></th>
-                                <th><?php _e("Phone"); ?></th>
-                                <th><?php _e("Account"); ?></th>
-                                <th><?php _e("Action"); ?></th>
+                                <th><?php esc_html_e("Sr#"); ?></th>
+                                <th><?php esc_html_e("Image"); ?></th>
+                                <th><?php esc_html_e("Shop#"); ?></th>
+                                <th><?php esc_html_e("Name"); ?></th>
+                                <th><?php esc_html_e("Phone"); ?></th>
+                                <th><?php esc_html_e("Account"); ?></th>
+                                <th><?php esc_html_e("Action"); ?></th>
                             </tr>
                         </thead>
                         <tbody class='bg-light'>

@@ -30,14 +30,14 @@
 
             <?php get_header(); ?>
             
-            <h1 class="text-center text-capitalize my-5"><?php _e(the_title()); ?></h1>
+            <h1 class="text-center text-capitalize my-5"><?php esc_html_e(the_title()); ?></h1>
 
             <div class="inner-content">
                 <form action="" method="get">
                     <div class="form-group">
                         <?php wp_nonce_field( 'search_customer_invoice', 'search_invoice_nonce' ); ?>
-                        <input type="text" id="search" class="search_invoice" name="search_invoice" class="form-control d-inline" placeholder="<?php _e(" Search"); ?>" autocomplete="off" required/>
-                        <button class="btn btn-primary my-2" name="search"><?php _e("View"); ?></button>
+                        <input type="text" id="search" class="search_invoice" name="search_invoice" class="form-control d-inline" placeholder="<?php esc_html_e(" Search"); ?>" autocomplete="off" required/>
+                        <button class="btn btn-primary my-2" name="search"><?php esc_html_e("View"); ?></button>
                         <div class="mt-2" id="result"></div>
                     </div><!-- .form-group -->
                 </form>
@@ -78,20 +78,20 @@
                                                 ?>
                                             </div><!-- .customer_img -->
                                             <div class="row mt-5">
-                                                <h1 class="mb-3"><?php _e("Customer Details:"); ?></h1>
+                                                <h1 class="mb-3"><?php esc_html_e("Customer Details:"); ?></h1>
                                                 <div class="col-lg-6 col-md-6 col-sm-12 table-responsive">
                                                     <table class="table table-bordered border-dark bg-light">
                                                         <tbody>
                                                             <tr>
-                                                                <td class="p-3"><strong><?php _e("Shop Number"); ?></strong></td>
+                                                                <td class="p-3"><strong><?php esc_html_e("Shop Number"); ?></strong></td>
                                                                 <td class="p-3"><?php echo esc_html($row->shop_number); ?></td>
                                                             </tr>
                                                             <tr>
-                                                                <td class="p-3"><strong><?php _e("Name"); ?></strong></td>
+                                                                <td class="p-3"><strong><?php esc_html_e("Name"); ?></strong></td>
                                                                 <td class="p-3"><?php echo (esc_html($row->name)); ?></td>
                                                             </tr>
                                                             <tr>
-                                                                <td class="p-3"><strong><?php _e("Phone"); ?></strong></td>
+                                                                <td class="p-3"><strong><?php esc_html_e("Phone"); ?></strong></td>
                                                                 <td class="p-3">
                                                                     <?php 
                                                                         echo esc_html($row->phone) . '<br>'; 
@@ -105,7 +105,7 @@
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td class="p-3"><strong><?php _e("Net Cash"); ?></strong></td>
+                                                                <td class="p-3"><strong><?php esc_html_e("Net Cash"); ?></strong></td>
                                                                 <td class="p-3"><?php echo esc_html(number_format_i18n($row->net_cash)); ?></td>
                                                             </tr>
                                                         </tbody>
@@ -115,7 +115,7 @@
                                                     <table class="table table-bordered border-dark bg-light">
                                                         <tbody>
                                                             <tr>
-                                                                <td class="p-3"><strong><?php _e("Total Sale"); ?></strong></td>
+                                                                <td class="p-3"><strong><?php esc_html_e("Total Sale"); ?></strong></td>
                                                                 <td class="p-3">
                                                                     <?php
                                                                         $total_amount = 0;
@@ -138,19 +138,19 @@
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td class="p-3"><strong><?php _e("Total Payment"); ?></strong></td>
+                                                                <td class="p-3"><strong><?php esc_html_e("Total Payment"); ?></strong></td>
                                                                 <td class="p-3"><?php echo esc_html(number_format_i18n($received_amount)); ?></td>
                                                             </tr>
                                                             <tr>
-                                                                <td class="p-3"><strong><?php _e("Remaining"); ?></strong></td>
+                                                                <td class="p-3"><strong><?php esc_html_e("Remaining"); ?></strong></td>
                                                                 <td class="p-3"><?php echo esc_html(number_format_i18n($total - $received_amount)); ?></td>
                                                             </tr>
                                                             <tr>
-                                                                <td class="p-3"><strong><?php _e("Discount"); ?></strong></td>
+                                                                <td class="p-3"><strong><?php esc_html_e("Discount"); ?></strong></td>
                                                                 <td class="p-3"><?php echo esc_html(number_format_i18n($total_discount)); ?></td>
                                                             </tr>
                                                             <tr>
-                                                                <td class="p-3"><strong><?php _e("Current"); ?></strong></td>
+                                                                <td class="p-3"><strong><?php esc_html_e("Current"); ?></strong></td>
                                                                 <td class="p-3">
                                                                     <?php
                                                                         if($current == 0) {
@@ -173,13 +173,13 @@
                                             <table class='table table-bordered table-hover text-center'>
                                                 <thead class='bg-dark text-white'>
                                                     <tr>
-                                                        <th><?php _e("Date"); ?></th>
-                                                        <th><?php _e("Product"); ?></th>
-                                                        <th><?php _e("Quantity"); ?></th>
-                                                        <th><?php _e("Per Piece"); ?></th>
-                                                        <th><?php _e("Total Price"); ?></th>
-                                                        <th><?php _e("Received"); ?></th>
-                                                        <th><?php _e("Remaining"); ?></th>
+                                                        <th><?php esc_html_e("Date"); ?></th>
+                                                        <th><?php esc_html_e("Product"); ?></th>
+                                                        <th><?php esc_html_e("Quantity"); ?></th>
+                                                        <th><?php esc_html_e("Per Piece"); ?></th>
+                                                        <th><?php esc_html_e("Total Price"); ?></th>
+                                                        <th><?php esc_html_e("Received"); ?></th>
+                                                        <th><?php esc_html_e("Remaining"); ?></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody class='bg-light'>
@@ -274,7 +274,7 @@
                                             <div class="col-lg-6 col-md-6 col-sm-12 form-group">
                                                 <?php wp_nonce_field( 'adding_current', 'adding_current_nonce' ); ?>
                                                 <input type="text" name="current" class="current" class="form-control">
-                                                <button class="btn btn-primary my-2" name="add_current"><?php _e('Add'); ?></button>
+                                                <button class="btn btn-primary my-2" name="add_current"><?php esc_html_e('Add'); ?></button>
                                                 <!-- style="display: inline-table" -->
                                             </div><!-- .col-lg-6 -->
                                         </form>

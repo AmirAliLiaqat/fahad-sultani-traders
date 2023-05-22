@@ -30,7 +30,7 @@
 
             <?php get_header(); ?>
 
-            <h1 class="text-center text-capitalize my-5"><?php echo isset($_GET['query']) ? _e("Edit ") : _e("Add "); _e(the_title()); ?></h1>
+            <h1 class="text-center text-capitalize my-5"><?php echo isset($_GET['query']) ? esc_html_e("Edit ") : esc_html_e("Add "); esc_html_e(the_title()); ?></h1>
 
             <div class="row my-2">
                 <div class="col-lg-6 col-md-6 col-sm-12 mx-auto">
@@ -145,20 +145,20 @@
                             <!-- Name -->
                             <div class="row mb-3">
                                 <div class="col-lg-4 col-sm-12">
-                                    <label for="salary_person" class="form-label fw-bolder"><?php _e("Name"); ?></label>
+                                    <label for="salary_person" class="form-label fw-bolder"><?php esc_html_e("Name"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
-                                    <input type="text" name="salary_person" class="form-control" value="<?php echo $salary->name; ?>" placeholder="<?php _e("Name"); ?>" required>
+                                    <input type="text" name="salary_person" class="form-control" value="<?php echo $salary->name; ?>" placeholder="<?php esc_html_e("Name"); ?>" required>
                                 </div><!-- .col-lg-8 -->
                             </div><!-- .row -->
 
                             <!-- Amount -->
                             <div class="row mb-3">
                                 <div class="col-lg-4 col-sm-12">
-                                    <label for="salary_amount" class="form-label fw-bolder"><?php _e("Salary"); ?></label>
+                                    <label for="salary_amount" class="form-label fw-bolder"><?php esc_html_e("Salary"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
-                                    <input type="number" name="salary_amount" class="form-control" value="<?php echo $salary->salary; ?>" placeholder="<?php _e("Salary"); ?>" required>    
+                                    <input type="number" name="salary_amount" class="form-control" value="<?php echo $salary->salary; ?>" placeholder="<?php esc_html_e("Salary"); ?>" required>    
                                 </div><!-- .col-lg-8 -->
                             </div><!-- .row -->
 
@@ -166,7 +166,7 @@
                             <div class="row">
                                 <div class="col-12 p-3">
                                     <?php wp_nonce_field( 'updating_salary', 'updating_salary_nonce' ); ?>
-                                    <button class="btn btn-primary" name="update_salary"><?php _e("Update Salary"); ?></button>
+                                    <button class="btn btn-primary" name="update_salary"><?php esc_html_e("Update Salary"); ?></button>
                                 </div><!-- .col-12 -->
                             </div><!-- .row -->
                         </form>
@@ -180,20 +180,20 @@
                             <!-- Name -->
                             <div class="row mb-3">
                                 <div class="col-lg-4 col-sm-12">
-                                    <label for="salary_person" class="form-label fw-bolder"><?php _e("Name"); ?></label>
+                                    <label for="salary_person" class="form-label fw-bolder"><?php esc_html_e("Name"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
-                                    <input type="text" name="salary_person" class="form-control" placeholder="<?php _e("Name"); ?>" required>
+                                    <input type="text" name="salary_person" class="form-control" placeholder="<?php esc_html_e("Name"); ?>" required>
                                 </div><!-- .col-lg-8 -->
                             </div><!-- .row -->
 
                             <!-- Amount -->
                             <div class="row mb-3">
                                 <div class="col-lg-4 col-sm-12">
-                                    <label for="salary_amount" class="form-label fw-bolder"><?php _e("Salary"); ?></label>
+                                    <label for="salary_amount" class="form-label fw-bolder"><?php esc_html_e("Salary"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
-                                    <input type="number" name="salary_amount" class="form-control" placeholder="<?php _e("Salary"); ?>" required>    
+                                    <input type="number" name="salary_amount" class="form-control" placeholder="<?php esc_html_e("Salary"); ?>" required>    
                                 </div><!-- .col-lg-8 -->
                             </div><!-- .row -->
 
@@ -201,7 +201,7 @@
                             <div class="row">
                                 <div class="col-12 p-3">
                                     <?php wp_nonce_field( 'adding_salary', 'adding_salary_nonce' ); ?>
-                                    <button class="btn btn-primary" name="add_salary"><?php _e("Add Salary"); ?></button>
+                                    <button class="btn btn-primary" name="add_salary"><?php esc_html_e("Add Salary"); ?></button>
                                 </div><!-- .col-12 -->
                             </div><!-- .row -->
                         </form>
@@ -216,9 +216,9 @@
                 <table class="table table-bordered table-hover table-striped table-sm">
                     <thead class="bg-dark text-white text-center">
                         <tr>
-                            <th><?php _e("Sr#"); ?></th>
-                            <th><?php _e("Name"); ?></th>
-                            <th><?php _e("View"); ?></th>
+                            <th><?php esc_html_e("Sr#"); ?></th>
+                            <th><?php esc_html_e("Name"); ?></th>
+                            <th><?php esc_html_e("View"); ?></th>
                         </tr>
                     </thead>
                     <tbody class='bg-light'>

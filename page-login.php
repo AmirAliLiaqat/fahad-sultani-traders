@@ -20,7 +20,7 @@
 
             <?php get_header(); ?>
 
-            <h1 class="text-center text-capitalize my-5"><?php _e(the_title()); ?></h1>
+            <h1 class="text-center text-capitalize my-5"><?php esc_html_e(the_title()); ?></h1>
 
             <div class="row my-2">
                 <div class="col-lg-6 col-sm-12 bg-light form-content p-4 mx-auto">

@@ -31,7 +31,7 @@
 
             <?php get_header(); ?>
             
-            <h1 class="text-center text-capitalize my-5"><?php echo isset($_GET['query']) ? _e("Edit ") : _e("Add "); _e(the_title()); ?></h1>
+            <h1 class="text-center text-capitalize my-5"><?php echo isset($_GET['query']) ? esc_html_e("Edit ") : esc_html_e("Add "); esc_html_e(the_title()); ?></h1>
             
             <div class="row my-2">
                 <div class="col-lg-6 col-sm-12 mx-auto">
@@ -185,7 +185,7 @@
                             <!-- Search -->
                             <div class="row mb-3">
                                 <div class="col-lg-4 col-sm-12">
-                                    <label for="search" class="form-label fw-bolder"><?php _e("Customer"); ?></label>
+                                    <label for="search" class="form-label fw-bolder"><?php esc_html_e("Customer"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
                                     <?php
@@ -195,7 +195,7 @@
                                         foreach($customer as $detail) {
                                             $customer_name = $detail->name;
                                     ?>
-                                    <input type="text" id="search" name="search" class="form-control" value="<?php echo esc_html($customer_name); ?>" placeholder="<?php _e("Search"); ?>" autocomplete="off" required/>
+                                    <input type="text" id="search" name="search" class="form-control" value="<?php echo esc_html($customer_name); ?>" placeholder="<?php esc_html_e("Search"); ?>" autocomplete="off" required/>
                                     <?php } ?>
                                     <div class="mt-2" id="result"></div>
                                 </div><!-- .col-lg-8 -->
@@ -204,17 +204,17 @@
                             <!-- Amount -->
                             <div class="row mb-3">
                                 <div class="col-lg-4 col-sm-12">
-                                    <label for="amount" class="form-label fw-bolder"><?php _e("Amount"); ?></label>
+                                    <label for="amount" class="form-label fw-bolder"><?php esc_html_e("Amount"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
-                                    <input type="number" name="amount" class="form-control" value="<?php echo esc_html($customer_payment->amount); ?>" placeholder="<?php _e("Amount"); ?>" required>    
+                                    <input type="number" name="amount" class="form-control" value="<?php echo esc_html($customer_payment->amount); ?>" placeholder="<?php esc_html_e("Amount"); ?>" required>    
                                 </div><!-- .col-lg-8 -->
                             </div><!-- .row -->
 
                             <!-- Paid Date -->
                             <div class="row mb-3">
                                 <div class="col-lg-4 col-sm-12">
-                                    <label for="paid_date" class="form-label fw-bolder"><?php _e("Paid Date"); ?></label>
+                                    <label for="paid_date" class="form-label fw-bolder"><?php esc_html_e("Paid Date"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
                                     <input type="date" name="paid_date" class="form-control" value="<?php echo esc_html($customer_payment->paid_date); ?>" required>
@@ -224,7 +224,7 @@
                             <!-- Payment -->
                             <div class="row mb-3">
                                 <div class="col-lg-4 col-sm-12">
-                                    <label for="payment_type" class="form-label fw-bolder"><?php _e("Payment Type"); ?></label>
+                                    <label for="payment_type" class="form-label fw-bolder"><?php esc_html_e("Payment Type"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
                                     <select name="payment_type" class="form-control">
@@ -238,17 +238,17 @@
                             <!-- Discount -->
                             <div class="row mb-3">
                                 <div class="col-lg-4 col-sm-12">
-                                    <label for="discount" class="form-label fw-bolder"><?php _e("Discount"); ?></label>
+                                    <label for="discount" class="form-label fw-bolder"><?php esc_html_e("Discount"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
-                                    <input type="number" name="discount" class="form-control" value="<?php echo esc_html($customer_payment->discount); ?>" placeholder="<?php _e("Discount"); ?>"> 
+                                    <input type="number" name="discount" class="form-control" value="<?php echo esc_html($customer_payment->discount); ?>" placeholder="<?php esc_html_e("Discount"); ?>"> 
                                 </div><!-- .col-lg-8 -->
                             </div><!-- .row -->
 
                             <!-- Description -->
                             <div class="row mb-3">
                                 <div class="col-lg-4 col-sm-12">
-                                    <label for="invoice_desc" class="form-label fw-bolder"><?php _e("Description"); ?></label>
+                                    <label for="invoice_desc" class="form-label fw-bolder"><?php esc_html_e("Description"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
                                     <textarea name="invoice_desc" class="form-control" ><?php echo esc_html($customer_payment->invoice_desc); ?></textarea>
@@ -259,7 +259,7 @@
                             <div class="row">
                                 <div class="col-12 p-3">
                                     <?php wp_nonce_field( 'updating_customer_payment', 'updating_customer_payment_nonce' ); ?>
-                                    <button class="btn btn-primary" name="update_customer_payment"><?php _e("Update Customer Payment"); ?></button>
+                                    <button class="btn btn-primary" name="update_customer_payment"><?php esc_html_e("Update Customer Payment"); ?></button>
                                 </div><!-- .col-12 -->
                             </div><!-- .row -->
                         </form>
@@ -273,10 +273,10 @@
                             <!-- Search -->
                             <div class="row mb-3">
                                 <div class="col-lg-4 col-sm-12">
-                                    <label for="search" class="form-label fw-bolder"><?php _e("Customer"); ?></label>
+                                    <label for="search" class="form-label fw-bolder"><?php esc_html_e("Customer"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
-                                    <input type="text" id="search" name="search" class="form-control" placeholder="<?php _e("Search"); ?>" autocomplete="off" required/>
+                                    <input type="text" id="search" name="search" class="form-control" placeholder="<?php esc_html_e("Search"); ?>" autocomplete="off" required/>
                                     <div class="mt-2" id="result"></div>
                                 </div><!-- .col-lg-8 -->
                             </div><!-- .row -->
@@ -284,17 +284,17 @@
                             <!-- Amount -->
                             <div class="row mb-3">
                                 <div class="col-lg-4 col-sm-12">
-                                    <label for="amount" class="form-label fw-bolder"><?php _e("Amount"); ?></label>
+                                    <label for="amount" class="form-label fw-bolder"><?php esc_html_e("Amount"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
-                                    <input type="number" name="amount" class="form-control" placeholder="<?php _e("Amount"); ?>" required>    
+                                    <input type="number" name="amount" class="form-control" placeholder="<?php esc_html_e("Amount"); ?>" required>    
                                 </div><!-- .col-lg-8 -->
                             </div><!-- .row -->
 
                             <!-- Paid Date -->
                             <div class="row mb-3">
                                 <div class="col-lg-4 col-sm-12">
-                                    <label for="paid_date" class="form-label fw-bolder"><?php _e("Paid Date"); ?></label>
+                                    <label for="paid_date" class="form-label fw-bolder"><?php esc_html_e("Paid Date"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
                                     <input type="date" name="paid_date" class="form-control" value="<?php echo $date; ?>" required>
@@ -304,7 +304,7 @@
                             <!-- Payment Type -->
                             <div class="row mb-3">
                                 <div class="col-lg-4 col-sm-12">
-                                    <label for="payment_type" class="form-label fw-bolder"><?php _e("Payment Type"); ?></label>
+                                    <label for="payment_type" class="form-label fw-bolder"><?php esc_html_e("Payment Type"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
                                     <select name="payment_type" class="form-control">
@@ -318,17 +318,17 @@
                             <!-- Discount -->
                             <div class="row mb-3">
                                 <div class="col-lg-4 col-sm-12">
-                                    <label for="discount" class="form-label fw-bolder"><?php _e("Discount"); ?></label>
+                                    <label for="discount" class="form-label fw-bolder"><?php esc_html_e("Discount"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
-                                    <input type="number" name="discount" class="form-control" placeholder="<?php _e("Discount"); ?>"> 
+                                    <input type="number" name="discount" class="form-control" placeholder="<?php esc_html_e("Discount"); ?>"> 
                                 </div><!-- .col-lg-8 -->
                             </div><!-- .row -->
 
                             <!-- Description -->
                             <div class="row mb-3">
                                 <div class="col-lg-4 col-sm-12">
-                                    <label for="invoice_desc" class="form-label fw-bolder"><?php _e("Description"); ?></label>
+                                    <label for="invoice_desc" class="form-label fw-bolder"><?php esc_html_e("Description"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
                                     <textarea name="invoice_desc" class="form-control" ></textarea>
@@ -339,7 +339,7 @@
                             <div class="row">
                                 <div class="col-12 p-3">
                                     <?php wp_nonce_field( 'adding_customer_payment', 'adding_customer_payment_nonce' ); ?>
-                                    <button class="btn btn-primary" name="add_customer_payment"><?php _e("Add Customer Payment"); ?></button>
+                                    <button class="btn btn-primary" name="add_customer_payment"><?php esc_html_e("Add Customer Payment"); ?></button>
                                 </div><!-- .col-12 -->
                             </div><!-- .row -->
                         </form>
@@ -354,14 +354,14 @@
                 <table class="table table-bordered table-hover table-striped table-sm">
                     <thead class="bg-dark text-white text-center">
                         <tr>
-                            <th><?php _e("Sr#"); ?></th>
-                            <th><?php _e("Customer Name"); ?></th>
-                            <th><?php _e("Amount"); ?></th>
-                            <th><?php _e("Paid Date"); ?></th>
-                            <th><?php _e("Payment Type"); ?></th>
-                            <th><?php _e("Discount"); ?></th>
-                            <th><?php _e("Description"); ?></th>
-                            <th><?php _e("Action"); ?></th>
+                            <th><?php esc_html_e("Sr#"); ?></th>
+                            <th><?php esc_html_e("Customer Name"); ?></th>
+                            <th><?php esc_html_e("Amount"); ?></th>
+                            <th><?php esc_html_e("Paid Date"); ?></th>
+                            <th><?php esc_html_e("Payment Type"); ?></th>
+                            <th><?php esc_html_e("Discount"); ?></th>
+                            <th><?php esc_html_e("Description"); ?></th>
+                            <th><?php esc_html_e("Action"); ?></th>
                         </tr>
                     </thead>
                     <tbody class='bg-light'>
