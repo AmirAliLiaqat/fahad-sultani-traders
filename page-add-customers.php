@@ -33,7 +33,7 @@
 
             <?php get_header(); ?>
             
-            <h1 class="text-center text-capitalize my-5"><?php echo isset($_GET['query']) ? _e("Edit") : _e("Add"); _e( " Customers" ); ?></h1>
+            <h1 class="text-center text-capitalize my-5"><?php echo isset($_GET['query']) ? esc_html_e("Edit") : esc_html_e("Add"); esc_html_e( " Customers" ); ?></h1>
             
             <div class="row my-2">
                 <div class="col-lg-6 col-sm-12 mx-auto">
@@ -396,25 +396,25 @@
                     <form class="row" method="post">
                         <div class="col-lg-4 col-md-6 col-sm-12">
                             <div class="form-group my-1">
-                                <label for="c_shop" class="form-label"><?php _e("Shop"); ?>:</label>
-                                <input type="text" id="search_item" name="c_shop" class="form-control bg-light" placeholder="<?php _e("Search by shop #"); ?>">
+                                <label for="c_shop" class="form-label"><?php esc_html_e("Shop"); ?>:</label>
+                                <input type="text" id="search_item" name="c_shop" class="form-control bg-light" placeholder="<?php esc_html_e("Search by shop #"); ?>">
                             </div><!-- .form-group -->
                         </div><!-- .col-lg-4 -->
                         <div class="col-lg-4 col-md-6 col-sm-12">
                             <div class="form-group my-1">
-                                <label for="c_name" class="form-label"><?php _e("Name"); ?>:</label>
-                                <input type="text" id="search_item" name="c_name" class="form-control bg-light" placeholder="<?php _e("Search by name"); ?>">
+                                <label for="c_name" class="form-label"><?php esc_html_e("Name"); ?>:</label>
+                                <input type="text" id="search_item" name="c_name" class="form-control bg-light" placeholder="<?php esc_html_e("Search by name"); ?>">
                             </div><!-- .form-group -->
                         </div><!-- .col-lg-4 -->
                         <div class="col-lg-4 col-md-6 col-sm-12">
                             <div class="form-group my-1">
-                                <label for="c_phone" class="form-label"><?php _e("Phone"); ?>:</label>
-                                <input type="text" id="search_item" name="c_phone" class="form-control bg-light" placeholder="<?php _e("Search by phone"); ?>">
+                                <label for="c_phone" class="form-label"><?php esc_html_e("Phone"); ?>:</label>
+                                <input type="text" id="search_item" name="c_phone" class="form-control bg-light" placeholder="<?php esc_html_e("Search by phone"); ?>">
                             </div><!-- .form-group -->
                         </div><!-- .col-lg-4 -->
                         <div class="col-12 text-end">
                             <?php wp_nonce_field('search_customer', 'search_customer_nonce'); ?>
-                            <button class="btn btn-primary my-2" id="c_search" name="c_search"><?php _e('Search'); ?></button>
+                            <button class="btn btn-primary my-2" id="c_search" name="c_search"><?php esc_html_e('Search'); ?></button>
                         </div><!-- .col-12 -->
                     </form><!-- .row -->
                 </div><!-- .search_section_box -->
@@ -436,11 +436,11 @@
                     <table class="table table-bordered text-center fw-bolder">
                         <thead class="bg-dark text-white">
                             <tr>
-                                <th><?php _e(esc_html("Picture")); ?></th>
-                                <th><?php _e(esc_html("Shop#")); ?></th>
-                                <th><?php _e(esc_html("Name")); ?></th>
-                                <th><?php _e(esc_html("Phone")); ?></th>
-                                <th><?php _e(esc_html("Action")); ?></th>
+                                <th><?php esc_html_e("Picture"); ?></th>
+                                <th><?php esc_html_e("Shop#"); ?></th>
+                                <th><?php esc_html_e("Name"); ?></th>
+                                <th><?php esc_html_e("Phone"); ?></th>
+                                <th><?php esc_html_e("Action"); ?></th>
                             </tr>
                         </thead>
                         <tbody class="bg-light">
@@ -460,15 +460,15 @@
                                         }
                                     ?>
                                 </td>
-                                <td><?php _e(esc_html($fetch_customer->shop_number)); ?></td>
-                                <td><?php _e(esc_html($fetch_customer->name)); ?></td>
+                                <td><?php esc_html_e($fetch_customer->shop_number); ?></td>
+                                <td><?php esc_html_e($fetch_customer->name); ?></td>
                                 <td>
                                     <?php 
-                                        _e(esc_html($fetch_customer->phone) . '<br>'); 
+                                        esc_html_e($fetch_customer->phone) . '<br>'; 
                                         $meta_values = $wpdb->get_results("SELECT * FROM fst_customer_meta_data WHERE `customer_id` = '$customer_id' ");
                                         if($meta_values) {
                                             foreach($meta_values as $values) {
-                                                _e(esc_html($values->meta_value) . '<br>');
+                                                esc_html_e($values->meta_value) . '<br>';
                                             }
                                         }
                                     ?>
@@ -495,12 +495,12 @@
                     <table class="table table-bordered table-hover table-striped table-sm">
                         <thead class="bg-dark text-white text-center">
                             <tr>
-                                <th><?php _e("Sr#"); ?></th>
-                                <th><?php _e("Customer Image"); ?></th>
-                                <th><?php _e("Shop Number"); ?></th>
-                                <th><?php _e("Customer Name"); ?></th>
-                                <th><?php _e("Customer Phone"); ?></th>
-                                <th><?php _e("Action"); ?></th>
+                                <th><?php esc_html_e("Sr#"); ?></th>
+                                <th><?php esc_html_e("Customer Image"); ?></th>
+                                <th><?php esc_html_e("Shop Number"); ?></th>
+                                <th><?php esc_html_e("Customer Name"); ?></th>
+                                <th><?php esc_html_e("Customer Phone"); ?></th>
+                                <th><?php esc_html_e("Action"); ?></th>
                             </tr>
                         </thead>
                         <tbody class='bg-light'>
