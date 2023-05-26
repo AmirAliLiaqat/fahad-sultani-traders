@@ -89,10 +89,6 @@
                                         echo "<div class='alert alert-success' role='alert'>
                                         <strong>Salary updated successfully...</strong>
                                         </div>";
-                                    } else {
-                                        echo "<div class='alert alert-danger' role='alert'>
-                                        <strong>Error to updating the salary!</strong>
-                                        </div>";
                                     }
                                 }    
                             } else {
@@ -205,9 +201,7 @@
                                 </div><!-- .col-12 -->
                             </div><!-- .row -->
                         </form>
-                        <?php
-                            }
-                        ?>
+                        <?php } ?>
                     </div><!-- .page-inner-content -->
                 </div><!-- .col-lg-6 -->
             </div><!-- .row -->
@@ -233,14 +227,14 @@
                             <td><?php echo esc_html($sr++); ?></td>
                             <td><?php echo esc_html($row->name); ?></td>
                             <td>
-                                <a href="<?php echo get_site_url(); ?>/salary-detail?query=view&hash=<?php echo esc_html($row->ID); ?>&<?php echo esc_html(md5($row->ID)); ?>" class="btn btn-primary text-white"><?php _e('View'); ?></a>
-                                <a href="?query=update&hash=<?php echo esc_html($row->ID); ?>&<?php echo esc_html(md5($row->ID)); ?>" class="btn btn-primary text-white"><?php _e('Edit'); ?></a>
+                                <a href="<?php echo get_site_url(); ?>/salary-detail?query=view&hash=<?php echo esc_html($row->ID); ?>&<?php echo esc_html(md5($row->ID)); ?>" class="btn btn-primary text-white"><?php esc_html_e('View'); ?></a>
                                 <?php if(!isset($_GET['query'])) : ?>
+                                    <a href="?query=update&hash=<?php echo esc_html($row->ID); ?>&<?php echo esc_html(md5($row->ID)); ?>" class="btn btn-primary text-white"><?php esc_html_e('Edit'); ?></a>
+                                <?php endif; ?>
                                 <form class="d-inline" method="post">
                                     <?php wp_nonce_field( 'deleting_salary', 'deleting_salary_nonce' ); ?>
-                                    <button class="btn btn-danger text-white" value="<?php echo esc_html($row->ID); ?>" name="id"><?php _e('Delete'); ?></button>
+                                    <button class="btn btn-danger text-white" value="<?php echo esc_html($row->ID); ?>" name="id"><?php esc_html_e('Delete'); ?></button>
                                 </form>
-                                <?php endif; ?>
                             </td>
                         </tr>
                         <?php
