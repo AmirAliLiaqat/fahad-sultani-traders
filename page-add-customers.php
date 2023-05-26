@@ -162,6 +162,28 @@
                                     } else {
                                         $customer_picture = $current_image;
                                     }
+
+                                    if(isset($_POST['c_phone'])) {
+                                        $phone_no = $_POST['c_phone'];
+                                        // $sr = 1;
+
+                                        foreach($phone_no as $phone) {
+                                            $table = $wpdb->prefix.'customer_meta_data';
+                                            $data = array(
+                                                // 'meta_key' => 'phone_'.$sr++,
+                                                'meta_key' => 'phone',
+                                                'meta_value' => $phone
+                                            );
+                                            $where = array( 'customer_id' => $customer_id );
+                                            $update_meta_data = $wpdb->update($table, $data, $where);
+                                    
+                                            if($update_meta_data) {
+                                                echo "<div class='alert alert-success' role='alert'>
+                                                    <strong>Phone number updated successfully...</strong>
+                                                </div>";
+                                            }
+                                        }
+                                    }
                                     
                                     $table = $wpdb->prefix.'customer_data';
                                     $data = array(
@@ -175,11 +197,7 @@
                                     
                                     if($update_customer) {
                                         echo "<div class='alert alert-success' role='alert'>
-                                        <strong>Customer updated successfully...</strong>
-                                        </div>";
-                                    } else {
-                                        echo "<div class='alert alert-danger' role='alert'>
-                                        <strong>Error to updating the customer!</strong>
+                                            <strong>Customer updated successfully...</strong>
                                         </div>";
                                     }
                                 }
