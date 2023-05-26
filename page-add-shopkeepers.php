@@ -198,10 +198,6 @@
                                         echo "<div class='alert alert-success' role='alert'>
                                         <strong>Shopkeeper updated successfully...</strong>
                                         </div>";
-                                    } else {
-                                        echo "<div class='alert alert-danger' role='alert'>
-                                        <strong>Error to updating the shopkeeper!</strong>
-                                        </div>";
                                     }
                                 }
                             } else {
@@ -520,28 +516,28 @@
                                 <td><?php esc_html_e($fetch_shopkeeper->shopkeeper_name); ?></td>
                                 <td>
                                     <?php 
-                                        esc_html($fetch_shopkeeper->shopkeeper_phone) . '<br>'; 
+                                        echo esc_html($fetch_shopkeeper->shopkeeper_phone) . '<br>'; 
                                         $shopkeeper_meta_phone = $wpdb->get_results("SELECT * FROM fst_shopkeeper_meta_data WHERE `shopkeeper_id` = '$shopkeeper_id' AND `meta_key` = 'phone'");
                                         if($shopkeeper_meta_phone) {
                                             foreach($shopkeeper_meta_phone as $phone) {
-                                                esc_html($phone->meta_value) . '<br>';
+                                                echo esc_html($phone->meta_value) . '<br>';
                                             }
                                         }
                                     ?>
                                 </td>
                                 <td>
                                     <?php 
-                                        esc_html($fetch_shopkeeper->shopkeeper_account) . '<br>'; 
+                                        echo esc_html($fetch_shopkeeper->shopkeeper_account) . '<br>'; 
                                         $shopkeeper_meta_account = $wpdb->get_results("SELECT * FROM fst_shopkeeper_meta_data WHERE `shopkeeper_id` = '$shopkeeper_id' AND `meta_key` = 'account'");
                                         if($shopkeeper_meta_account) {
                                             foreach($shopkeeper_meta_account as $account) {
-                                                esc_html($account->meta_value) . '<br>';
+                                                echo esc_html($account->meta_value) . '<br>';
                                             }
                                         }
                                     ?>
                                 </td>
                                 <td>
-                                    <a href="<?php esc_url(home_url('/shopkeeper-invoice')); ?>?search=shopkeeper&shopkeeper_id=<?php _e(esc_html($shopkeeper_id)); ?>" class="btn btn-primary text-white"><?php _e("View"); ?></a>
+                                    <a href="<?php echo esc_url(home_url('/shopkeeper-invoice?search=shopkeeper&shopkeeper_id=' . $shopkeeper_id)); ?>" class="btn btn-primary text-white"><?php esc_html_e("View"); ?></a>
                                 </td>
                             </tr>
                         </tbody>
