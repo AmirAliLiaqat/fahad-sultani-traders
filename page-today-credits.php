@@ -111,7 +111,7 @@
                             $tfoot_tr_html = '<tr>';
                             $tfoot_tr_html .= '<td colspan="2">'.esc_html("Total Amount").'</td>';
                             $tfoot_tr_html .= '<td>'.esc_html(number_format_i18n($total_amount)).'</td>';
-                            $tfoot_tr_html .= '<td>'.esc_html(number_format_i18n($total_receive = $wpdb->get_var("SELECT SUM(amount) FROM fst_customer_payments WHERE `paid_date` = '$date'"))).'</td>';
+                            $tfoot_tr_html .= '<td>'.esc_html(number_format_i18n($total_receive = $wpdb->get_var("SELECT SUM(amount) FROM fst_customer_payments WHERE `paid_date` = '$date_filter'"))).'</td>';
                             $tfoot_tr_html .= '<td>'.esc_html(number_format_i18n($total_amount - $total_receive)).'</td>';
                             $tfoot_tr_html .= '<td>';
                             $tfoot_tr_html .= '<button name="save_action" class="btn btn-primary">Save Changes</button>';
