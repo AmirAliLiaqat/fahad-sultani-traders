@@ -460,21 +460,21 @@
                                         }
                                     ?>
                                 </td>
-                                <td><?php esc_html_e($fetch_customer->shop_number); ?></td>
-                                <td><?php esc_html_e($fetch_customer->name); ?></td>
+                                <td><?php echo esc_html($fetch_customer->shop_number); ?></td>
+                                <td><?php echo esc_html($fetch_customer->name); ?></td>
                                 <td>
                                     <?php 
-                                        esc_html_e($fetch_customer->phone) . '<br>'; 
+                                        echo esc_html($fetch_customer->phone) . '<br>'; 
                                         $meta_values = $wpdb->get_results("SELECT * FROM fst_customer_meta_data WHERE `customer_id` = '$customer_id' ");
                                         if($meta_values) {
                                             foreach($meta_values as $values) {
-                                                esc_html_e($values->meta_value) . '<br>';
+                                                echo esc_html($values->meta_value) . '<br>';
                                             }
                                         }
                                     ?>
                                 </td>
                                 <td>
-                                    <a href="<?php _e(esc_url(home_url('/customer-invoice'))); ?>?search=customer&customer_id=<?php _e(esc_html($customer_id)); ?>" class="btn btn-primary text-white"><?php _e("View"); ?></a>
+                                    <a href="<?php echo esc_url(home_url('/customer-invoice?search=customer&customer_id=' . $customer_id)); ?>" class="btn btn-primary text-white"><?php esc_html_e("View"); ?></a>
                                 </td>
                             </tr>
                         </tbody>
