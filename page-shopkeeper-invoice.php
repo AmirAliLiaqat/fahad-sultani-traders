@@ -147,10 +147,6 @@
                                                                 <td class="p-3"><strong><?php esc_html_e("Remaining"); ?></strong></td>
                                                                 <td class="p-3"><?php echo esc_html(number_format_i18n($total_amount - $received_amount)); ?></td>
                                                             </tr>
-                                                            <tr>
-                                                                <td class="p-3"><strong><?php esc_html_e("Net Cash"); ?></strong></td>
-                                                                <td class="p-3"><?php echo esc_html(number_format_i18n($row->net_cash)); ?></td>
-                                                            </tr>
                                                         </tbody>
                                                     </table>
                                                 </div><!-- .col-lg-6 -->
