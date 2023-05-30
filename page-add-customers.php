@@ -67,31 +67,31 @@
 
                                     /********* code for customer img *******/
                                     if($_FILES['customer_image']['name'] != '') {
-                                        echo $customer_picture = $_FILES['customer_image']['name'];
-                                        echo $picture_path = $_FILES['customer_image']['tmp_name'];
+                                        $customer_picture = $_FILES['customer_image']['name'];
+                                        $picture_path = $_FILES['customer_image']['tmp_name'];
     
-                                        // // Auto rename image
-                                        // $ext = end(explode('.',$customer_picture));
-                                        // // Rename the image
-                                        // $customer_picture = "customer_".rand(00,99).'.'.$ext;
+                                        // Auto rename image
+                                        $ext = end(explode('.',$customer_picture));
+                                        // Rename the image
+                                        $customer_picture = "customer_".rand(00,99).'.'.$ext;
     
-                                        // $image = wp_get_image_editor($picture_path);
+                                        $image = wp_get_image_editor($picture_path);
     
-                                        // if ( ! is_wp_error( $image ) ) { 
-                                        //     $image->set_quality(80);
-                                        //     if($image) {
-                                        //         if (file_exists($path)) {
-                                        //             $image->save($path.DIRECTORY_SEPARATOR.$customer_picture);
-                                        //         } else {
-                                        //             mkdir($path);
-                                        //             $image->save($path.DIRECTORY_SEPARATOR.$customer_picture);
-                                        //         }
-                                        //     }
-                                        // } else {
-                                        //     echo "<div class='alert alert-danger' role='alert'>
-                                        //         <strong>Error found for adding customer image!</strong>
-                                        //     </div>";
-                                        // }
+                                        if ( ! is_wp_error( $image ) ) { 
+                                            $image->set_quality(80);
+                                            if($image) {
+                                                if (file_exists($path)) {
+                                                    $image->save($path.DIRECTORY_SEPARATOR.$customer_picture);
+                                                } else {
+                                                    mkdir($path);
+                                                    $image->save($path.DIRECTORY_SEPARATOR.$customer_picture);
+                                                }
+                                            }
+                                        } else {
+                                            echo "<div class='alert alert-danger' role='alert'>
+                                                <strong>Error found for adding customer image!</strong>
+                                            </div>";
+                                        }
 
                                     } else {
                                         $customer_picture = '';
@@ -136,7 +136,7 @@
                                         'picture' => $customer_picture,
                                         'shop_number' => $shop_number, 
                                         'name' => $customer_name, 
-                                        'phone' => $customer_phone
+                                        'phone' => $customer_phone,
                                         'id_card' => $customer_id_card,
                                         'id_card_picture' => $idCard_image
                                     ));
