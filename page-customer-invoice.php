@@ -104,6 +104,41 @@
                                                                     ?>
                                                                 </td>
                                                             </tr>
+                                                            <tr>
+                                                                <td class="p-3"><strong><?php esc_html_e("ID Card"); ?></strong></td>
+                                                                <td class="p-3 d-flex justify-content-between">
+                                                                    <?php echo esc_html($row->id_card); ?>
+                                                                    <!-- Button trigger modal -->
+                                                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><?php esc_html_e("View Pic"); ?></button>
+
+                                                                    <!-- Modal -->
+                                                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                        <div class="modal-dialog">
+                                                                            <div class="modal-content">
+                                                                                <div class="modal-header">
+                                                                                    <button type="button" class="btn btn-primary" onclick="printDiv()"><?php esc_html_e("Print"); ?></button>
+                                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                                </div><!-- .modal-header -->
+                                                                                <div class="modal-body text-center" id="print_id_card">
+                                                                                    <?php
+                                                                                        if($row->id_card_picture !="") { 
+                                                                                            $upload_dir = wp_upload_dir();
+                                                                                    
+                                                                                            // Checking whether file exists or not
+                                                                                            $url = $upload_dir['baseurl'].DIRECTORY_SEPARATOR.'customer_img';
+                                                                                            ?>
+                                                                                                <img src="<?php echo $url .DIRECTORY_SEPARATOR. $row->id_card_picture; ?>" width="800">
+                                                                                            <?php
+                                                                                        } else {
+                                                                                            echo "<span class='text-white'>NO Picture...</span>";
+                                                                                        }
+                                                                                    ?>
+                                                                                </div><!-- .modal-body -->
+                                                                            </div><!-- .modal-content -->
+                                                                        </div><!-- .modal-dialog -->
+                                                                    </div><!-- .modal -->
+                                                                </td>
+                                                            </tr>
                                                         </tbody>
                                                     </table>
                                                 </div><!-- .col-lg-6 -->
@@ -304,6 +339,15 @@
                 }
             });  
         });
+    </script>
+
+    <script>
+        function printDiv() {
+            var divContents = document.getElementById("print_id_card").innerHTML;
+            var a = window.open('', '', 'height=500, width=500');
+            a.document.write(divContents);
+            a.print();
+        }
     </script>
         
 <?php
