@@ -166,8 +166,11 @@
                                     $shop_number = sanitize_text_field($_POST['shop_number']);
                                     $customer_name = sanitize_text_field($_POST['customer_name']);
                                     $customer_phone = sanitize_text_field($_POST['customer_phone']);
+                                    $customer_id_card = sanitize_text_field($_POST['customer_id_card']);
                                     $current_image = sanitize_text_field($_POST['current_image']);
+                                    $current_id_card_image = sanitize_text_field($_POST['current_id_card_image']);
 
+                                    /********* code for customer img *******/
                                     if($_FILES['customer_image']['name'] != '') {
                                         $customer_picture = $_FILES['customer_image']['name'];
                                         $picture_path = $_FILES['customer_image']['tmp_name'];
@@ -200,6 +203,40 @@
                                         $customer_picture = $current_image;
                                     }
 
+                                    /********* code for customer id card img *******/
+                                    if($_FILES['id_card_image']['name'] != '') {
+                                        $customer_id_card_picture = $_FILES['id_card_image']['name'];
+                                        $picture_path = $_FILES['id_card_image']['tmp_name'];
+                                        // Auto rename image
+                                        $ext = end(explode('.',$customer_id_card_picture));
+                                        // Rename the image
+                                        $customer_id_card_picture = "customer_id_card_".rand(00,99).'.'.$ext;
+
+                                        $image = wp_get_image_editor($picture_path);
+
+                                        if ( ! is_wp_error( $image ) ) { 
+                                            $image->set_quality(80);
+                                            if($image) {
+                                                if (file_exists($path)) {
+                                                    $image->save($path.DIRECTORY_SEPARATOR.$customer_id_card_picture);
+                                                }
+                                                else {
+                                                    mkdir($path);
+                                                    $image->save($path.DIRECTORY_SEPARATOR.$customer_id_card_picture);
+                                                }
+                                            }
+
+                                            if($current_id_card_image != "") {
+                                                // Remove the current image
+                                                $remove_path = $path.DIRECTORY_SEPARATOR.$current_id_card_image;
+                                                $remove_image = unlink($remove_path);
+                                            }
+                                        }
+                                    } else {
+                                        $customer_id_card_picture = $current_id_card_image;
+                                    }
+
+                                    /********* code for customer meta phone number *******/
                                     if(isset($_POST['c_phone'])) {
                                         $phone_no = $_POST['c_phone'];
                                         // $sr = 1;
@@ -227,7 +264,9 @@
                                         'picture' => $customer_picture, 
                                         'shop_number' => $shop_number, 
                                         'name' => $customer_name, 
-                                        'phone' => $customer_phone
+                                        'phone' => $customer_phone,
+                                        'id_card' => $customer_id_card,
+                                        'id_card_picture' => $customer_id_card_picture
                                     );
                                     $where = array( 'ID' => $customer_id );
                                     $update_customer = $wpdb->update($table, $data, $where);
@@ -371,11 +410,54 @@
                                 </div><!-- .col-lg-8 -->
                             </div><!-- .row -->
 
+                            <!-- Customer ID Card -->
+                            <div class="row mb-3">
+                                <div class="col-lg-4 col-sm-12">
+                                    <label for="customer_id_card" class="form-label fw-bolder"><?php esc_html_e("ID Card"); ?></label>
+                                </div><!-- .col-lg-4 -->
+                                <div class="col-lg-8 col-sm-12">
+                                    <input type="text" name="customer_id_card" class="form-control" value="<?php echo esc_html($customer->id_card); ?>" placeholder="<?php esc_html_e("ID Card Number"); ?>">
+                                </div><!-- .col-lg-8 -->
+                            </div><!-- .row -->
+
+                            <!-- Current ID Card Img -->
+                            <div class="row mb-3">
+                                <div class="col-lg-4 col-sm-12">
+                                    <label for="current_id_card_img" class="form-label fw-bolder"><?php esc_html_e("Current Card"); ?></label>
+                                </div><!-- .col-lg-4 -->
+                                <div class="col-lg-8 col-sm-12">
+                                    <?php
+                                        if($customer->id_card_picture !="") { 
+                                            $upload_dir = wp_upload_dir();
+                                    
+                                            // Checking whether file exists or not
+                                            $url = $upload_dir['baseurl'].DIRECTORY_SEPARATOR.'customer_img';
+                                            ?>
+                                                <img src="<?php echo $url .DIRECTORY_SEPARATOR. $customer->id_card_picture; ?>" width="80" height="5%">
+                                            <?php
+                                        } else {
+                                            echo "No profile picture is added";
+                                        }
+                                    ?>
+                                </div><!-- .col-lg-8 -->
+                            </div><!-- .row -->
+
+                            <!-- Customer ID Card Img -->
+                            <div class="row mb-3">
+                                <div class="col-lg-4 col-sm-12">
+                                    <label for="id_card_image" class="form-label fw-bolder"><?php esc_html_e("Card Picture"); ?></label>
+                                </div><!-- .col-lg-4 -->
+                                <div class="col-lg-8 col-sm-12">
+                                    <input type="file" name="id_card_image" class="form-control">
+                                </div><!-- .col-lg-8 -->
+                            </div><!-- .row -->
+
                             <!-- Update Customer Button -->
                             <div class="row">
                                 <div class="col-12 p-3">
                                     <?php wp_nonce_field( 'update_customer', 'update_customer_nonce' ) ?>
                                     <input type="hidden" name="current_image" value="<?php echo $customer->picture; ?>">
+                                    <input type="hidden" name="current_id_card_image" value="<?php echo $customer->id_card_picture; ?>">
                                     <input type="hidden" name="customer_id" value="<?php echo esc_html($customer->ID); ?>">
                                     <button class="btn btn-primary" name="update_customer"><?php _e("Update Customer"); ?></button>
                                 </div><!-- .col-12 -->
