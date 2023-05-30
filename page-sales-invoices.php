@@ -291,7 +291,7 @@
                                     <label for="product_id" class="form-label fw-bolder"><?php esc_html_e("Product ID"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
-                                    <input type="text" name="product_id" class="form-control" value="<?php echo esc_html($customer_invoice->product_id); ?>" placeholder="<?php esc_html_e("Product ID"); ?>" required>    
+                                    <input type="number" name="product_id" class="form-control" value="<?php echo esc_html($customer_invoice->product_id); ?>" placeholder="<?php esc_html_e("Product ID"); ?>" required>    
                                 </div><!-- .col-lg-8 -->
                             </div><!-- .row -->
 
@@ -390,7 +390,7 @@
                                     <label for="product_id" class="form-label fw-bolder"><?php esc_html_e("Product ID"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
-                                    <input type="text" name="product_id" class="form-control" placeholder="<?php esc_html_e("Product ID"); ?>">    
+                                    <input type="number" name="product_id" class="form-control" placeholder="<?php esc_html_e("Product ID"); ?>">    
                                 </div><!-- .col-lg-8 -->
                             </div><!-- .row -->
 
@@ -458,9 +458,7 @@
                                 </div><!-- .col-12 -->
                             </div><!-- .row -->
                         </form>
-                        <?php
-                            }
-                        ?>
+                        <?php } ?>
                     </div><!-- .page-inner-content -->
                 </div><!-- .col-lg-6 -->
             </div><!-- .row -->
