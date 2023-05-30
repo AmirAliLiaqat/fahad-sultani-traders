@@ -518,8 +518,8 @@
                                 }
                             ?>
                             <td><?php echo esc_html($data->purchase_date); ?></td>
-                            <td><?php esc_html_e($data->product_name); ?></td>
-                            <td><?php echo esc_html(number_format_i18n($remain_qty)); ?></td>
+                            <td><?php echo esc_html($data->product_name); ?></td>
+                            <td><?php echo esc_html(number_format_i18n($p_qty)); ?></td>
                             <td><?php echo esc_html(number_format_i18n($data->price_per_piece)); ?></td>
                             <td><?php echo esc_html(number_format_i18n($data->price)); ?></td>
                             <td><?php echo esc_html(number_format_i18n($data->expenses)); ?></td>
