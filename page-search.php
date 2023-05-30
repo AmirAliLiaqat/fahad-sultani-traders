@@ -66,12 +66,6 @@
                             </div><!-- .col-lg-4 -->
                             <div class="col-lg-4 col-md-6 col-sm-12">
                                 <div class="form-group my-1">
-                                    <label for="s_phone" class="form-label"><?php esc_html_e("Phone"); ?>:</label>
-                                    <input type="text" name="s_phone" class="form-control bg-light" placeholder="<?php esc_html_e("Search by shopkeeper phone"); ?>">
-                                </div><!-- .form-group -->
-                            </div><!-- .col-lg-4 -->
-                            <div class="col-lg-4 col-md-6 col-sm-12">
-                                <div class="form-group my-1">
                                     <label for="p_date" class="form-label"><?php esc_html_e("Date"); ?>:</label>
                                     <input type="date" name="p_date" class="form-control bg-light">
                                 </div><!-- .form-group -->
@@ -105,10 +99,9 @@
                                     $serial_no = sanitize_text_field($_POST['serial_no']);
                                     $p_name = sanitize_text_field($_POST['p_name']);
                                     $s_name = sanitize_text_field($_POST['s_name']);
-                                    $s_phone = sanitize_text_field($_POST['s_phone']);
                                     $p_date = sanitize_text_field($_POST['p_date']);
 
-                                    $shopkeeper_details = $wpdb->get_results("SELECT * FROM fst_shopkeepers_data WHERE `shopkeeper_name` = '$s_name' OR `shopkeeper_phone` = '$s_phone'");
+                                    $shopkeeper_details = $wpdb->get_results("SELECT * FROM fst_shopkeepers_data WHERE `shopkeeper_name` = '$s_name'");
 
                                     if($shopkeeper_details) {
                                         foreach($shopkeeper_details as $shopkeeper_details) {
@@ -125,7 +118,7 @@
                                             $ID = esc_html($fetch_product->shopkeeper_id);
                                 ?>
                                 <tr>
-                                    <td><?php esc_html_e($fetch_product->ID); ?></td>
+                                    <td><?php echo esc_html($fetch_product->ID); ?></td>
                                     <td>
                                         <?php
                                             $fetch_shopkeeper_details = $wpdb->get_results("SELECT * FROM fst_shopkeepers_data WHERE `ID` = '$ID'");
@@ -137,13 +130,13 @@
                                             }
                                         ?>
                                     </td>
-                                    <td><?php esc_html_e($fetch_product->product_name); ?></td>
-                                    <td><?php esc_html_e(number_format_i18n($fetch_product->quantity)); ?></td>
-                                    <td><?php esc_html_e(number_format_i18n($fetch_product->price_per_piece)); ?></td>
-                                    <td><?php esc_html_e(number_format_i18n($fetch_product->price)); ?></td>
-                                    <td><?php esc_html_e(number_format_i18n($fetch_product->expenses)); ?></td>
-                                    <td><?php esc_html_e(number_format_i18n($fetch_product->price_with_expense)); ?></td>
-                                    <td><?php esc_html_e(number_format_i18n($fetch_product->total_price)); ?></td>
+                                    <td><?php echo esc_html($fetch_product->product_name); ?></td>
+                                    <td><?php echo esc_html(number_format_i18n($fetch_product->quantity)); ?></td>
+                                    <td><?php echo esc_html(number_format_i18n($fetch_product->price_per_piece)); ?></td>
+                                    <td><?php echo esc_html(number_format_i18n($fetch_product->price)); ?></td>
+                                    <td><?php echo esc_html(number_format_i18n($fetch_product->expenses)); ?></td>
+                                    <td><?php echo esc_html(number_format_i18n($fetch_product->price_with_expense)); ?></td>
+                                    <td><?php echo esc_html(number_format_i18n($fetch_product->total_price)); ?></td>
                                 </tr>
                                 <?php
                                         }
