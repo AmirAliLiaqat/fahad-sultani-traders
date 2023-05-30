@@ -45,10 +45,12 @@
                                     $shop_number = sanitize_text_field($_POST['shop_number']);
                                     $customer_name = sanitize_text_field($_POST['customer_name']);
                                     $customer_phone = sanitize_text_field($_POST['customer_phone']);
+                                    $customer_id_card = sanitize_text_field($_POST['customer_id_card']);
 
                                     $lastid = $wpdb->get_var('SELECT MAX(ID) FROM fst_customer_data');
                                     $serial_number = $lastid + 1;
 
+                                    /********* code for customer meta phone number *******/
                                     if(isset($_POST['c_phone'])) {
                                         $phone_no = $_POST['c_phone'];
                                         $sr = 1;
@@ -63,14 +65,47 @@
                                         }
                                     }
 
+                                    /********* code for customer img *******/
                                     if($_FILES['customer_image']['name'] != '') {
-                                        $customer_picture = $_FILES['customer_image']['name'];
-                                        $picture_path = $_FILES['customer_image']['tmp_name'];
+                                        echo $customer_picture = $_FILES['customer_image']['name'];
+                                        echo $picture_path = $_FILES['customer_image']['tmp_name'];
+    
+                                        // // Auto rename image
+                                        // $ext = end(explode('.',$customer_picture));
+                                        // // Rename the image
+                                        // $customer_picture = "customer_".rand(00,99).'.'.$ext;
+    
+                                        // $image = wp_get_image_editor($picture_path);
+    
+                                        // if ( ! is_wp_error( $image ) ) { 
+                                        //     $image->set_quality(80);
+                                        //     if($image) {
+                                        //         if (file_exists($path)) {
+                                        //             $image->save($path.DIRECTORY_SEPARATOR.$customer_picture);
+                                        //         } else {
+                                        //             mkdir($path);
+                                        //             $image->save($path.DIRECTORY_SEPARATOR.$customer_picture);
+                                        //         }
+                                        //     }
+                                        // } else {
+                                        //     echo "<div class='alert alert-danger' role='alert'>
+                                        //         <strong>Error found for adding customer image!</strong>
+                                        //     </div>";
+                                        // }
+
+                                    } else {
+                                        $customer_picture = '';
+                                    }
+
+                                    /********* code for customer id card img *******/
+                                    if($_FILES['id_card_image']['name'] != '') {
+                                        $idCard_image = $_FILES['id_card_image']['name'];
+                                        $picture_path = $_FILES['id_card_image']['tmp_name'];
     
                                         // Auto rename image
-                                        $ext = end(explode('.',$customer_picture));
+                                        $ext = end(explode('.',$idCard_image));
                                         // Rename the image
-                                        $customer_picture = "customer_".rand(00,99).'.'.$ext;
+                                        $idCard_image = "customer_id_card_".rand(00,99).'.'.$ext;
     
                                         $image = wp_get_image_editor($picture_path);
     
@@ -78,30 +113,32 @@
                                             $image->set_quality(80);
                                             if($image) {
                                                 if (file_exists($path)) {
-                                                    $image->save($path.DIRECTORY_SEPARATOR.$customer_picture);
+                                                    $image->save($path.DIRECTORY_SEPARATOR.$idCard_image);
                                                 }
                                                 else {
                                                     mkdir($path);
-                                                    $image->save($path.DIRECTORY_SEPARATOR.$customer_picture);
+                                                    $image->save($path.DIRECTORY_SEPARATOR.$idCard_image);
                                                 }
                                             }
                                         } else {
                                             echo "<div class='alert alert-danger' role='alert'>
-                                                <strong>Error found for adding customer image!</strong>
+                                                <strong>Error found for adding id card image!</strong>
                                             </div>";
                                         }
 
                                     } else {
-                                        $customer_picture = '';
+                                        $idCard_image = '';
                                     }
 
-                                    $table = $wpdb->prefix.'customer_data';
+                                    $table = $wpdb->prefix.'customer_data'; 
                                     $add_customer = $wpdb->insert($table, array(
                                         'serial_number' => $serial_number,
                                         'picture' => $customer_picture,
                                         'shop_number' => $shop_number, 
                                         'name' => $customer_name, 
                                         'phone' => $customer_phone
+                                        'id_card' => $customer_id_card,
+                                        'id_card_picture' => $idCard_image
                                     ));
                                     
                                     if($add_customer) {
@@ -264,31 +301,31 @@
                             <!-- Shop Number -->
                             <div class="row mb-3">
                                 <div class="col-lg-4 col-sm-12">
-                                    <label for="shop_number" class="form-label fw-bolder"><?php _e("Shop Number"); ?></label>
+                                    <label for="shop_number" class="form-label fw-bolder"><?php esc_html_e("Shop Number"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
-                                    <input type="text" name="shop_number" class="form-control" value="<?php echo esc_html($customer->shop_number); ?>" placeholder="<?php _e("Shop Number"); ?>" required>
+                                    <input type="text" name="shop_number" class="form-control" value="<?php echo esc_html($customer->shop_number); ?>" placeholder="<?php esc_html_e("Shop Number"); ?>" required>
                                 </div><!-- .col-lg-8 -->
                             </div><!-- .row -->
 
                             <!-- Customer Name -->
                             <div class="row mb-3">
                                 <div class="col-lg-4 col-sm-12">
-                                    <label for="customer_name" class="form-label fw-bolder"><?php _e("Customer Name"); ?></label>
+                                    <label for="customer_name" class="form-label fw-bolder"><?php esc_html_e("Customer Name"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
-                                    <input type="text" name="customer_name" class="form-control" value="<?php echo esc_html($customer->name); ?>" placeholder="<?php _e(" Customer Name"); ?>" required>    
+                                    <input type="text" name="customer_name" class="form-control" value="<?php echo esc_html($customer->name); ?>" placeholder="<?php esc_html_e(" Customer Name"); ?>" required>    
                                 </div><!-- .col-lg-8 -->
                             </div><!-- .row -->
 
                             <!-- Customer Phone -->
                             <div class="row mb-3">
                                 <div class="col-lg-4 col-sm-12">
-                                    <label for="customer_phone" class="form-label fw-bolder"><?php _e("Customer Phone"); ?></label>
+                                    <label for="customer_phone" class="form-label fw-bolder"><?php esc_html_e("Customer Phone"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
                                     <div id="add_more_customer_phone_number">
-                                        <input type="text" name="customer_phone" class="form-control mb-1" value="<?php echo esc_html($customer->phone); ?>" placeholder="<?php _e("Customer Phone"); ?>" required>
+                                        <input type="number" name="customer_phone" class="form-control mb-1" value="<?php echo esc_html($customer->phone); ?>" placeholder="<?php esc_html_e("Customer Phone"); ?>" required>
                                         <?php 
                                             $meta_values = $wpdb->get_results("SELECT * FROM fst_customer_meta_data WHERE `customer_id` = '$customer_id' ");
                                             if($meta_values) {
@@ -298,14 +335,14 @@
                                             }
                                         ?>
                                     </div><!-- #add_more_customer_phone_number -->
-                                    <a class="btn btn-primary float-end mt-2" id="add_more_customer_number"><?php _e("Add More"); ?></a>   
+                                    <a class="btn btn-primary float-end mt-2" id="add_more_customer_number"><?php esc_html_e("Add More"); ?></a>   
                                 </div><!-- .col-lg-8 -->
                             </div><!-- .row -->
 
                             <!-- Current Image -->
                             <div class="row mb-3">
                                 <div class="col-lg-4 col-sm-12">
-                                    <label for="current_img" class="form-label fw-bolder"><?php _e("Current Picture"); ?></label>
+                                    <label for="current_img" class="form-label fw-bolder"><?php esc_html_e("Current Picture"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
                                     <?php
@@ -354,7 +391,7 @@
                             <!-- Shop Number -->
                             <div class="row mb-3">
                                 <div class="col-lg-4 col-sm-12">
-                                    <label for="shop_number" class="form-label fw-bolder"><?php _e("Shop Number"); ?></label>
+                                    <label for="shop_number" class="form-label fw-bolder"><?php esc_html_e("Shop Number"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
                                     <input type="text" name="shop_number" class="form-control" placeholder="<?php _e("Shop Number"); ?>" required>
@@ -364,7 +401,7 @@
                             <!-- Customer Name -->
                             <div class="row mb-3">
                                 <div class="col-lg-4 col-sm-12">
-                                    <label for="customer_name" class="form-label fw-bolder"><?php _e("Customer Name"); ?></label>
+                                    <label for="customer_name" class="form-label fw-bolder"><?php esc_html_e("Customer Name"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
                                     <input type="text" name="customer_name" class="form-control" placeholder="<?php _e("Customer Name"); ?>" required>    
@@ -374,23 +411,43 @@
                             <!-- Customer Phone -->
                             <div class="row mb-3">
                                 <div class="col-lg-4 col-sm-12">
-                                    <label for="customer_phone" class="form-label fw-bolder"><?php _e("Customer Phone"); ?></label>
+                                    <label for="customer_phone" class="form-label fw-bolder"><?php esc_html_e("Customer Phone"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
                                     <div id="add_more_customer_phone_number">
-                                        <input type="text" name="customer_phone" class="form-control mb-1" placeholder="<?php _e("Customer Phone"); ?>" required>    
+                                        <input type="number" name="customer_phone" class="form-control mb-1" placeholder="<?php esc_html_e("Customer Phone"); ?>" required>    
                                     </div><!-- #add_more_customer_phone_number -->
-                                    <a class="btn btn-primary float-end mt-2" id="add_more_customer_number"><?php _e("Add More"); ?></a>
+                                    <a class="btn btn-primary float-end mt-2" id="add_more_customer_number"><?php esc_html_e("Add More"); ?></a>
                                 </div><!-- .col-lg-8 -->
                             </div><!-- .row -->
 
                             <!-- Customer Image -->
                             <div class="row mb-3">
                                 <div class="col-lg-4 col-sm-12">
-                                    <label for="customer_image" class="form-label fw-bolder"><?php _e("Picture"); ?></label>
+                                    <label for="customer_image" class="form-label fw-bolder"><?php esc_html_e("Picture"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
                                     <input type="file" name="customer_image" class="form-control">
+                                </div><!-- .col-lg-8 -->
+                            </div><!-- .row -->
+
+                            <!-- Customer ID Card -->
+                            <div class="row mb-3">
+                                <div class="col-lg-4 col-sm-12">
+                                    <label for="customer_id_card" class="form-label fw-bolder"><?php esc_html_e("ID Card"); ?></label>
+                                </div><!-- .col-lg-4 -->
+                                <div class="col-lg-8 col-sm-12">
+                                    <input type="text" name="customer_id_card" class="form-control" placeholder="<?php esc_html_e("ID Card Number"); ?>">
+                                </div><!-- .col-lg-8 -->
+                            </div><!-- .row -->
+
+                            <!-- Customer ID Card Img -->
+                            <div class="row mb-3">
+                                <div class="col-lg-4 col-sm-12">
+                                    <label for="id_card_image" class="form-label fw-bolder"><?php esc_html_e("Card Picture"); ?></label>
+                                </div><!-- .col-lg-4 -->
+                                <div class="col-lg-8 col-sm-12">
+                                    <input type="file" name="id_card_image" class="form-control">
                                 </div><!-- .col-lg-8 -->
                             </div><!-- .row -->
 
@@ -402,9 +459,7 @@
                                 </div><!-- .col-12 -->
                             </div><!-- .row -->
                         </form>
-                        <?php
-                            }
-                        ?>
+                        <?php } ?>
                     </div><!-- .page-inner-content -->
                 </div><!-- .col-lg-6 -->
             </div><!-- .row -->
