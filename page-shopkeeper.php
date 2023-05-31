@@ -20,7 +20,7 @@
             $url = get_site_url() . "/login";
             wp_redirect( $url );
         }
-        error_reporting(0);
+        // error_reporting(0);
         global $wpdb;
         $date = date('Y-m-d');
     ?>  
@@ -33,16 +33,19 @@
             <h1 class="text-center text-capitalize my-5"><?php esc_html_e(the_title()); ?></h1>
 
             <div class="display-content table-responsive">
-                <table class="table table-hover table-bordered">
+                <table class="table table-hover table-bordered fw-bolder">
                     <thead class="bg-dark text-white">
-                        <tr class="text-center">
-                            <th><?php esc_html_e("Sr#"); ?></th>
-                            <th class="text-start"><?php esc_html_e("Shopkeeper"); ?></th>
-                            <th><?php esc_html_e("Total"); ?></th>
-                            <th><?php esc_html_e("Pay"); ?></th>
-                            <th><?php esc_html_e("Remaining"); ?></th>
-                            <th><?php esc_html_e("Account"); ?></th>
-                        </tr>
+                        <?php
+                            $thead_tr_html = '<tr class="text-center">';
+                            $thead_tr_html .= '<th>'.esc_html__("Sr#").'</th>';
+                            $thead_tr_html .= '<th class="text-start">'.esc_html__("Shopkeeper").'</th>';
+                            $thead_tr_html .= '<th>'.esc_html__("Total").'</th>';
+                            $thead_tr_html .= '<th>'.esc_html__("Pay").'</th>';
+                            $thead_tr_html .= '<th>'.esc_html__("Remain").'</th>';
+                            $thead_tr_html .= '<th>'.esc_html__("Account").'</th>';
+                            $thead_tr_html .= '</tr>';
+                            echo $thead_tr_html;
+                        ?>
                     </thead>
                     <tbody class="bg-light">
                         <?php
@@ -54,42 +57,35 @@
                                     $shopkeeper_id = $row->shopkeeper_id; 
 
                                     $total_amount = $wpdb->get_var("SELECT SUM(total_price) FROM fst_purchase_data WHERE `shopkeeper_id` = '".$shopkeeper_id."'");
-                        ?>
-                        <tr class="text-center">
-                            <td><b><?php echo esc_html($sr++); ?></b></td>
-                            <td class="text-start">
-                                <?php 
+
                                     $shopkeeper = $wpdb->get_results("SELECT * FROM fst_shopkeepers_data WHERE `ID` = '".$shopkeeper_id."'");
 
                                     foreach($shopkeeper as $detail) {
-                                        echo esc_html($shopkeeper_name = $detail->shopkeeper_name) . "&nbsp;&nbsp;&nbsp;&nbsp;" . "<b>" . esc_html($shop_number = $detail->shop_number) . "</b>";
+                                        $shopkeeper_detail = $detail->shopkeeper_name . "&nbsp;&nbsp;&nbsp;&nbsp;" . $detail->shop_number;
                                     }
-                                ?>
-                            </td>
-                            <td><b><?php echo esc_html(number_format_i18n($total_amount)); ?></b></td>
-                            <td>
-                                <b>
-                                    <?php
-                                        $pay_amount = $wpdb->get_var("SELECT SUM(amount) FROM fst_shopkeeper_payments WHERE `shopkeeper_id` = '".$shopkeeper_id."'");
+
+                                    $pay_amount = $wpdb->get_var("SELECT SUM(amount) FROM fst_shopkeeper_payments WHERE `shopkeeper_id` = '".$shopkeeper_id."'");
     
-                                        echo esc_html(number_format_i18n($pay_amount));
-                                    ?>
-                                </b>
-                            </td>
-                            <td><b><?php echo esc_html(number_format_i18n($total_amount - $pay_amount)); ?></b></td>
-                            <td>
-                                <?php 
-                                    echo esc_html($detail->shopkeeper_account) . '<br>'; 
-                                    $meta_values = $wpdb->get_results("SELECT * FROM fst_shopkeeper_meta_data WHERE `shopkeeper_id` = '$shopkeeper_id' AND `meta_key` = 'account'");
-                                    if($meta_values) {
-                                        foreach($meta_values as $values) {
-                                            echo esc_html($values->meta_value) . '<br>';
-                                        }
-                                    }
-                                ?>
-                            </td>
-                        </tr>
-                        <?php 
+                                    $remain_amount = $total_amount - $pay_amount;
+                                    $account = $detail->shopkeeper_account;
+
+                                    $tbody_tr_html = '<tr class="text-center">';
+                                    $tbody_tr_html .= '<td>'.esc_html($sr++).'</td>';
+                                    $tbody_tr_html .= '<td class="text-start">'.esc_html($shopkeeper_detail).'</td>';
+                                    $tbody_tr_html .= '<td>'.esc_html(number_format_i18n($total_amount)).'</td>';
+                                    $tbody_tr_html .= '<td>'.esc_html(number_format_i18n($pay_amount)).'</td>';
+                                    $tbody_tr_html .= '<td>'.esc_html(number_format_i18n($remain_amount)).'</td>';
+                                    $tbody_tr_html .= '<td>'
+                                                            .esc_html($account) . '<br>';
+                                                            $meta_values = $wpdb->get_results("SELECT * FROM fst_shopkeeper_meta_data WHERE `shopkeeper_id` = '$shopkeeper_id' AND `meta_key` = 'account'");
+                                                            if($meta_values) {
+                                                                foreach($meta_values as $values) {
+                                                                    esc_html($values->meta_value) . '<br>';
+                                                                }
+                                                            }
+                                                        '</td>';
+                                    $tbody_tr_html .= '</tr>';
+                                    echo $tbody_tr_html;
                                 }
                             } else {
                                 echo "<tr>
@@ -99,27 +95,20 @@
                         ?>
                     </tbody>
                     <tfoot class="bg-dark text-white">
-                        <tr class="text-center">
-                            <td colspan="2" class="fw-bolder text-end"><?php esc_html_e("Total Amount"); ?> = </td>
-                            <td>
-                                <b>
-                                    <?php 
-                                        $total_amount = $wpdb->get_var("SELECT SUM(total_price) FROM fst_purchase_data");
-                                        echo esc_html(number_format_i18n($total_amount));
-                                    ?>
-                                </b>
-                            </td>
-                            <td>
-                                <b>
-                                    <?php 
-                                        $received_amount = $wpdb->get_var("SELECT SUM(amount) FROM fst_shopkeeper_payments");
-                                        echo esc_html(number_format_i18n($received_amount));
-                                    ?>
-                                </b>
-                            </td>
-                            <td><b><?php echo esc_html(number_format_i18n($total_amount - $received_amount)); ?></b></td>
-                            <td></td>
-                        </tr>
+                        <?php
+                            $total_amount = $wpdb->get_var("SELECT SUM(total_price) FROM fst_purchase_data");
+                            $received_amount = $wpdb->get_var("SELECT SUM(amount) FROM fst_shopkeeper_payments");
+                            $remiain_amount = $total_amount - $received_amount;
+
+                            $tfoot_tr_html = '<tr class="text-center">';
+                            $tfoot_tr_html .= '<th colspan="2" class="text-end">'.esc_html__("Total Amount").'</th>';
+                            $tfoot_tr_html .= '<th>'.esc_html(number_format_i18n($total_amount)).'</th>';
+                            $tfoot_tr_html .= '<th>'.esc_html(number_format_i18n($received_amount)).'</th>';
+                            $tfoot_tr_html .= '<th>'.esc_html(number_format_i18n($remiain_amount)).'</th>';
+                            $tfoot_tr_html .= '<th></th>';
+                            $tfoot_tr_html .= '</tr>';
+                            echo $tfoot_tr_html;
+                        ?>
                     </tfoot>
                 </table>
             </div><!-- .display-content -->
