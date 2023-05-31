@@ -20,6 +20,7 @@
             $url = get_site_url() . "/login";
             wp_redirect( $url );
         }
+        error_reporting(0);
         global $wpdb;
         $date = date('Y-m-d');
     ?>  
@@ -51,6 +52,8 @@
                             if($result) {
                                 foreach($result as $row) {
                                     $shopkeeper_id = $row->shopkeeper_id; 
+
+                                    $total_amount = $wpdb->get_var("SELECT SUM(total_price) FROM fst_purchase_data WHERE `shopkeeper_id` = '".$shopkeeper_id."'");
                         ?>
                         <tr class="text-center">
                             <td><b><?php echo esc_html($sr++); ?></b></td>
@@ -63,7 +66,7 @@
                                     }
                                 ?>
                             </td>
-                            <td><b><?php echo esc_html(number_format_i18n($total_amount = $row->total_price)); ?></b></td>
+                            <td><b><?php echo esc_html(number_format_i18n($total_amount)); ?></b></td>
                             <td>
                                 <b>
                                     <?php
@@ -97,7 +100,7 @@
                     </tbody>
                     <tfoot class="bg-dark text-white">
                         <tr class="text-center">
-                            <td colspan="2" class="fw-bolder text-end"><?php _e("Total Amount"); ?> = </td>
+                            <td colspan="2" class="fw-bolder text-end"><?php esc_html_e("Total Amount"); ?> = </td>
                             <td>
                                 <b>
                                     <?php 
