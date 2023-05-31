@@ -481,7 +481,8 @@
                             <th><?php esc_html_e("Shopkeeper Phone"); ?></th>
                             <th><?php esc_html_e("Purchase Date"); ?></th>
                             <th><?php esc_html_e("Product Name"); ?></th>
-                            <th><?php esc_html_e("Quantity"); ?></th>
+                            <th><?php esc_html_e("Total Quantity"); ?></th>
+                            <th><?php esc_html_e("Remain Quantity"); ?></th>
                             <th><?php esc_html_e("Price Per Piece"); ?></th>
                             <th><?php esc_html_e("Price"); ?></th>
                             <th><?php esc_html_e("Expense"); ?></th>
@@ -520,6 +521,7 @@
                             <td><?php echo esc_html($data->purchase_date); ?></td>
                             <td><?php echo esc_html($data->product_name); ?></td>
                             <td><?php echo esc_html(number_format_i18n($p_qty)); ?></td>
+                            <td><?php echo esc_html(number_format_i18n($remain_qty)); ?></td>
                             <td><?php echo esc_html(number_format_i18n($data->price_per_piece)); ?></td>
                             <td><?php echo esc_html(number_format_i18n($data->price)); ?></td>
                             <td><?php echo esc_html(number_format_i18n($data->expenses)); ?></td>
