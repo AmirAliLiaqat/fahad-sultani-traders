@@ -70,34 +70,32 @@
                             $result = $wpdb->get_results("SELECT * FROM fst_customer_invoice WHERE `sale_date` = '$date_filter'");
                             
                             $total_amount = 0;
+                            $customers_invoices = array();
                             if($result) {
                                 foreach($result as $row) {
                                     $customer_id = $row->customer_id;
                                     $total_amount += $row->total_amount;
 
-                                    $customer = $wpdb->get_results("SELECT * FROM fst_customer_data WHERE `ID` = '".$customer_id."'");
+                                    if(isset($customers_invoices[$customer_id])) {
+                                        $customers_invoices[$customer_id]['total_amount'] += $row->total_amount;
+                                    } else {
+                                        $customer = $wpdb->get_results("SELECT * FROM fst_customer_data WHERE `ID` = '".$customer_id."'");
+                                        foreach($customer as $detail) {
+                                            $current = $detail->current;
+                                            $customer_detail = esc_html($customer_name = $detail->name) . "&nbsp;&nbsp;&nbsp;&nbsp;" . esc_html($shop_number = $detail->shop_number);
+                                        }
 
-                                    foreach($customer as $detail) {
-                                        $current = $detail->current;
-                                        $customer_detail = esc_html($customer_name = $detail->name) . "&nbsp;&nbsp;&nbsp;&nbsp;" . esc_html($shop_number = $detail->shop_number);
+                                        $receive_amount = $wpdb->get_var("SELECT SUM(amount) FROM fst_customer_payments WHERE `customer_id` = '$customer_id' AND `paid_date` = '$date_filter'");
+                                        $remain_amount = $total_amount - $receive_amount;
+
+                                        $tbody_tr_html = '<tr>';
+                                        $tbody_tr_html .= '<td>'.esc_html(number_format_i18n($customers_invoices[$customer_id]['current'] = $current)).'</td>';
+                                        $tbody_tr_html .= '<td class="text-start">'.esc_html($customers_invoices[$customer_id]['customer_detail'] = $customer_detail).'</td>';
+                                        $tbody_tr_html .= '<td>'.esc_html(number_format_i18n($customers_invoices[$customer_id]['total_amount'] = $total_amount)).'</td>';
+                                        $tbody_tr_html .= '<td>'.esc_html(number_format_i18n($customers_invoices[$customer_id]['receive_amount'] = $receive_amount)).'</td>';
+                                        $tbody_tr_html .= '<td>'.esc_html(number_format_i18n($customers_invoices[$customer_id]['remain_amount'] = $remain_amount)).'</td>';
+                                        echo $tbody_tr_html;
                                     }
-    
-                                    $customer_total_amount = $wpdb->get_var("SELECT SUM(total_amount) FROM fst_customer_invoice WHERE `customer_id` = '$customer_id' AND `sale_date` = '$date_filter'");
-                                    $customer_received_amount = $wpdb->get_var("SELECT SUM(amount) FROM fst_customer_payments WHERE `customer_id` = '$customer_id' AND `paid_date` = '$date_filter'");
-    
-                                    $tbody_tr_html = '<tr>';
-                                    $tbody_tr_html .= '<td>'.esc_html(number_format_i18n($current)).'</td>';
-                                    $tbody_tr_html .= '<td>'.esc_html($customer_detail).'</td>';
-                                    $tbody_tr_html .= '<td>'.esc_html(number_format_i18n($customer_total_amount)).'</td>';
-                                    $tbody_tr_html .= '<td>'.esc_html(number_format_i18n($customer_received_amount)).'</td>';
-                                    $tbody_tr_html .= '<td>'.esc_html(number_format_i18n($customer_total_amount - $customer_received_amount)).'</td>';
-                                    $tbody_tr_html .= '<td>';
-                                    $tbody_tr_html .= '<input type="checkbox" id="action_field" name="action[]" class="action_field" value="1">&nbsp;';
-                                    $tbody_tr_html .= '<input type="checkbox" id="action_field" name="action[]" class="action_field" value="2">&nbsp;';
-                                    $tbody_tr_html .= '<input type="checkbox" id="action_field" name="action[]" class="action_field" value="3">';
-                                    $tbody_tr_html .= '</td>';
-                                    $tbody_tr_html .= '</tr>';
-                                    echo $tbody_tr_html;
                                 }
                             } else {
                                 echo "<tr>
@@ -113,16 +111,9 @@
                             $tfoot_tr_html .= '<td>'.esc_html(number_format_i18n($total_amount)).'</td>';
                             $tfoot_tr_html .= '<td>'.esc_html(number_format_i18n($total_receive = $wpdb->get_var("SELECT SUM(amount) FROM fst_customer_payments WHERE `paid_date` = '$date_filter'"))).'</td>';
                             $tfoot_tr_html .= '<td>'.esc_html(number_format_i18n($total_amount - $total_receive)).'</td>';
-                            $tfoot_tr_html .= '<td>';
-                            $tfoot_tr_html .= '<button name="save_action" class="btn btn-primary">Save Changes</button>';
-                            $tfoot_tr_html .= '</td>';
+                            $tfoot_tr_html .= '<td></td>';
                             $tfoot_tr_html .= '</tr>';
                             echo $tfoot_tr_html;
-                            if(isset($_POST['save_action']) && !empty($_POST['action'])) {
-                                foreach($_POST['action'] as $action) {
-                                    echo $action;
-                                }
-                            }
                         ?>
                     </tfoot>
                 </table>    
@@ -153,34 +144,32 @@
                             $result = $wpdb->get_results("SELECT * FROM fst_customer_invoice WHERE `sale_date` = '$date'");
                             
                             $total_amount = 0;
+                            $customers_invoices = array();
                             if($result) {
                                 foreach($result as $row) {
                                     $customer_id = $row->customer_id;
                                     $total_amount += $row->total_amount;
 
-                                    $customer = $wpdb->get_results("SELECT * FROM fst_customer_data WHERE `ID` = '".$customer_id."'");
+                                    if(isset($customers_invoices[$customer_id])) {
+                                        $customers_invoices[$customer_id]['total_amount'] += $row->total_amount;
+                                    } else {
+                                        $customer = $wpdb->get_results("SELECT * FROM fst_customer_data WHERE `ID` = '".$customer_id."'");
+                                        foreach($customer as $detail) {
+                                            $current = $detail->current;
+                                            $customer_detail = esc_html($customer_name = $detail->name) . "&nbsp;&nbsp;&nbsp;&nbsp;" . esc_html($shop_number = $detail->shop_number);
+                                        }
 
-                                    foreach($customer as $detail) {
-                                        $current = $detail->current;
-                                        $customer_detail = esc_html($customer_name = $detail->name) . "&nbsp;&nbsp;&nbsp;&nbsp;" . esc_html($shop_number = $detail->shop_number);
+                                        $receive_amount = $wpdb->get_var("SELECT SUM(amount) FROM fst_customer_payments WHERE `customer_id` = '$customer_id' AND `paid_date` = '$date'");
+                                        $remain_amount = $total_amount - $receive_amount;
+
+                                        $tbody_tr_html = '<tr>';
+                                        $tbody_tr_html .= '<td>'.esc_html(number_format_i18n($customers_invoices[$customer_id]['current'] = $current)).'</td>';
+                                        $tbody_tr_html .= '<td class="text-start">'.esc_html($customers_invoices[$customer_id]['customer_detail'] = $customer_detail).'</td>';
+                                        $tbody_tr_html .= '<td>'.esc_html(number_format_i18n($customers_invoices[$customer_id]['total_amount'] = $total_amount)).'</td>';
+                                        $tbody_tr_html .= '<td>'.esc_html(number_format_i18n($customers_invoices[$customer_id]['receive_amount'] = $receive_amount)).'</td>';
+                                        $tbody_tr_html .= '<td>'.esc_html(number_format_i18n($customers_invoices[$customer_id]['remain_amount'] = $remain_amount)).'</td>';
+                                        echo $tbody_tr_html;
                                     }
-    
-                                    $customer_total_amount = $wpdb->get_var("SELECT SUM(total_amount) FROM fst_customer_invoice WHERE `customer_id` = '$customer_id' AND `sale_date` = '$date'");
-                                    $customer_received_amount = $wpdb->get_var("SELECT SUM(amount) FROM fst_customer_payments WHERE `customer_id` = '$customer_id' AND `paid_date` = '$date'");
-    
-                                    $tbody_tr_html = '<tr>';
-                                    $tbody_tr_html .= '<td>'.esc_html(number_format_i18n($current)).'</td>';
-                                    $tbody_tr_html .= '<td>'.esc_html($customer_detail).'</td>';
-                                    $tbody_tr_html .= '<td>'.esc_html(number_format_i18n($customer_total_amount)).'</td>';
-                                    $tbody_tr_html .= '<td>'.esc_html(number_format_i18n($customer_received_amount)).'</td>';
-                                    $tbody_tr_html .= '<td>'.esc_html(number_format_i18n($customer_total_amount - $customer_received_amount)).'</td>';
-                                    $tbody_tr_html .= '<td>';
-                                    $tbody_tr_html .= '<input type="checkbox" id="action_field" name="action[]" class="action_field" value="1">&nbsp;';
-                                    $tbody_tr_html .= '<input type="checkbox" id="action_field" name="action[]" class="action_field" value="2">&nbsp;';
-                                    $tbody_tr_html .= '<input type="checkbox" id="action_field" name="action[]" class="action_field" value="3">';
-                                    $tbody_tr_html .= '</td>';
-                                    $tbody_tr_html .= '</tr>';
-                                    echo $tbody_tr_html;
                                 }
                             } else {
                                 echo "<tr>
