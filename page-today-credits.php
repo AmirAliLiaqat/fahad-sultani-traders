@@ -94,6 +94,11 @@
                                         $tbody_tr_html .= '<td>'.esc_html(number_format_i18n($customers_invoices[$customer_id]['total_amount'] = $total_amount)).'</td>';
                                         $tbody_tr_html .= '<td>'.esc_html(number_format_i18n($customers_invoices[$customer_id]['receive_amount'] = $receive_amount)).'</td>';
                                         $tbody_tr_html .= '<td>'.esc_html(number_format_i18n($customers_invoices[$customer_id]['remain_amount'] = $remain_amount)).'</td>';
+                                        $tbody_tr_html .= '<td>';
+                                        $tbody_tr_html .= '<input type="checkbox" id="action_field" name="action[]" class="action_field" value="1">&nbsp;';
+                                        $tbody_tr_html .= '<input type="checkbox" id="action_field" name="action[]" class="action_field" value="2">&nbsp;';
+                                        $tbody_tr_html .= '<input type="checkbox" id="action_field" name="action[]" class="action_field" value="3">';
+                                        $tbody_tr_html .= '</td>';
                                         echo $tbody_tr_html;
                                     }
                                 }
@@ -168,6 +173,11 @@
                                         $tbody_tr_html .= '<td>'.esc_html(number_format_i18n($customers_invoices[$customer_id]['total_amount'] = $total_amount)).'</td>';
                                         $tbody_tr_html .= '<td>'.esc_html(number_format_i18n($customers_invoices[$customer_id]['receive_amount'] = $receive_amount)).'</td>';
                                         $tbody_tr_html .= '<td>'.esc_html(number_format_i18n($customers_invoices[$customer_id]['remain_amount'] = $remain_amount)).'</td>';
+                                        $tbody_tr_html .= '<td>';
+                                        $tbody_tr_html .= '<input type="checkbox" id="action_field" name="action[]" class="action_field" value="1">&nbsp;';
+                                        $tbody_tr_html .= '<input type="checkbox" id="action_field" name="action[]" class="action_field" value="2">&nbsp;';
+                                        $tbody_tr_html .= '<input type="checkbox" id="action_field" name="action[]" class="action_field" value="3">';
+                                        $tbody_tr_html .= '</td>';
                                         echo $tbody_tr_html;
                                     }
                                 }
