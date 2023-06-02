@@ -62,20 +62,20 @@
                             <th><?php esc_html_e("Total"); ?></th>
                             <th><?php esc_html_e("Received"); ?></th>
                             <th><?php esc_html_e("Remaining"); ?></th>
-                            <th><?php esc_html_e("Action"); ?></th>
                         </tr>
                     </thead>
                     <tbody class="bg-light">
                         <?php
                             $result = $wpdb->get_results("SELECT * FROM fst_customer_invoice WHERE `sale_date` = '$date_filter'");
                             
-                            $total_amount = 0;
+                            $grand_amount = 0;
                             $customers_invoices = array();
                             if($result) {
                                 foreach($result as $row) {
                                     $customer_id = $row->customer_id;
-                                    $total_amount += $row->total_amount;
+                                    $grand_amount += $row->total_amount;
 
+                                    $total_amount = $wpdb->get_var("SELECT SUM(total_amount) FROM fst_customer_invoice WHERE `customer_id` = '$customer_id' AND `sale_date` = '$date_filter'");
                                     if(isset($customers_invoices[$customer_id])) {
                                         $customers_invoices[$customer_id]['total_amount'] += $row->total_amount;
                                     } else {
@@ -94,11 +94,6 @@
                                         $tbody_tr_html .= '<td>'.esc_html(number_format_i18n($customers_invoices[$customer_id]['total_amount'] = $total_amount)).'</td>';
                                         $tbody_tr_html .= '<td>'.esc_html(number_format_i18n($customers_invoices[$customer_id]['receive_amount'] = $receive_amount)).'</td>';
                                         $tbody_tr_html .= '<td>'.esc_html(number_format_i18n($customers_invoices[$customer_id]['remain_amount'] = $remain_amount)).'</td>';
-                                        $tbody_tr_html .= '<td>';
-                                        $tbody_tr_html .= '<input type="checkbox" id="action_field" name="action[]" class="action_field" value="1">&nbsp;';
-                                        $tbody_tr_html .= '<input type="checkbox" id="action_field" name="action[]" class="action_field" value="2">&nbsp;';
-                                        $tbody_tr_html .= '<input type="checkbox" id="action_field" name="action[]" class="action_field" value="3">';
-                                        $tbody_tr_html .= '</td>';
                                         echo $tbody_tr_html;
                                     }
                                 }
@@ -107,16 +102,18 @@
                                     <td colspan='8' class='text-center text-danger'>No Data Found...</td>
                                 </tr>";
                             }
+                            if(isset($_POST['action'])) {
+                                var_dump($_POST);
+                            }
                         ?>
                     </tbody>
                     <tfoot class="bg-dark text-white">
                         <?php
                             $tfoot_tr_html = '<tr>';
                             $tfoot_tr_html .= '<td colspan="2">'.esc_html("Total Amount").'</td>';
-                            $tfoot_tr_html .= '<td>'.esc_html(number_format_i18n($total_amount)).'</td>';
+                            $tfoot_tr_html .= '<td>'.esc_html(number_format_i18n($grand_amount)).'</td>';
                             $tfoot_tr_html .= '<td>'.esc_html(number_format_i18n($total_receive = $wpdb->get_var("SELECT SUM(amount) FROM fst_customer_payments WHERE `paid_date` = '$date_filter'"))).'</td>';
-                            $tfoot_tr_html .= '<td>'.esc_html(number_format_i18n($total_amount - $total_receive)).'</td>';
-                            $tfoot_tr_html .= '<td></td>';
+                            $tfoot_tr_html .= '<td>'.esc_html(number_format_i18n($grand_amount - $total_receive)).'</td>';
                             $tfoot_tr_html .= '</tr>';
                             echo $tfoot_tr_html;
                         ?>
@@ -141,20 +138,20 @@
                             <th><?php esc_html_e("Total"); ?></th>
                             <th><?php esc_html_e("Received"); ?></th>
                             <th><?php esc_html_e("Remaining"); ?></th>
-                            <th><?php esc_html_e("Action"); ?></th>
                         </tr>
                     </thead>
                     <tbody class="bg-light">
                         <?php
                             $result = $wpdb->get_results("SELECT * FROM fst_customer_invoice WHERE `sale_date` = '$date'");
                             
-                            $total_amount = 0;
+                            $grand_amount = 0;
                             $customers_invoices = array();
                             if($result) {
                                 foreach($result as $row) {
                                     $customer_id = $row->customer_id;
-                                    $total_amount += $row->total_amount;
+                                    $grand_amount += $row->total_amount;
 
+                                    $total_amount = $wpdb->get_var("SELECT SUM(total_amount) FROM fst_customer_invoice WHERE `customer_id` = '$customer_id' AND `sale_date` = '$date_filter'");
                                     if(isset($customers_invoices[$customer_id])) {
                                         $customers_invoices[$customer_id]['total_amount'] += $row->total_amount;
                                     } else {
@@ -173,11 +170,6 @@
                                         $tbody_tr_html .= '<td>'.esc_html(number_format_i18n($customers_invoices[$customer_id]['total_amount'] = $total_amount)).'</td>';
                                         $tbody_tr_html .= '<td>'.esc_html(number_format_i18n($customers_invoices[$customer_id]['receive_amount'] = $receive_amount)).'</td>';
                                         $tbody_tr_html .= '<td>'.esc_html(number_format_i18n($customers_invoices[$customer_id]['remain_amount'] = $remain_amount)).'</td>';
-                                        $tbody_tr_html .= '<td>';
-                                        $tbody_tr_html .= '<input type="checkbox" id="action_field" name="action[]" class="action_field" value="1">&nbsp;';
-                                        $tbody_tr_html .= '<input type="checkbox" id="action_field" name="action[]" class="action_field" value="2">&nbsp;';
-                                        $tbody_tr_html .= '<input type="checkbox" id="action_field" name="action[]" class="action_field" value="3">';
-                                        $tbody_tr_html .= '</td>';
                                         echo $tbody_tr_html;
                                     }
                                 }
@@ -192,19 +184,10 @@
                         <?php
                             $tfoot_tr_html = '<tr>';
                             $tfoot_tr_html .= '<td colspan="2">'.esc_html("Total Amount").'</td>';
-                            $tfoot_tr_html .= '<td>'.esc_html(number_format_i18n($total_amount)).'</td>';
+                            $tfoot_tr_html .= '<td>'.esc_html(number_format_i18n($grand_amount)).'</td>';
                             $tfoot_tr_html .= '<td>'.esc_html(number_format_i18n($total_receive = $wpdb->get_var("SELECT SUM(amount) FROM fst_customer_payments WHERE `paid_date` = '$date'"))).'</td>';
-                            $tfoot_tr_html .= '<td>'.esc_html(number_format_i18n($total_amount - $total_receive)).'</td>';
-                            $tfoot_tr_html .= '<td>';
-                            $tfoot_tr_html .= '<button name="save_action" class="btn btn-primary">Save Changes</button>';
-                            $tfoot_tr_html .= '</td>';
+                            $tfoot_tr_html .= '<td>'.esc_html(number_format_i18n($grand_amount - $total_receive)).'</td>';
                             $tfoot_tr_html .= '</tr>';
-                            echo $tfoot_tr_html;
-                            if(isset($_POST['save_action']) && !empty($_POST['action'])) {
-                                foreach($_POST['action'] as $action) {
-                                    echo $action;
-                                }
-                            }
                         ?>
                     </tfoot>
                 </table>    
