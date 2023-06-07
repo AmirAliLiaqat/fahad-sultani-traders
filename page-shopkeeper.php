@@ -40,8 +40,6 @@
                             $thead_tr_html .= '<th>'.esc_html__("Sr#").'</th>';
                             $thead_tr_html .= '<th class="text-start">'.esc_html__("Shopkeeper").'</th>';
                             $thead_tr_html .= '<th>'.esc_html__("Total").'</th>';
-                            $thead_tr_html .= '<th>'.esc_html__("Pay").'</th>';
-                            $thead_tr_html .= '<th>'.esc_html__("Remain").'</th>';
                             $thead_tr_html .= '<th>'.esc_html__("Account").'</th>';
                             $thead_tr_html .= '</tr>';
                             echo $thead_tr_html;
@@ -57,12 +55,12 @@
                             if($result) {
                                 foreach($result as $row) {
                                     $shopkeeper_id = $row->shopkeeper_id; 
-                                    $grand_amount += $row->total_price;
+                                    $grand_amount += $row->price;
                                     
-                                    $total_amount = $wpdb->get_var("SELECT SUM(total_price) FROM fst_purchase_data WHERE `shopkeeper_id` = '".$shopkeeper_id."'");
+                                    $total_amount = $wpdb->get_var("SELECT SUM(price) FROM fst_purchase_data WHERE `shopkeeper_id` = '".$shopkeeper_id."'");
                                     
                                     if(isset($shopkeeper_invoices[$shopkeeper_id])) {
-                                        $shopkeeper_invoices[$shopkeeper_id]['total_price'] += $row->total_price;
+                                        $shopkeeper_invoices[$shopkeeper_id]['price'] += $row->price;
                                     } else {
                                         $shopkeeper = $wpdb->get_results("SELECT * FROM fst_shopkeepers_data WHERE `ID` = '$shopkeeper_id'");
                                         foreach($shopkeeper as $detail) {
@@ -72,12 +70,11 @@
 
                                         $receive_amount = $wpdb->get_var("SELECT SUM(amount) FROM fst_shopkeeper_payments WHERE `shopkeeper_id` = '$shopkeeper_id'");
                                         $remain_amount = $total_amount - $receive_amount;
+                                        $shopkeeper_invoices[$shopkeeper_id]['price'] = $total_amount;
 
                                         $tbody_tr_html = '<tr class="text-center">';
                                         $tbody_tr_html .= '<td>'.esc_html($sr++).'</td>';
-                                        $tbody_tr_html .= '<td>'.esc_html($shopkeeper_invoices[$shopkeeper_id]['shopkeeper_detail'] = $shopkeeper_detail).'</td>';
-                                        $tbody_tr_html .= '<td>'.esc_html(number_format_i18n($shopkeeper_invoices[$shopkeeper_id]['total_price'] = $total_amount)).'</td>';
-                                        $tbody_tr_html .= '<td>'.esc_html(number_format_i18n($shopkeeper_invoices[$shopkeeper_id]['receive_amount'] = $receive_amount)).'</td>';
+                                        $tbody_tr_html .= '<td class="text-start">'.esc_html($shopkeeper_invoices[$shopkeeper_id]['shopkeeper_detail'] = $shopkeeper_detail).'</td>';
                                         $tbody_tr_html .= '<td>'.esc_html(number_format_i18n($shopkeeper_invoices[$shopkeeper_id]['remain_amount'] = $remain_amount)).'</td>';
                                         $tbody_tr_html .= '<td>'
                                                                 .esc_html($account) . '<br>';
@@ -106,8 +103,6 @@
 
                             $tfoot_tr_html = '<tr class="text-center">';
                             $tfoot_tr_html .= '<th colspan="2" class="text-end">'.esc_html__("Total Amount").'</th>';
-                            $tfoot_tr_html .= '<th>'.esc_html(number_format_i18n($grand_amount)).'</th>';
-                            $tfoot_tr_html .= '<th>'.esc_html(number_format_i18n($receive_amount)).'</th>';
                             $tfoot_tr_html .= '<th>'.esc_html(number_format_i18n($remiain_amount)).'</th>';
                             $tfoot_tr_html .= '<th></th>';
                             $tfoot_tr_html .= '</tr>';
