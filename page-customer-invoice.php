@@ -215,49 +215,27 @@
                                                 </thead>
                                                 <tbody class='bg-light'>
                                                     <?php
-                                                        if(isset($_GET['customer_id'])) {
-                                                            $customer_id = $_GET['customer_id'];
-                                                        } else {
-                                                            $customer_id = 0;
-                                                        }
-
                                                         $result = $wpdb->get_results("SELECT * FROM fst_customer_invoice WHERE `customer_id` = '$customer_id'");
                                                         
                                                         if($result) {
                                                             foreach($result as $row) {
                                                                 $product_id = $row->product_id;
-                                                                $sale_date = $row->sale_date;
-                                                    ?>
-                                                    <tr>
-                                                        <td><?php echo esc_html($row->sale_date); ?></td>
-                                                        <td>
-                                                            <?php 
+
                                                                 $product = $wpdb->get_results("SELECT * FROM fst_purchase_data WHERE `ID` = '$product_id'");
-                                                                if($result) {
-                                                                    foreach($product as $item) {
-                                                                        $product_name = $item->product_name;
-                                                                        echo esc_html($product_name);
-                                                                    }
+                                                                foreach($product as $product) {
+                                                                    $product_name = $product->product_name;
                                                                 }
-                                                            ?>
-                                                        </td>
-                                                        <td><?php echo esc_html(number_format_i18n($qty = $row->quantity)); ?></td>
-                                                        <td><?php echo esc_html(number_format_i18n($per_piece = $row->price_per_quantity)); ?></td>
-                                                        <td><?php echo esc_html(number_format_i18n($total_amount = $qty * $per_piece)); ?></td>
-                                                        <td>
-                                                            <?php 
-                                                                // $received_amount = $wpdb->get_var("SELECT SUM(amount) FROM fst_customer_payments WHERE `customer_id` = '$customer_id' AND `paid_date` = '$sale_date'");
-                                                                // echo esc_html(number_format_i18n($received_amount));
-                                                                echo esc_html(number_format_i18n($received_amount = 0));
-                                                            ?>
-                                                        </td>
-                                                        <td>
-                                                            <?php 
-                                                                echo esc_html(number_format_i18n($remain_amount = $total_amount - $received_amount)); 
-                                                            ?>
-                                                        </td>
-                                                    </tr>
-                                                    <?php 
+
+                                                                $tbody_tr_html = '<tr>';
+                                                                $tbody_tr_html .= '<td>'.esc_html($row->sale_date).'</td>';
+                                                                $tbody_tr_html .= '<td>'.esc_html($product_name).'</td>';
+                                                                $tbody_tr_html .= '<td>'.esc_html(number_format_i18n($qty = $row->quantity)).'</td>';
+                                                                $tbody_tr_html .= '<td>'.esc_html(number_format_i18n($per_piece = $row->price_per_quantity)).'</td>';
+                                                                $tbody_tr_html .= '<td>'.esc_html(number_format_i18n($total_amount = $qty * $per_piece)).'</td>';
+                                                                $tbody_tr_html .= '<td>'.esc_html(number_format_i18n($received_amount = 0)).'</td>';
+                                                                $tbody_tr_html .= '<td>'.esc_html(number_format_i18n($remain_amount = $total_amount - $received_amount)).'</td>';
+                                                                $tbody_tr_html .= '</tr>';
+                                                                echo $tbody_tr_html;
                                                             }
                                                         } else {
                                                             echo "<tr>
