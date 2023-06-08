@@ -20,6 +20,7 @@
             $url = get_site_url() . "/login";
             wp_redirect( $url );
         }
+        error_reporting(0);
         global $wpdb;
         $date = date('Y-m-d');
     ?>  
@@ -81,10 +82,9 @@
                                     <th><?php esc_html_e("Product Name"); ?></th>
                                     <th><?php esc_html_e("Quantity"); ?></th>
                                     <th><?php esc_html_e("Per Piece"); ?></th>
-                                    <th><?php esc_html_e("Price"); ?></th>
-                                    <th><?php esc_html_e("Expense"); ?></th>
-                                    <th><?php esc_html_e("With Expense"); ?></th>
-                                    <th><?php esc_html_e("Total Price"); ?></th>
+                                    <th><?php esc_html_e("Date"); ?></th>
+                                    <th><?php esc_html_e("Shopkeeper"); ?></th>
+                                    <th><?php esc_html_e("Action"); ?></th>
                                 </tr>
                             </thead>
                             <tbody class="bg-light">
@@ -97,20 +97,24 @@
 
                                     if($fetch_product) {
                                         foreach($fetch_product as $fetch_product) {
-                                            $ID = $fetch_product->shopkeeper_id;
+                                            $shopkeeper_id = $fetch_product->shopkeeper_id;
 
-                                            $tbody_tr_html = '<tr>';
-                                            $tbody_tr_html .= '<td>'.esc_html($fetch_product->ID).'</td>';
-                                            $tbody_tr_html .= '<td>'.esc_html($fetch_product->product_name).'</td>';
-                                            $tbody_tr_html .= '<td>'.esc_html(number_format_i18n($fetch_product->quantity)).'</td>';
-                                            $tbody_tr_html .= '<td>'.esc_html(number_format_i18n($fetch_product->price_per_piece)).'</td>';
-                                            $tbody_tr_html .= '<td>'.esc_html(number_format_i18n($fetch_product->price)).'</td>';
-                                            $tbody_tr_html .= '<td>'.esc_html(number_format_i18n($fetch_product->expenses)).'</td>';
-                                            $tbody_tr_html .= '<td>'.esc_html(number_format_i18n($fetch_product->price_with_expense)).'</td>';
-                                            $tbody_tr_html .= '<td>'.esc_html(number_format_i18n($fetch_product->total_price)).'</td>';
-                                            $tbody_tr_html .= '</tr>';
-                                            echo $tbody_tr_html;
-                                
+                                            $shopkeeper = $wpdb->get_results("SELECT * FROM fst_shopkeepers_data WHERE `ID` = '$shopkeeper_id'");
+                                            foreach($shopkeeper as $shopkeeper): 
+                                ?>
+                                <tr>
+                                    <td><?php echo esc_html($fetch_product->ID); ?></td>
+                                    <td><?php echo esc_html($fetch_product->product_name); ?></td>
+                                    <td><?php echo esc_html(number_format_i18n($fetch_product->quantity)); ?></td>
+                                    <td><?php echo esc_html(number_format_i18n($fetch_product->price_per_piece)); ?></td>
+                                    <td><?php echo esc_html($fetch_product->purchase_date); ?></td>
+                                    <td><?php echo esc_html($shopkeeper->shopkeeper_name); ?></td>
+                                    <td>
+                                        <a href="<?php echo esc_url(home_url()); ?>/products-detail?query=view_detail&hash=<?php echo esc_html($fetch_product->ID); ?>&<?php echo esc_html(md5(rand(5,16))); ?>" target="_blank" class="btn btn-primary text-white"><?php esc_html_e('View'); ?></a>
+                                    </td>
+                                </tr>
+                                <?php
+                                            endforeach;
                                         }
                                     } else {
                                         echo "<tr class='text-center'><td colspan='10' class='text-danger text-center'>No product found!</td></tr>";
