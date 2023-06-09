@@ -109,7 +109,7 @@ function add_row_to_result($row) {
                         <th class="text-start">'.__("Customer").'</th>';
                         $td_ids = array();
                         $customer_invoices_total_data = array();
-                        $products = $wpdb->get_results("SELECT * FROM fst_purchase_data");
+                        $products = $wpdb->get_results("SELECT * FROM fst_purchase_data WHERE `purchase_date` = '$date_filter'");
 
                         foreach($products as $item) {
                             if(isset($td_ids[$item->ID]) && isset($td_ids[$item->ID]['total_quantity'])) {
@@ -130,7 +130,7 @@ function add_row_to_result($row) {
                     </thead>
                     <tbody class="bg-light">
                         <?php
-                            $result = $wpdb->get_results("SELECT * FROM fst_customer_invoice");
+                            $result = $wpdb->get_results("SELECT * FROM fst_customer_invoice WHERE `sale_date` = '$date_filter'");
                             $sr = 1;
                             $whole_total = 0;
                             if($result) {
