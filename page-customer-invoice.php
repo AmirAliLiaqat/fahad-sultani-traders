@@ -226,28 +226,16 @@
                                                                     $product_name = $product->product_name;
                                                                 }
 
-                                                                $customers_invoices = array();
                                                                 $tbody_tr_html = '<tr>';
-                                                                $tbody_tr_html .= '<td>'.$customers_invoices[$product_id]['date'] = $row->sale_date.'</td>';
-                                                                $tbody_tr_html .= '<td>'.$customers_invoices[$product_id]['name'] = $product_name.'</td>';
-                                                                $tbody_tr_html .= '<td>'.esc_html(number_format_i18n($customers_invoices[$product_id]['qty'] = $row->quantity)).'</td>';
-                                                                $tbody_tr_html .= '<td>'.esc_html(number_format_i18n($customers_invoices[$product_id]['per_price'] = $row->price_per_quantity)).'</td>';
-                                                                $tbody_tr_html .= '<td>'.esc_html(number_format_i18n($customers_invoices[$product_id]['total'] = $total = ($row->quantity)*($row->price_per_quantity))).'</td>';
-                                                                $tbody_tr_html .= '<td>'.esc_html(number_format_i18n($customers_invoices[$product_id]['receive'] = $received = 0)).'</td>';
-                                                                $tbody_tr_html .= '<td>'.esc_html(number_format_i18n($customers_invoices[$product_id]['remain'] = $total - $received)).'</td>';
+                                                                $tbody_tr_html .= '<td>'.esc_html($row->sale_date).'</td>';
+                                                                $tbody_tr_html .= '<td>'.esc_html($product_name).'</td>';
+                                                                $tbody_tr_html .= '<td>'.esc_html(number_format_i18n($qty = $row->quantity)).'</td>';
+                                                                $tbody_tr_html .= '<td>'.esc_html(number_format_i18n($per_piece = $row->price_per_quantity)).'</td>';
+                                                                $tbody_tr_html .= '<td>'.esc_html(number_format_i18n($total_amount = $qty * $per_piece)).'</td>';
+                                                                $tbody_tr_html .= '<td>'.esc_html(number_format_i18n($received_amount = 0)).'</td>';
+                                                                $tbody_tr_html .= '<td>'.esc_html(number_format_i18n($remain_amount = $total_amount - $received_amount)).'</td>';
                                                                 $tbody_tr_html .= '</tr>';
                                                                 echo $tbody_tr_html;
-
-                                                                // $tbody_tr_html = '<tr>';
-                                                                // $tbody_tr_html .= '<td>'.esc_html($row->sale_date).'</td>';
-                                                                // $tbody_tr_html .= '<td>'.esc_html($product_name).'</td>';
-                                                                // $tbody_tr_html .= '<td>'.esc_html(number_format_i18n($qty = $row->quantity)).'</td>';
-                                                                // $tbody_tr_html .= '<td>'.esc_html(number_format_i18n($per_piece = $row->price_per_quantity)).'</td>';
-                                                                // $tbody_tr_html .= '<td>'.esc_html(number_format_i18n($total_amount = $qty * $per_piece)).'</td>';
-                                                                // $tbody_tr_html .= '<td>'.esc_html(number_format_i18n($received_amount = 0)).'</td>';
-                                                                // $tbody_tr_html .= '<td>'.esc_html(number_format_i18n($remain_amount = $total_amount - $received_amount)).'</td>';
-                                                                // $tbody_tr_html .= '</tr>';
-                                                                // echo $tbody_tr_html;
                                                             }
                                                         } else {
                                                             echo "<tr>
