@@ -67,6 +67,7 @@
 
                                         $shopkeeper = $wpdb->get_results("SELECT * FROM fst_shopkeepers_data WHERE `ID` = '$shopkeeper_id'");
                                         foreach($shopkeeper as $shopkeeper): 
+                                            $total = $fetch_product->total_price;
                             ?>
                             <tr>
                                 <td><?php echo esc_html($fetch_product->ID); ?></td>
@@ -116,12 +117,14 @@
                                 <?php
                                     $fetch_product = $wpdb->get_results("SELECT * FROM fst_customer_invoice WHERE `product_id` = '$product_id'");
 
+                                    $total_qty = 0;
                                     $grand_total = 0;
                                     if($fetch_product) :
                                         foreach($fetch_product as $fetch_product) :
                                             $customer_id = $fetch_product->customer_id;
                                             $sub_total = $fetch_product->total_amount;
                                             $grand_total += $fetch_product->total_amount;
+                                            $total_qty += $fetch_product->quantity;
                                 ?>
                                 <tr>
                                     <td><?php echo esc_html($fetch_product->sale_date); ?></td>
@@ -153,7 +156,7 @@
                             <tbody>
                                 <tr>
                                     <td class="bg-dark text-white text-start"><?php esc_html_e("Average"); ?></td>
-                                    <td><?php echo esc_html(number_format_i18n($grand_total/4)); ?></td>
+                                    <td><?php echo esc_html(number_format_i18n($grand_total/$total_qty)); ?></td>
                                 </tr>
                                 <tr>
                                     <td class="bg-dark text-white text-start"><?php esc_html_e("Comission"); ?></td>
@@ -162,12 +165,12 @@
                                 <tr>
                                     <td class="bg-dark text-white text-start"><?php esc_html_e("Profit / Lose"); ?></td>
                                     <?php
-                                        $status = 'profit';
+                                        $status = $grand_total - $total;
 
-                                        if($status === 'profit') {
-                                            echo '<td class="text-primary">Profit</td>';
+                                        if($status > 0) {
+                                            echo '<td class="text-success">'.$status.'</td>';
                                         } else {
-                                            echo '<td class="text-danger">Lose</td>';
+                                            echo '<td class="text-danger display-6">'.$status.'</td>';
                                         }
                                     ?>
                                 </tr>
