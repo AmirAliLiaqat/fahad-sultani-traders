@@ -100,6 +100,10 @@
                         <li class="menu-item">
                             <a href="<?php echo esc_url(get_page_link(40)); ?>"><i class="fa-solid fa-receipt fa-2x"></i><?php esc_html_e(get_the_title(40)); ?></a>
                         </li>
+                        <?php } if( current_user_can( 'bill' ) ) { ?>
+                        <li class="menu-item">
+                            <a href="<?php echo esc_url(get_page_link(68)); ?>"><i class="fa-solid fa-money-bill-transfer fa-2x"></i><?php esc_html_e(get_the_title(68)); ?></a>
+                        </li>
                         <?php } if( current_user_can( 'expense' ) ) { ?>
                         <li class="menu-item">
                             <a href="<?php echo esc_url(get_page_link(18)); ?>"><i class="fa-solid fa-wallet fa-2x"></i><?php esc_html_e(get_the_title(18)); ?></a>
