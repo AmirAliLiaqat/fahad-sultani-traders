@@ -431,6 +431,19 @@
                                 </div><!-- .col-lg-8 -->
                             </div><!-- .row -->
 
+                            <!-- Purchase On -->
+                            <div class="row mb-3">
+                                <div class="col-lg-4 col-sm-12">
+                                    <label for="expenses" class="form-label fw-bolder"><?php esc_html_e("Purchase On"); ?></label>
+                                </div><!-- .col-lg-4 -->
+                                <div class="col-lg-8 col-sm-12">
+                                    <select name="purchase_on" id="" class="form-select">
+                                        <option value="on_net" selected><?php esc_html_e('On Net'); ?></option>
+                                        <option value="on_bill"><?php esc_html_e('On Bill'); ?></option>
+                                    </select>
+                                </div><!-- .col-lg-8 -->
+                            </div><!-- .row -->
+
                             <div class="text-end mb-2">
                                 <a class="btn btn-primary" id="open_more"><?php esc_html_e("Show More"); ?></a>
                             </div><!-- .text-end -->
