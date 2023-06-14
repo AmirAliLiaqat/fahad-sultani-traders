@@ -274,7 +274,7 @@
                                                     ?>
                                                     <form class="" method="post">
                                                         <?php wp_nonce_field( 'adding_current', 'adding_current_nonce' ); ?>
-                                                        <input type="text" name="current" class="current form-control d-inline">
+                                                        <input type="text" name="current" class="current form-control d-inline" autocomplete="off">
                                                         <button class="btn btn-primary my-2" name="add_current"><?php esc_html_e('Add'); ?></button>
                                                     </form>
                                                 </div><!-- .col-lg-6 -->

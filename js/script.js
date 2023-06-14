@@ -6,9 +6,13 @@ document.onkeydown = function(e) {
     }
 }
 
+/************ adding toggle effect ***************/
 $("#open_more").click(function() {
     $("#show_more").css("display", "block");
 });
+
+/************ disable input auto complete ***************/
+$('input').attr('autocomplete','off');
 
 /************ hideing alert message box ***************/
 setTimeout(function() {
