@@ -116,6 +116,19 @@ td{
 	padding: 10px !important;
 }
 
+.bill_header_section_1, .bill_footer{
+	background-size: cover;
+	background-position: center;
+}
+
+.bill_header_section_1{
+	background-image: url(images/header_bg.png);
+}
+
+.bill_footer{
+	background-image: url(images/footer_bg.png);
+}
+
 @media (max-width: 1100px) {
     .menu{
         display: block;
