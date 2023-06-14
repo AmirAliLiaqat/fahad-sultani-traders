@@ -36,7 +36,7 @@
                 <form action="" method="get">
                     <div class="form-group">
                         <?php wp_nonce_field( 'search_customer_invoice', 'search_invoice_nonce' ); ?>
-                        <input type="text" id="search" class="search_invoice" name="search_invoice" class="form-control d-inline" placeholder="<?php esc_html_e(" Search"); ?>" autocomplete="off" required/>
+                        <input type="text" id="search" class="search_invoice form-control d-inline" name="search_invoice" placeholder="<?php esc_html_e(" Search"); ?>" autocomplete="off" required/>
                         <button class="btn btn-primary my-2" name="search"><?php esc_html_e("View"); ?></button>
                         <div class="mt-2" id="result"></div>
                     </div><!-- .form-group -->
@@ -78,8 +78,8 @@
                                                 ?>
                                             </div><!-- .customer_img -->
                                             <div class="row mt-5">
-                                                <h1 class="mb-3"><?php esc_html_e("Customer Details:"); ?></h1>
                                                 <div class="col-lg-6 col-md-6 col-sm-12 table-responsive">
+                                                    <h1 class="mb-3"><?php esc_html_e("Customer Details"); ?>:</h1>
                                                     <table class="table table-bordered border-dark bg-light">
                                                         <tbody>
                                                             <tr>
@@ -143,6 +143,7 @@
                                                     </table>
                                                 </div><!-- .col-lg-6 -->
                                                 <div class="col-lg-6 col-md-6 col-sm-12 table-responsive">
+                                                    <h1 class="mb-3"><?php esc_html_e("Total Summary"); ?>:</h1>
                                                     <table class="table table-bordered border-dark bg-light">
                                                         <tbody>
                                                             <tr>
@@ -154,11 +155,54 @@
                                                                         foreach($get_invoice as $invoice) {
                                                                             $total_amount += $invoice->total_amount;
                                                                         }
-                                                                        $current = $row->current;
 
                                                                         $received_amount = 0;
                                                                         $total_discount = 0;
                                                                         $received = $wpdb->get_results("SELECT * FROM fst_customer_payments WHERE `customer_id` = '$customer_id'");
+                                                                        foreach($received as $amount) {
+                                                                            $received_amount += $amount->amount;
+                                                                            $total_discount += $amount->discount;
+                                                                        }
+                                                                        $total = $total_amount - $total_discount;
+                                                                        echo esc_html(number_format_i18n($total));
+                                                                    ?>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="p-3"><strong><?php esc_html_e("Total Payment"); ?></strong></td>
+                                                                <td class="p-3"><?php echo esc_html(number_format_i18n($received_amount)); ?></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="p-3"><strong><?php esc_html_e("Remaining"); ?></strong></td>
+                                                                <td class="p-3"><?php echo esc_html(number_format_i18n($total - $received_amount)); ?></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="p-3"><strong><?php esc_html_e("Discount"); ?></strong></td>
+                                                                <td class="p-3"><?php echo esc_html(number_format_i18n($total_discount)); ?></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div><!-- .col-lg-6 -->
+                                            </div><!-- .row -->
+                                            <div class="row">
+                                                <div class="col-lg-6 col-md-6 col-sm-12 table-responsive">
+                                                    <h1 class="mb-3"><?php esc_html_e("Today Summary"); ?>:</h1>
+                                                    <table class="table table-bordered border-dark bg-light">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="p-3"><strong><?php esc_html_e("Total Sale"); ?></strong></td>
+                                                                <td class="p-3">
+                                                                    <?php
+                                                                        $total_amount = 0;
+                                                                        $get_invoice = $wpdb->get_results("SELECT * FROM fst_customer_invoice WHERE `customer_id` = '$customer_id' AND `sale_date` = '$date'");
+                                                                        foreach($get_invoice as $invoice) {
+                                                                            $total_amount += $invoice->total_amount;
+                                                                        }
+                                                                        $current = $row->current;
+
+                                                                        $received_amount = 0;
+                                                                        $total_discount = 0;
+                                                                        $received = $wpdb->get_results("SELECT * FROM fst_customer_payments WHERE `customer_id` = '$customer_id' AND `purchase_date` = '$date'");
                                                                         foreach($received as $amount) {
                                                                             $received_amount += $amount->amount;
                                                                             $total_discount += $amount->discount;
@@ -195,7 +239,46 @@
                                                             </tr>
                                                         </tbody>
                                                     </table>
+
+                                                    <!-- Adding Current Amount -->
+                                                    <?php
+                                                        if(isset($_POST['adding_current_nonce']) && wp_verify_nonce( $_POST['adding_current_nonce'], 'adding_current' )) {
+                                                            if(is_user_logged_in()) {
+                                                                if(isset($_POST['add_current'])) {
+                                                                    $customer_id = sanitize_text_field($_GET['customer_id']);
+                                                                    $current = sanitize_text_field($_POST['current']);
+
+                                                                    $table = $wpdb->prefix.'customer_data';
+                                                                    $date = array(
+                                                                        'current' => $current
+                                                                    );
+                                                                    $where = array( 'ID' => $customer_id );
+                                                                    $add_current_amount = $wpdb->update($table, $date, $where);
+                                                                        
+                                                                    if($add_current_amount) {
+                                                                        echo "<div class='alert alert-success' role='alert'>
+                                                                        <strong>Current added successfully...</strong>
+                                                                        </div>";
+                                                                    } else {
+                                                                        echo "<div class='alert alert-danger' role='alert'>
+                                                                        <strong>Error to adding the current!</strong>
+                                                                        </div>";
+                                                                    }
+                                                                }
+                                                            } else {
+                                                                echo "<div class='alert alert-danger' role='alert'>
+                                                                <strong>User is not logged in!</strong>
+                                                                </div>";
+                                                            }
+                                                        }
+                                                    ?>
+                                                    <form class="" method="post">
+                                                        <?php wp_nonce_field( 'adding_current', 'adding_current_nonce' ); ?>
+                                                        <input type="text" name="current" class="current form-control d-inline">
+                                                        <button class="btn btn-primary my-2" name="add_current"><?php esc_html_e('Add'); ?></button>
+                                                    </form>
                                                 </div><!-- .col-lg-6 -->
+                                                <div class="col-lg-6 col-md-6 col-sm-12 table-responsive"></div><!-- .col-lg-6 -->
                                             </div><!-- .row -->
                                         </div><!-- .customer_details -->
 
@@ -246,47 +329,6 @@
                                                 </tbody>
                                             </table>
                                         </div><!-- .customer_invoices -->
-
-                                        <!-- Adding Current Amount -->
-                                        <?php
-                                            if(isset($_POST['adding_current_nonce']) && wp_verify_nonce( $_POST['adding_current_nonce'], 'adding_current' )) {
-                                                if(is_user_logged_in()) {
-                                                    if(isset($_POST['add_current'])) {
-                                                        $customer_id = sanitize_text_field($_GET['customer_id']);
-                                                        $current = sanitize_text_field($_POST['current']);
-
-                                                        $table = $wpdb->prefix.'customer_data';
-                                                        $date = array(
-                                                            'current' => $current
-                                                        );
-                                                        $where = array( 'ID' => $customer_id );
-                                                        $add_current_amount = $wpdb->update($table, $date, $where);
-                                                            
-                                                        if($add_current_amount) {
-                                                            echo "<div class='alert alert-success' role='alert'>
-                                                            <strong>Current added successfully...</strong>
-                                                            </div>";
-                                                        } else {
-                                                            echo "<div class='alert alert-danger' role='alert'>
-                                                            <strong>Error to adding the current!</strong>
-                                                            </div>";
-                                                        }
-                                                    }
-                                                } else {
-                                                    echo "<div class='alert alert-danger' role='alert'>
-                                                    <strong>User is not logged in!</strong>
-                                                    </div>";
-                                                }
-                                            }
-                                        ?>
-                                        <form class="row" method="post">
-                                            <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                                                <?php wp_nonce_field( 'adding_current', 'adding_current_nonce' ); ?>
-                                                <input type="text" name="current" class="current" class="form-control">
-                                                <button class="btn btn-primary my-2" name="add_current"><?php esc_html_e('Add'); ?></button>
-                                                <!-- style="display: inline-table" -->
-                                            </div><!-- .col-lg-6 -->
-                                        </form>
                                     <?php
                                         }
                                     }
