@@ -135,7 +135,8 @@
                                                 'price' => $price, 
                                                 'expenses' => $expenses,
                                                 'price_with_expense' => $price_with_expense, 
-                                                'total_price' => $total_price
+                                                'total_price' => $total_price,
+                                                'purchase_on' => $purchase_on
                                             ));
     
                                             if($add_purchase_data) {
