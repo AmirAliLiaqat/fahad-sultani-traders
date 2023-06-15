@@ -560,6 +560,9 @@
                             <td><?php echo esc_html(number_format_i18n($data->price_with_expense)); ?></td>
                             <td><?php echo esc_html(number_format_i18n($data->total_price)); ?></td>
                             <td>
+                                <?php
+                                    if($data->purchase_on === 'on_net') {
+                                ?>
                                 <div class="dropdown action mx-2">
                                     <div class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                                         ...
@@ -572,6 +575,9 @@
                                         </form>
                                     </div>
                                 </div><!--dropdown-->
+                                <?php } else { ?>
+                                <a href="<?php echo home_url() . '/bill?product_id=' . $data->ID  ?>" class="btn btn-primary text-white" target="_blank"><?php esc_html_e('Bill'); ?></a>
+                                <?php } ?>
                             </td>
                         </tr>
                         <?php 
