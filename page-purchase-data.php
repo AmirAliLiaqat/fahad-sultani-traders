@@ -46,6 +46,7 @@
                                     $net_cash = sanitize_text_field($_POST['net_cash']);
                                     $description = sanitize_text_field($_POST['description']);
                                     $expenses = sanitize_text_field($_POST['expenses']);
+                                    $purchase_on = sanitize_text_field($_POST['purchase_on']);
 
                                     if($description = "") {
                                         $description = " ";
@@ -63,6 +64,18 @@
                                         $expenses = 0;
                                     }
 
+                                    if(!empty($price_with_expense)) {
+                                        $price_with_expense = sanitize_text_field($_POST['price_with_expense']);
+                                    } else {
+                                        $price_with_expense = 0;
+                                    }
+
+                                    if(!empty($total_price)) {
+                                        $total_price = sanitize_text_field($_POST['total_price']);
+                                    } else {
+                                        $total_price = 0;
+                                    }
+
                                     if(!empty($quantity) && !empty($price_per_piece) && !empty($price_per_piece)) {
                                         $price = ($quantity * $price_per_piece);
     
@@ -73,7 +86,7 @@
                                     $lastid = $wpdb->get_var('SELECT MAX(ID) FROM fst_purchase_data');
                                     $serial_number = $lastid + 1;
 
-                                    if($shopkeeper_id == '') {
+                                    if(empty($shopkeeper_id)) {
                                         echo "<div class='alert alert-danger' role='alert'>
                                         <strong>Shopkeeper is not selected!</strong>
                                         </div>";
@@ -104,6 +117,13 @@
                                                 </div>";
                                             }
                                         } else {
+                                            if($purchase_on == 'on_net') {
+                                                $price_per_piece = $price_per_piece;
+                                            } else {
+                                                $price_per_piece = 1;
+                                                $price = $quantity * $price_per_piece;
+                                            }
+
                                             $table = $wpdb->prefix.'purchase_data';
                                             $add_purchase_data = $wpdb->insert($table, array(
                                                 'serial_number' => $serial_number, 
@@ -434,7 +454,7 @@
                             <!-- Purchase On -->
                             <div class="row mb-3">
                                 <div class="col-lg-4 col-sm-12">
-                                    <label for="expenses" class="form-label fw-bolder"><?php esc_html_e("Purchase On"); ?></label>
+                                    <label for="purchase_on" class="form-label fw-bolder"><?php esc_html_e("Purchase On"); ?></label>
                                 </div><!-- .col-lg-4 -->
                                 <div class="col-lg-8 col-sm-12">
                                     <select name="purchase_on" id="" class="form-select">
@@ -478,9 +498,7 @@
                                 </div><!-- .col-12 -->
                             </div><!-- .row -->
                         </form>
-                        <?php
-                            }
-                        ?>
+                        <?php } ?>
                     </div><!-- .page-inner-content -->
                 </div><!-- .col-lg-6 -->
             </div><!-- .row -->
