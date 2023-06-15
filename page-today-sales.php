@@ -296,7 +296,12 @@ function add_row_to_result($row) {
                             <?php 
                                 foreach($td_ids as $key=>$p_id){
                                     $total_qty = $wpdb->get_var("SELECT SUM(quantity) FROM fst_purchase_data WHERE `ID` = $key");
-                                    $sales_qty = $customer_invoices_total_data[$key]['total_quantity'];
+                                    
+                                    if(isset($customer_invoices_total_data[$key]['total_quantity'])) {
+                                        $sales_qty = $customer_invoices_total_data[$key]['total_quantity'];
+                                    } else {
+                                        $sales_qty = 0;
+                                    }
                                     $remain_qty = $total_qty - $sales_qty;
 
                                     echo '<td>'. esc_html(number_format_i18n(($remain_qty))).'</td>';
